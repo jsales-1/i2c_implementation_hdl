@@ -1,14 +1,9 @@
 `timescale 1ns / 10ps
 
-// ============================================================================
-// Testbench: i2c_multi_slave_tb
-// Objetivo: Simular 1 master comunicando com 2 slaves no mesmo barramento
-// ============================================================================
-
 module i2c_multi_slave_tb;
 
     // ============================
-    // Sinais do Master
+    // Master
     // ============================
     logic clk;
     logic rst;
@@ -20,7 +15,7 @@ module i2c_multi_slave_tb;
     logic ready;
 
     // ============================
-    // Dados Slaves
+    // Slaves
     // ============================
     logic [7:0] slave0_data_to_send;
     logic [7:0] slave0_data_received;
@@ -28,18 +23,20 @@ module i2c_multi_slave_tb;
     logic [7:0] slave1_data_to_send;
     logic [7:0] slave1_data_received;
 
+    logic [7:0] slave2_data_to_send;
+    logic [7:0] slave2_data_received;
+
     // ============================
-    // Barramento I2C compartilhado
+    // Barramento I2C
     // ============================
     tri sda;
     tri scl;
 
-    // Pullups (opcional se seu slave já implementa open-drain)
     pullup (sda);
     pullup (scl);
 
     // ============================
-    // Instância Master
+    // Master
     // ============================
     i2c_master_controller master (
         .clk      (clk),
@@ -55,29 +52,24 @@ module i2c_multi_slave_tb;
     );
 
     // ============================
-    // Instância Slave 0
+    // Slaves
     // ============================
-    i2c_slave_controller #(
-        .SLAVE_ADDR(7'b0101010)
-    ) slave0 (
-        .rst           (rst),
-        .sda           (sda),
-        .scl           (scl),
-        .data_received (slave0_data_received),
-        .data_to_send  (slave0_data_to_send)
+    i2c_slave_controller #(.SLAVE_ADDR(7'b0101010)) slave0 (
+        .rst(rst), .sda(sda), .scl(scl),
+        .data_received(slave0_data_received),
+        .data_to_send(slave0_data_to_send)
     );
 
-    // ============================
-    // Instância Slave 1
-    // ============================
-    i2c_slave_controller #(
-        .SLAVE_ADDR(7'b0110011)
-    ) slave1 (
-        .rst           (rst),
-        .sda           (sda),
-        .scl           (scl),
-        .data_received (slave1_data_received),
-        .data_to_send  (slave1_data_to_send)
+    i2c_slave_controller #(.SLAVE_ADDR(7'b0110011)) slave1 (
+        .rst(rst), .sda(sda), .scl(scl),
+        .data_received(slave1_data_received),
+        .data_to_send(slave1_data_to_send)
+    );
+
+    i2c_slave_controller #(.SLAVE_ADDR(7'b0011101)) slave2 (
+        .rst(rst), .sda(sda), .scl(scl),
+        .data_received(slave2_data_received),
+        .data_to_send(slave2_data_to_send)
     );
 
     // ============================
@@ -85,7 +77,7 @@ module i2c_multi_slave_tb;
     // ============================
     initial begin
         clk = 0;
-        forever #1 clk = ~clk;   // período 2ns
+        forever #1 clk = ~clk;
     end
 
     // ============================
@@ -101,75 +93,96 @@ module i2c_multi_slave_tb;
         rw = 0;
         address = 0;
         master_data_in = 0;
+
         slave0_data_to_send = 0;
         slave1_data_to_send = 0;
+        slave2_data_to_send = 0;
 
-        #20;
-        rst = 0;
+        #20 rst = 0;
 
         // ============================================================
-        // TESTE 1 — Escrita no Slave 0
+        // WRITE SLAVE 0
         // ============================================================
         address = 7'b0101010;
         master_data_in = 8'hA5;
         rw = 0;
-        enable = 1;
-        #10 enable = 0;
-
+        enable = 1; #10 enable = 0;
         #400;
 
         if (slave0_data_received == 8'hA5)
-            $display("OK: Slave0 recebeu corretamente %h", slave0_data_received);
+            $display("OK WRITE: Slave0 recebeu %h", slave0_data_received);
         else
-            $display("ERRO: Slave0 recebeu %h", slave0_data_received);
+            $display("ERRO WRITE: Slave0 recebeu %h", slave0_data_received);
 
         // ============================================================
-        // TESTE 2 — Escrita no Slave 1
+        // WRITE SLAVE 1
         // ============================================================
         address = 7'b0110011;
         master_data_in = 8'h3C;
         rw = 0;
-        enable = 1;
-        #10 enable = 0;
-
+        enable = 1; #10 enable = 0;
         #400;
 
         if (slave1_data_received == 8'h3C)
-            $display("OK: Slave1 recebeu corretamente %h", slave1_data_received);
+            $display("OK WRITE: Slave1 recebeu %h", slave1_data_received);
         else
-            $display("ERRO: Slave1 recebeu %h", slave1_data_received);
+            $display("ERRO WRITE: Slave1 recebeu %h", slave1_data_received);
 
         // ============================================================
-        // TESTE 3 — Leitura do Slave 0
+        // WRITE SLAVE 2
         // ============================================================
-        address = 7'b0101010;
+        address = 7'b0011101;
+        master_data_in = 8'h77;
+        rw = 0;
+        enable = 1; #10 enable = 0;
+        #400;
+
+        if (slave2_data_received == 8'h77)
+            $display("OK WRITE: Slave2 recebeu %h", slave2_data_received);
+        else
+            $display("ERRO WRITE: Slave2 recebeu %h", slave2_data_received);
+
+        // ============================================================
+        // READ SLAVE 0
+        // ============================================================
         slave0_data_to_send = 8'hF0;
+        address = 7'b0101010;
         rw = 1;
-        enable = 1;
-        #10 enable = 0;
-
+        enable = 1; #10 enable = 0;
         #600;
 
         if (master_data_out == 8'hF0)
-            $display("OK: Master leu corretamente de Slave0: %h", master_data_out);
+            $display("OK READ: Master leu %h do Slave0", master_data_out);
         else
-            $display("ERRO: Master leu %h do Slave0", master_data_out);
+            $display("ERRO READ: Master leu %h do Slave0", master_data_out);
 
         // ============================================================
-        // TESTE 4 — Leitura do Slave 1
+        // READ SLAVE 1
         // ============================================================
-        address = 7'b0110011;
         slave1_data_to_send = 8'h55;
+        address = 7'b0110011;
         rw = 1;
-        enable = 1;
-        #10 enable = 0;
-
+        enable = 1; #10 enable = 0;
         #600;
 
         if (master_data_out == 8'h55)
-            $display("OK: Master leu corretamente de Slave1: %h", master_data_out);
+            $display("OK READ: Master leu %h do Slave1", master_data_out);
         else
-            $display("ERRO: Master leu %h do Slave1", master_data_out);
+            $display("ERRO READ: Master leu %h do Slave1", master_data_out);
+
+        // ============================================================
+        // READ SLAVE 2
+        // ============================================================
+        slave2_data_to_send = 8'h99;
+        address = 7'b0011101;
+        rw = 1;
+        enable = 1; #10 enable = 0;
+        #600;
+
+        if (master_data_out == 8'h99)
+            $display("OK READ: Master leu %h do Slave2", master_data_out);
+        else
+            $display("ERRO READ: Master leu %h do Slave2", master_data_out);
 
         $display("==== FIM DA SIMULACAO ====");
         $finish;
