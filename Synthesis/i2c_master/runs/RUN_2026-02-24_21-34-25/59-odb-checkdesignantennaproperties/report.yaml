@@ -1,0 +1,4 @@
+- cell: i2c_master_controller
+  inout: []
+  input: []
+  output: []

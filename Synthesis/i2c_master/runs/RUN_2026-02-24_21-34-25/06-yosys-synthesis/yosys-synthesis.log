@@ -1,0 +1,1557 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2024  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.46 (git sha1 e97731b9dda91fa5fa53ed87df7c34163ba59a41, clang++ 17.0.6 -fPIC -O3)
+Loaded SDC plugin
+
+1. Executing Liberty frontend: /home/davidsales/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+Imported 428 cell types from liberty file.
+[INFO] Using SDC file '/home/davidsales/Documentos/Coding/Main_HDL/Synthesis/designs/i2c_master/runs/RUN_2026-02-24_21-34-25/06-yosys-synthesis/synthesis.abc.sdc' for ABC…
+
+2. Executing Verilog-2005 frontend: i2c_master.sv
+Parsing SystemVerilog input from `i2c_master.sv' to AST representation.
+Warning: Yosys has only limited support for tri-state logic at the moment. (i2c_master.sv:54)
+Storing AST representation for module `$abstract\i2c_master_controller'.
+Successfully finished Verilog frontend.
+
+3. Executing HIERARCHY pass (managing design hierarchy).
+
+4. Executing AST frontend in derive mode using pre-parsed AST for module `\i2c_master_controller'.
+Generating RTLIL representation for module `\i2c_master_controller'.
+
+4.1. Analyzing design hierarchy..
+Top module:  \i2c_master_controller
+
+4.2. Analyzing design hierarchy..
+Top module:  \i2c_master_controller
+Removing unused module `$abstract\i2c_master_controller'.
+Removed 1 unused modules.
+Renaming module i2c_master_controller to i2c_master_controller.
+
+5. Generating Graphviz representation of design.
+Writing dot description to `/home/davidsales/Documentos/Coding/Main_HDL/Synthesis/designs/i2c_master/runs/RUN_2026-02-24_21-34-25/06-yosys-synthesis/hierarchy.dot'.
+Dumping module i2c_master_controller to page 1.
+
+6. Executing TRIBUF pass.
+
+7. Executing HIERARCHY pass (managing design hierarchy).
+
+7.1. Analyzing design hierarchy..
+Top module:  \i2c_master_controller
+
+7.2. Analyzing design hierarchy..
+Top module:  \i2c_master_controller
+Removed 0 unused modules.
+
+8. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+9. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$i2c_master.sv:167$46 in module i2c_master_controller.
+Marked 9 switch rules as full_case in process $proc$i2c_master.sv:88$20 in module i2c_master_controller.
+Marked 2 switch rules as full_case in process $proc$i2c_master.sv:74$13 in module i2c_master_controller.
+Marked 2 switch rules as full_case in process $proc$i2c_master.sv:59$9 in module i2c_master_controller.
+Removed a total of 0 dead cases.
+
+10. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 2 redundant assignments.
+Promoted 3 assignments to connections.
+
+11. Executing PROC_INIT pass (extract init attributes).
+
+12. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst in `\i2c_master_controller.$proc$i2c_master.sv:167$46'.
+Found async reset \rst in `\i2c_master_controller.$proc$i2c_master.sv:88$20'.
+Found async reset \rst in `\i2c_master_controller.$proc$i2c_master.sv:74$13'.
+Found async reset \rst in `\i2c_master_controller.$proc$i2c_master.sv:59$9'.
+
+13. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~11 debug messages>
+
+14. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\i2c_master_controller.$proc$i2c_master.sv:167$46'.
+     1/2: $0\sda_out[0:0]
+     2/2: $0\sda_drive_en[0:0]
+Creating decoders for process `\i2c_master_controller.$proc$i2c_master.sv:88$20'.
+     1/9: $3$lookahead\data_out$19[7:0]$27
+     2/9: $2$lookahead\data_out$19[7:0]$26
+     3/9: $2$bitselwrite$pos$i2c_master.sv:145$1[3:0]$25
+     4/9: $1$lookahead\data_out$19[7:0]$24
+     5/9: $1$bitselwrite$pos$i2c_master.sv:145$1[3:0]$23
+     6/9: $0\counter[3:0]
+     7/9: $0\write_data_reg[7:0]
+     8/9: $0\address_reg[7:0]
+     9/9: $0\state[3:0]
+Creating decoders for process `\i2c_master_controller.$proc$i2c_master.sv:74$13'.
+     1/1: $0\scl_enable[0:0]
+Creating decoders for process `\i2c_master_controller.$proc$i2c_master.sv:59$9'.
+     1/2: $0\clk_counter[2:0]
+     2/2: $0\i2c_clk[0:0]
+
+15. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+16. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\i2c_master_controller.\sda_drive_en' using process `\i2c_master_controller.$proc$i2c_master.sv:167$46'.
+  created $adff cell `$procdff$186' with negative edge clock and positive level reset.
+Creating register for signal `\i2c_master_controller.\sda_out' using process `\i2c_master_controller.$proc$i2c_master.sv:167$46'.
+  created $adff cell `$procdff$189' with negative edge clock and positive level reset.
+Creating register for signal `\i2c_master_controller.\data_out' using process `\i2c_master_controller.$proc$i2c_master.sv:88$20'.
+  created $dff cell `$procdff$194' with positive edge clock.
+Creating register for signal `\i2c_master_controller.\state' using process `\i2c_master_controller.$proc$i2c_master.sv:88$20'.
+  created $adff cell `$procdff$197' with positive edge clock and positive level reset.
+Creating register for signal `\i2c_master_controller.\address_reg' using process `\i2c_master_controller.$proc$i2c_master.sv:88$20'.
+  created $dff cell `$procdff$202' with positive edge clock.
+Creating register for signal `\i2c_master_controller.\write_data_reg' using process `\i2c_master_controller.$proc$i2c_master.sv:88$20'.
+  created $dff cell `$procdff$207' with positive edge clock.
+Creating register for signal `\i2c_master_controller.\counter' using process `\i2c_master_controller.$proc$i2c_master.sv:88$20'.
+  created $dff cell `$procdff$212' with positive edge clock.
+Creating register for signal `\i2c_master_controller.$bitselwrite$pos$i2c_master.sv:145$1' using process `\i2c_master_controller.$proc$i2c_master.sv:88$20'.
+  created $adff cell `$procdff$215' with positive edge clock and positive level reset.
+Creating register for signal `\i2c_master_controller.$lookahead\data_out$19' using process `\i2c_master_controller.$proc$i2c_master.sv:88$20'.
+  created $adff cell `$procdff$218' with positive edge clock and positive level reset.
+Creating register for signal `\i2c_master_controller.\scl_enable' using process `\i2c_master_controller.$proc$i2c_master.sv:74$13'.
+  created $adff cell `$procdff$221' with negative edge clock and positive level reset.
+Creating register for signal `\i2c_master_controller.\clk_counter' using process `\i2c_master_controller.$proc$i2c_master.sv:59$9'.
+  created $adff cell `$procdff$224' with positive edge clock and positive level reset.
+Creating register for signal `\i2c_master_controller.\i2c_clk' using process `\i2c_master_controller.$proc$i2c_master.sv:59$9'.
+  created $adff cell `$procdff$227' with positive edge clock and positive level reset.
+
+17. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+18. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\i2c_master_controller.$proc$i2c_master.sv:167$46'.
+Removing empty process `i2c_master_controller.$proc$i2c_master.sv:167$46'.
+Found and cleaned up 8 empty switches in `\i2c_master_controller.$proc$i2c_master.sv:88$20'.
+Removing empty process `i2c_master_controller.$proc$i2c_master.sv:88$20'.
+Found and cleaned up 1 empty switch in `\i2c_master_controller.$proc$i2c_master.sv:74$13'.
+Removing empty process `i2c_master_controller.$proc$i2c_master.sv:74$13'.
+Found and cleaned up 1 empty switch in `\i2c_master_controller.$proc$i2c_master.sv:59$9'.
+Removing empty process `i2c_master_controller.$proc$i2c_master.sv:59$9'.
+Cleaned up 11 empty switches.
+
+19. Executing CHECK pass (checking for obvious problems).
+Checking module i2c_master_controller...
+Found and reported 0 problems.
+
+20. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+<suppressed ~32 debug messages>
+
+21. Executing FLATTEN pass (flatten design).
+
+22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+23. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+Removed 7 unused cells and 58 unused wires.
+<suppressed ~8 debug messages>
+
+24. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+25. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+<suppressed ~99 debug messages>
+Removed a total of 33 cells.
+
+26. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \i2c_master_controller..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$78.
+Removed 1 multiplexer ports.
+<suppressed ~11 debug messages>
+
+27. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \i2c_master_controller.
+    New ctrl vector for $pmux cell $procmux$49: { $procmux$110_CMP $procmux$102_CMP $auto$opt_reduce.cc:134:opt_pmux$229 $eq$i2c_master.sv:78$17_Y }
+    New ctrl vector for $pmux cell $procmux$56: { $auto$opt_reduce.cc:134:opt_pmux$233 $auto$opt_reduce.cc:134:opt_pmux$231 }
+  Optimizing cells in module \i2c_master_controller.
+Performed a total of 2 changes.
+
+28. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+29. Executing OPT_DFF pass (perform DFF optimizations).
+
+30. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+Removed 0 unused cells and 36 unused wires.
+<suppressed ~1 debug messages>
+
+31. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+32. Rerunning OPT passes. (Maybe there is more to do…)
+
+33. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \i2c_master_controller..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~11 debug messages>
+
+34. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \i2c_master_controller.
+    New ctrl vector for $pmux cell $procmux$97: { $procmux$111_CMP $procmux$106_CMP $auto$opt_reduce.cc:134:opt_pmux$235 }
+  Optimizing cells in module \i2c_master_controller.
+Performed a total of 1 changes.
+
+35. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+Removed a total of 0 cells.
+
+36. Executing OPT_DFF pass (perform DFF optimizations).
+
+37. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+
+38. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+39. Rerunning OPT passes. (Maybe there is more to do…)
+
+40. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \i2c_master_controller..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~11 debug messages>
+
+41. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \i2c_master_controller.
+Performed a total of 0 changes.
+
+42. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+Removed a total of 0 cells.
+
+43. Executing OPT_DFF pass (perform DFF optimizations).
+
+44. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+
+45. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+46. Executing FSM pass (extract and optimize FSM).
+
+46.1. Executing FSM_DETECT pass (finding FSMs in design).
+Found FSM state register i2c_master_controller.state.
+
+46.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+Extracting FSM `\state' from module `\i2c_master_controller'.
+  found $adff cell for state register: $procdff$197
+  root of input selection tree: $0\state[3:0]
+  found reset state: 4'0000 (from async reset)
+  found ctrl input: $eq$i2c_master.sv:78$17_Y
+  found ctrl input: $procmux$145_CMP
+  found ctrl input: $procmux$149_CMP
+  found ctrl input: $procmux$153_CMP
+  found ctrl input: $procmux$102_CMP
+  found ctrl input: $procmux$106_CMP
+  found ctrl input: $procmux$110_CMP
+  found ctrl input: $procmux$111_CMP
+  found ctrl input: $eq$i2c_master.sv:78$15_Y
+  found ctrl input: $eq$i2c_master.sv:52$3_Y
+  found state code: 4'1001
+  found ctrl input: $eq$i2c_master.sv:113$28_Y
+  found state code: 4'1000
+  found ctrl input: $logic_and$i2c_master.sv:138$36_Y
+  found state code: 4'0110
+  found ctrl input: \i2c_sda
+  found ctrl input: \address_reg [0]
+  found state code: 4'0101
+  found state code: 4'0111
+  found state code: 4'0100
+  found state code: 4'0011
+  found state code: 4'0010
+  found ctrl input: \enable
+  found state code: 4'0001
+  found ctrl output: $eq$i2c_master.sv:52$3_Y
+  found ctrl output: $eq$i2c_master.sv:78$15_Y
+  found ctrl output: $eq$i2c_master.sv:78$17_Y
+  found ctrl output: $procmux$102_CMP
+  found ctrl output: $procmux$106_CMP
+  found ctrl output: $procmux$110_CMP
+  found ctrl output: $procmux$111_CMP
+  found ctrl output: $procmux$145_CMP
+  found ctrl output: $procmux$149_CMP
+  found ctrl output: $procmux$153_CMP
+  ctrl inputs: { $logic_and$i2c_master.sv:138$36_Y $eq$i2c_master.sv:113$28_Y \address_reg [0] \i2c_sda \enable }
+  ctrl outputs: { $procmux$153_CMP $procmux$149_CMP $procmux$145_CMP $procmux$111_CMP $procmux$110_CMP $procmux$106_CMP $procmux$102_CMP $0\state[3:0] $eq$i2c_master.sv:78$17_Y $eq$i2c_master.sv:78$15_Y $eq$i2c_master.sv:52$3_Y }
+  transition:     4'0000 5'----0 ->     4'0000 14'00000000000001
+  transition:     4'0000 5'----1 ->     4'0001 14'00000000001001
+  transition:     4'1000 5'----- ->     4'1001 14'00100001001000
+  transition:     4'0100 5'--00- ->     4'0101 14'00000100101000
+  transition:     4'0100 5'--10- ->     4'0111 14'00000100111000
+  transition:     4'0100 5'---1- ->     4'1001 14'00000101001000
+  transition:     4'0010 5'----- ->     4'0011 14'00010000011000
+  transition:     4'0110 5'0---- ->     4'1001 14'10000001001000
+  transition:     4'0110 5'1---- ->     4'0000 14'10000000000000
+  transition:     4'0001 5'----- ->     4'0010 14'00000000010010
+  transition:     4'1001 5'----- ->     4'0000 14'00000000000100
+  transition:     4'0101 5'-0--- ->     4'0101 14'00000010101000
+  transition:     4'0101 5'-1--- ->     4'0110 14'00000010110000
+  transition:     4'0011 5'-0--- ->     4'0011 14'00001000011000
+  transition:     4'0011 5'-1--- ->     4'0100 14'00001000100000
+  transition:     4'0111 5'-0--- ->     4'0111 14'01000000111000
+  transition:     4'0111 5'-1--- ->     4'1000 14'01000001000000
+
+46.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\state$236' from module `\i2c_master_controller'.
+
+46.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+Removed 19 unused cells and 19 unused wires.
+<suppressed ~20 debug messages>
+
+46.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\state$236' from module `\i2c_master_controller'.
+  Removing unused output signal $0\state[3:0] [0].
+  Removing unused output signal $0\state[3:0] [1].
+  Removing unused output signal $0\state[3:0] [2].
+  Removing unused output signal $0\state[3:0] [3].
+
+46.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+Recoding FSM `$fsm$\state$236' from module `\i2c_master_controller' using `auto' encoding:
+  mapping auto encoding to `one-hot` for this FSM.
+  0000 -> ---------1
+  1000 -> --------1-
+  0100 -> -------1--
+  0010 -> ------1---
+  0110 -> -----1----
+  0001 -> ----1-----
+  1001 -> ---1------
+  0101 -> --1-------
+  0011 -> -1--------
+  0111 -> 1---------
+
+46.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+FSM `$fsm$\state$236' from module `i2c_master_controller':
+-------------------------------------
+
+  Information on FSM $fsm$\state$236 (\state):
+
+  Number of input signals:    5
+  Number of output signals:  10
+  Number of state bits:      10
+
+  Input signals:
+    0: \enable
+    1: \i2c_sda
+    2: \address_reg [0]
+    3: $eq$i2c_master.sv:113$28_Y
+    4: $logic_and$i2c_master.sv:138$36_Y
+
+  Output signals:
+    0: $eq$i2c_master.sv:52$3_Y
+    1: $eq$i2c_master.sv:78$15_Y
+    2: $eq$i2c_master.sv:78$17_Y
+    3: $procmux$102_CMP
+    4: $procmux$106_CMP
+    5: $procmux$110_CMP
+    6: $procmux$111_CMP
+    7: $procmux$145_CMP
+    8: $procmux$149_CMP
+    9: $procmux$153_CMP
+
+  State encoding:
+    0: 10'---------1  <RESET STATE>
+    1: 10'--------1-
+    2: 10'-------1--
+    3: 10'------1---
+    4: 10'-----1----
+    5: 10'----1-----
+    6: 10'---1------
+    7: 10'--1-------
+    8: 10'-1--------
+    9: 10'1---------
+
+  Transition Table (state_in, ctrl_in, state_out, ctrl_out):
+      0:     0 5'----0   ->     0 10'0000000001
+      1:     0 5'----1   ->     5 10'0000000001
+      2:     1 5'-----   ->     6 10'0010000000
+      3:     2 5'---1-   ->     6 10'0000010000
+      4:     2 5'--00-   ->     7 10'0000010000
+      5:     2 5'--10-   ->     9 10'0000010000
+      6:     3 5'-----   ->     8 10'0001000000
+      7:     4 5'1----   ->     0 10'1000000000
+      8:     4 5'0----   ->     6 10'1000000000
+      9:     5 5'-----   ->     3 10'0000000010
+     10:     6 5'-----   ->     0 10'0000000100
+     11:     7 5'-1---   ->     4 10'0000001000
+     12:     7 5'-0---   ->     7 10'0000001000
+     13:     8 5'-1---   ->     2 10'0000100000
+     14:     8 5'-0---   ->     8 10'0000100000
+     15:     9 5'-1---   ->     1 10'0100000000
+     16:     9 5'-0---   ->     9 10'0100000000
+
+-------------------------------------
+
+46.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+Mapping FSM `$fsm$\state$236' from module `\i2c_master_controller'.
+
+47. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+<suppressed ~12 debug messages>
+
+48. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+49. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \i2c_master_controller..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~10 debug messages>
+
+50. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \i2c_master_controller.
+Performed a total of 0 changes.
+
+51. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+Removed a total of 0 cells.
+
+52. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$227 ($adff) from module i2c_master_controller (D = $not$i2c_master.sv:65$11_Y, Q = \i2c_clk).
+Adding EN signal on $procdff$212 ($dff) from module i2c_master_controller (D = $0\counter[3:0], Q = \counter).
+Adding EN signal on $procdff$207 ($dff) from module i2c_master_controller (D = \data_in, Q = \write_data_reg).
+Adding EN signal on $procdff$202 ($dff) from module i2c_master_controller (D = { \address \rw }, Q = \address_reg).
+Adding EN signal on $procdff$194 ($dff) from module i2c_master_controller (D = $0$lookahead\data_out$19[7:0]$22, Q = \data_out).
+Adding EN signal on $procdff$189 ($adff) from module i2c_master_controller (D = $0\sda_out[0:0], Q = \sda_out).
+Adding EN signal on $procdff$186 ($adff) from module i2c_master_controller (D = $0\sda_drive_en[0:0], Q = \sda_drive_en).
+
+53. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+Removed 9 unused cells and 30 unused wires.
+<suppressed ~10 debug messages>
+
+54. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+<suppressed ~4 debug messages>
+
+55. Rerunning OPT passes. (Maybe there is more to do…)
+
+56. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \i2c_master_controller..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~7 debug messages>
+
+57. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \i2c_master_controller.
+Performed a total of 0 changes.
+
+58. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+<suppressed ~12 debug messages>
+Removed a total of 4 cells.
+
+59. Executing OPT_DFF pass (perform DFF optimizations).
+
+60. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+Removed 0 unused cells and 4 unused wires.
+<suppressed ~1 debug messages>
+
+61. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+62. Rerunning OPT passes. (Maybe there is more to do…)
+
+63. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \i2c_master_controller..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~7 debug messages>
+
+64. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \i2c_master_controller.
+Performed a total of 0 changes.
+
+65. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+Removed a total of 0 cells.
+
+66. Executing OPT_DFF pass (perform DFF optimizations).
+
+67. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+
+68. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+69. Executing WREDUCE pass (reducing word size of cells).
+Removed top 2 bits (of 3) from port B of cell i2c_master_controller.$eq$i2c_master.sv:63$10 ($eq).
+Removed top 31 bits (of 32) from port B of cell i2c_master_controller.$add$i2c_master.sv:67$12 ($add).
+Removed top 29 bits (of 32) from port Y of cell i2c_master_controller.$add$i2c_master.sv:67$12 ($add).
+Removed top 31 bits (of 32) from port B of cell i2c_master_controller.$sub$i2c_master.sv:116$29 ($sub).
+Removed top 28 bits (of 32) from port Y of cell i2c_master_controller.$sub$i2c_master.sv:116$29 ($sub).
+Converting cell i2c_master_controller.$neg$i2c_master.sv:0$37 ($neg) from signed to unsigned.
+Removed top 1 bits (of 5) from port A of cell i2c_master_controller.$neg$i2c_master.sv:0$37 ($neg).
+Removed top 29 bits (of 32) from wire i2c_master_controller.$add$i2c_master.sv:67$12_Y.
+Removed top 28 bits (of 32) from wire i2c_master_controller.$sub$i2c_master.sv:116$29_Y.
+
+70. Executing PEEPOPT pass (run peephole optimizers).
+
+71. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~1 debug messages>
+
+72. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module i2c_master_controller:
+  creating $macc model for $add$i2c_master.sv:67$12 ($add).
+  creating $macc model for $neg$i2c_master.sv:0$37 ($neg).
+  creating $macc model for $sub$i2c_master.sv:116$29 ($sub).
+  creating $alu model for $macc $sub$i2c_master.sv:116$29.
+  creating $alu model for $macc $neg$i2c_master.sv:0$37.
+  creating $alu model for $macc $add$i2c_master.sv:67$12.
+  creating $alu cell for $add$i2c_master.sv:67$12: $auto$alumacc.cc:485:replace_alu$348
+  creating $alu cell for $neg$i2c_master.sv:0$37: $auto$alumacc.cc:485:replace_alu$351
+  creating $alu cell for $sub$i2c_master.sv:116$29: $auto$alumacc.cc:485:replace_alu$354
+  created 3 $alu and 0 $macc cells.
+
+73. Executing SHARE pass (SAT-based resource sharing).
+
+74. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+75. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+Removed a total of 0 cells.
+
+76. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \i2c_master_controller..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~7 debug messages>
+
+77. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \i2c_master_controller.
+Performed a total of 0 changes.
+
+78. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+Removed a total of 0 cells.
+
+79. Executing OPT_DFF pass (perform DFF optimizations).
+
+80. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+
+81. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+82. Executing MEMORY pass.
+
+82.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+82.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+82.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+82.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+82.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+82.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+
+82.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+82.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+82.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+
+82.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+83. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+
+84. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+<suppressed ~8 debug messages>
+
+85. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+Removed a total of 0 cells.
+
+86. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $auto$ff.cc:266:slice$331 ($dffe) from module i2c_master_controller (D = $or$i2c_master.sv:0$43_Y, Q = \data_out, rval = 8'00000000).
+
+87. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+Removed 1 unused cells and 5 unused wires.
+<suppressed ~2 debug messages>
+
+88. Rerunning OPT passes (Removed registers in this run.)
+
+89. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+90. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+Removed a total of 0 cells.
+
+91. Executing OPT_DFF pass (perform DFF optimizations).
+
+92. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+
+93. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+94. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+95. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+Removed a total of 0 cells.
+
+96. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \i2c_master_controller..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+97. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \i2c_master_controller.
+    New ctrl vector for $pmux cell $procmux$97: $auto$opt_reduce.cc:134:opt_pmux$235
+  Optimizing cells in module \i2c_master_controller.
+Performed a total of 1 changes.
+
+98. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+Removed a total of 0 cells.
+
+99. Executing OPT_SHARE pass.
+    Found cells that share an operand and can be merged by moving the $pmux $procmux$49 in front of them:
+        $shiftx$i2c_master.sv:0$48
+        $shiftx$i2c_master.sv:0$47
+
+100. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $auto$ff.cc:266:slice$310 ($dffe) from module i2c_master_controller (D = $auto$wreduce.cc:461:run$347 [3:0], Q = \counter, rval = 4'0111).
+
+101. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+Removed 1 unused cells and 3 unused wires.
+<suppressed ~2 debug messages>
+
+102. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+103. Rerunning OPT passes. (Maybe there is more to do…)
+
+104. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \i2c_master_controller..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+105. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \i2c_master_controller.
+    New ctrl vector for $pmux cell $procmux$49: { $auto$opt_reduce.cc:134:opt_pmux$229 \state [6] }
+  Optimizing cells in module \i2c_master_controller.
+Performed a total of 1 changes.
+
+106. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+Removed a total of 0 cells.
+
+107. Executing OPT_SHARE pass.
+
+108. Executing OPT_DFF pass (perform DFF optimizations).
+
+109. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+
+110. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+111. Rerunning OPT passes. (Maybe there is more to do…)
+
+112. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \i2c_master_controller..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+113. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \i2c_master_controller.
+Performed a total of 0 changes.
+
+114. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+Removed a total of 0 cells.
+
+115. Executing OPT_SHARE pass.
+
+116. Executing OPT_DFF pass (perform DFF optimizations).
+
+117. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+
+118. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+119. Executing TECHMAP pass (map to technology primitives).
+
+119.1. Executing Verilog-2005 frontend: /nix/store/9r0bh7sp051dpm8km8bqlb028anpd3v3-yosys/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/nix/store/9r0bh7sp051dpm8km8bqlb028anpd3v3-yosys/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+119.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $tribuf.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $not.
+Using template $paramod$3ace65afedd5f6a6849996376b6c02262a5f23eb\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $logic_or.
+Using template $paramod$3ef7d3dd227da7627a99c5e5a6a4deb817573e39\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $adffe.
+Using template $paramod$8742280fdebca84e1c87f2a86ed84f62d558f4cc\_90_alu for cells of type $alu.
+Using template $paramod$constmap:bcfef79cd3f19f8d65a942f5814d3a73b910a053$paramod$9a202bcc22027871469abc40366723b96a88ed36\_90_shift_shiftx for cells of type $shift.
+Analyzing pattern of constant bits for this cell:
+Creating constmapped module `$paramod$constmap:38f9c548357cd87dd95160b53e56b1f7cdc9cd84$paramod$9a202bcc22027871469abc40366723b96a88ed36\_90_shift_shiftx'.
+
+119.14. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$constmap:38f9c548357cd87dd95160b53e56b1f7cdc9cd84$paramod$9a202bcc22027871469abc40366723b96a88ed36\_90_shift_shiftx..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$542.
+    dead port 2/2 on $mux $procmux$536.
+    dead port 2/2 on $mux $procmux$530.
+    dead port 2/2 on $mux $procmux$524.
+Removed 4 multiplexer ports.
+<suppressed ~302 debug messages>
+
+119.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$constmap:38f9c548357cd87dd95160b53e56b1f7cdc9cd84$paramod$9a202bcc22027871469abc40366723b96a88ed36\_90_shift_shiftx.
+<suppressed ~2 debug messages>
+Removed 0 unused cells and 10 unused wires.
+Using template $paramod$constmap:38f9c548357cd87dd95160b53e56b1f7cdc9cd84$paramod$9a202bcc22027871469abc40366723b96a88ed36\_90_shift_shiftx for cells of type $shift.
+Using extmapper simplemap for cells of type $or.
+Using template $paramod$constmap:cd83258c7586f89dea16c95441ac2e41d2389dcc$paramod$3e9aa5f6b7ad2b020647b46df1e4d7b7b7fa111e\_90_shift_shiftx for cells of type $shiftx.
+Using template $paramod$c5c783b17ab1d780abfad8cfe6563a0a7b47a3b0\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $sdffce.
+Using extmapper simplemap for cells of type $adff.
+Using extmapper simplemap for cells of type $dffe.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000101 for cells of type $lcu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000011 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000100 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~592 debug messages>
+
+120. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+<suppressed ~256 debug messages>
+
+121. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+<suppressed ~36 debug messages>
+Removed a total of 12 cells.
+
+122. Executing OPT_DFF pass (perform DFF optimizations).
+
+123. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+Removed 45 unused cells and 164 unused wires.
+<suppressed ~46 debug messages>
+
+124. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+125. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+Removed a total of 0 cells.
+
+126. Executing OPT_DFF pass (perform DFF optimizations).
+
+127. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+
+128. Executing ABC pass (technology mapping using ABC).
+
+128.1. Extracting gate netlist of module `\i2c_master_controller' to `<abc-temp-dir>/input.blif'..
+Extracted 186 gates and 234 wires to a netlist network with 46 inputs and 37 outputs.
+
+128.1.1. Executing ABC.
+Running ABC command: "/nix/store/6l3aj1gi4lja8z5s4lan2k2cfz9mqkrz-yosys-abc/bin/abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+128.1.2. Re-integrating ABC results.
+ABC RESULTS:               MUX cells:       17
+ABC RESULTS:               NOT cells:        8
+ABC RESULTS:              NAND cells:        5
+ABC RESULTS:             ORNOT cells:       13
+ABC RESULTS:                OR cells:       45
+ABC RESULTS:               AND cells:        7
+ABC RESULTS:              XNOR cells:        3
+ABC RESULTS:               NOR cells:        7
+ABC RESULTS:            ANDNOT cells:       50
+ABC RESULTS:               XOR cells:        4
+ABC RESULTS:        internal signals:      151
+ABC RESULTS:           input signals:       46
+ABC RESULTS:          output signals:       37
+Removing temp directory.
+
+129. Executing OPT pass (performing simple optimizations).
+
+129.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+<suppressed ~8 debug messages>
+
+129.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+<suppressed ~12 debug messages>
+Removed a total of 4 cells.
+
+129.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+129.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+Removed 3 unused cells and 149 unused wires.
+<suppressed ~4 debug messages>
+
+129.5. Finished fast OPT passes.
+
+130. Executing HIERARCHY pass (managing design hierarchy).
+
+130.1. Analyzing design hierarchy..
+Top module:  \i2c_master_controller
+
+130.2. Analyzing design hierarchy..
+Top module:  \i2c_master_controller
+Removed 0 unused modules.
+
+131. Executing CHECK pass (checking for obvious problems).
+Checking module i2c_master_controller...
+Found and reported 0 problems.
+
+132. Printing statistics.
+
+=== i2c_master_controller ===
+
+   Number of wires:                165
+   Number of wire bits:            222
+   Number of public wires:          19
+   Number of public wire bits:      67
+   Number of ports:                 10
+   Number of port bits:             30
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                198
+     $_ANDNOT_                      49
+     $_AND_                          7
+     $_DFFE_NP1P_                    2
+     $_DFFE_PP1P_                    1
+     $_DFFE_PP_                     16
+     $_DFF_NP0_                      1
+     $_DFF_PP0_                     12
+     $_DFF_PP1_                      1
+     $_MUX_                         17
+     $_NAND_                         5
+     $_NOR_                          6
+     $_NOT_                          5
+     $_ORNOT_                       13
+     $_OR_                          45
+     $_SDFFCE_PN0P_                  9
+     $_SDFFCE_PN1P_                  3
+     $_TBUF_                         1
+     $_XNOR_                         2
+     $_XOR_                          3
+
+133. Generating Graphviz representation of design.
+Writing dot description to `/home/davidsales/Documentos/Coding/Main_HDL/Synthesis/designs/i2c_master/runs/RUN_2026-02-24_21-34-25/06-yosys-synthesis/primitive_techmap.dot'.
+Dumping module i2c_master_controller to page 1.
+
+134. Executing OPT pass (performing simple optimizations).
+
+134.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+134.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+Removed a total of 0 cells.
+
+134.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \i2c_master_controller..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+134.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \i2c_master_controller.
+Performed a total of 0 changes.
+
+134.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\i2c_master_controller'.
+Removed a total of 0 cells.
+
+134.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+134.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+
+134.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module i2c_master_controller.
+
+134.9. Finished OPT passes. (There is nothing left to do.)
+
+135. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+{
+   "creator": "Yosys 0.46 (git sha1 e97731b9dda91fa5fa53ed87df7c34163ba59a41, clang++ 17.0.6 -fPIC -O3)",
+   "invocation": "stat -json -liberty /home/davidsales/Documentos/Coding/Main_HDL/Synthesis/designs/i2c_master/runs/RUN_2026-02-24_21-34-25/tmp/a683b697808c452e9934c1b92a8249d2.lib ",
+   "modules": {
+      "\\i2c_master_controller": {
+         "num_wires":         165,
+         "num_wire_bits":     222,
+         "num_pub_wires":     19,
+         "num_pub_wire_bits": 67,
+         "num_ports":         10,
+         "num_port_bits":     30,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         198,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 49,
+            "$_AND_": 7,
+            "$_DFFE_NP1P_": 2,
+            "$_DFFE_PP1P_": 1,
+            "$_DFFE_PP_": 16,
+            "$_DFF_NP0_": 1,
+            "$_DFF_PP0_": 12,
+            "$_DFF_PP1_": 1,
+            "$_MUX_": 17,
+            "$_NAND_": 5,
+            "$_NOR_": 6,
+            "$_NOT_": 5,
+            "$_ORNOT_": 13,
+            "$_OR_": 45,
+            "$_SDFFCE_PN0P_": 9,
+            "$_SDFFCE_PN1P_": 3,
+            "$_TBUF_": 1,
+            "$_XNOR_": 2,
+            "$_XOR_": 3
+         }
+      }
+   },
+      "design": {
+         "num_wires":         165,
+         "num_wire_bits":     222,
+         "num_pub_wires":     19,
+         "num_pub_wire_bits": 67,
+         "num_ports":         10,
+         "num_port_bits":     30,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         198,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 49,
+            "$_AND_": 7,
+            "$_DFFE_NP1P_": 2,
+            "$_DFFE_PP1P_": 1,
+            "$_DFFE_PP_": 16,
+            "$_DFF_NP0_": 1,
+            "$_DFF_PP0_": 12,
+            "$_DFF_PP1_": 1,
+            "$_MUX_": 17,
+            "$_NAND_": 5,
+            "$_NOR_": 6,
+            "$_NOT_": 5,
+            "$_ORNOT_": 13,
+            "$_OR_": 45,
+            "$_SDFFCE_PN0P_": 9,
+            "$_SDFFCE_PN1P_": 3,
+            "$_TBUF_": 1,
+            "$_XNOR_": 2,
+            "$_XOR_": 3
+         }
+      }
+}
+
+136. Printing statistics.
+
+=== i2c_master_controller ===
+
+   Number of wires:                165
+   Number of wire bits:            222
+   Number of public wires:          19
+   Number of public wire bits:      67
+   Number of ports:                 10
+   Number of port bits:             30
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                198
+     $_ANDNOT_                      49
+     $_AND_                          7
+     $_DFFE_NP1P_                    2
+     $_DFFE_PP1P_                    1
+     $_DFFE_PP_                     16
+     $_DFF_NP0_                      1
+     $_DFF_PP0_                     12
+     $_DFF_PP1_                      1
+     $_MUX_                         17
+     $_NAND_                         5
+     $_NOR_                          6
+     $_NOT_                          5
+     $_ORNOT_                       13
+     $_OR_                          45
+     $_SDFFCE_PN0P_                  9
+     $_SDFFCE_PN1P_                  3
+     $_TBUF_                         1
+     $_XNOR_                         2
+     $_XOR_                          3
+
+   Area for cell type $_NOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type $_NOR_ is unknown!
+   Area for cell type $_XOR_ is unknown!
+   Area for cell type $_XNOR_ is unknown!
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_ORNOT_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+   Area for cell type $_TBUF_ is unknown!
+   Area for cell type $_DFFE_PP_ is unknown!
+   Area for cell type $_DFF_NP0_ is unknown!
+   Area for cell type $_DFF_PP0_ is unknown!
+   Area for cell type $_DFF_PP1_ is unknown!
+   Area for cell type $_DFFE_NP1P_ is unknown!
+   Area for cell type $_DFFE_PP1P_ is unknown!
+   Area for cell type $_SDFFCE_PN0P_ is unknown!
+   Area for cell type $_SDFFCE_PN1P_ is unknown!
+
+[INFO] Applying tri-state buffer mapping from '/home/davidsales/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v'…
+
+137. Executing TECHMAP pass (map to technology primitives).
+
+137.1. Executing Verilog-2005 frontend: /home/davidsales/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v
+Parsing Verilog input from `/home/davidsales/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v' to AST representation.
+Generating RTLIL representation for module `\$_TBUF_'.
+Successfully finished Verilog frontend.
+
+137.2. Continuing TECHMAP pass.
+Using template \$_TBUF_ for cells of type $_TBUF_.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+138. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+Mapping i2c_master_controller.$techmap$auto$simplemap.cc:300:simplemap_tribuf$460.$not$/home/davidsales/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v:5$1335 ($not).
+[INFO] Applying latch mapping from '/home/davidsales/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v'…
+
+139. Executing TECHMAP pass (map to technology primitives).
+
+139.1. Executing Verilog-2005 frontend: /home/davidsales/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v
+Parsing Verilog input from `/home/davidsales/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v' to AST representation.
+Generating RTLIL representation for module `\$_DLATCH_P_'.
+Generating RTLIL representation for module `\$_DLATCH_N_'.
+Successfully finished Verilog frontend.
+
+139.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+140. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+
+141. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+  cell sky130_fd_sc_hd__dfxtp_2 (noninv, pins=3, area=21.27) is a direct match for cell type $_DFF_P_.
+  cell sky130_fd_sc_hd__dfrtp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN0_.
+  cell sky130_fd_sc_hd__dfstp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN1_.
+  cell sky130_fd_sc_hd__dfbbn_2 (noninv, pins=6, area=35.03) is a direct match for cell type $_DFFSR_NNN_.
+  final dff cell mappings:
+    unmapped dff cell: $_DFF_N_
+    \sky130_fd_sc_hd__dfxtp_2 _DFF_P_ (.CLK( C), .D( D), .Q( Q));
+    unmapped dff cell: $_DFF_NN0_
+    unmapped dff cell: $_DFF_NN1_
+    unmapped dff cell: $_DFF_NP0_
+    unmapped dff cell: $_DFF_NP1_
+    \sky130_fd_sc_hd__dfrtp_2 _DFF_PN0_ (.CLK( C), .D( D), .Q( Q), .RESET_B( R));
+    \sky130_fd_sc_hd__dfstp_2 _DFF_PN1_ (.CLK( C), .D( D), .Q( Q), .SET_B( R));
+    unmapped dff cell: $_DFF_PP0_
+    unmapped dff cell: $_DFF_PP1_
+    \sky130_fd_sc_hd__dfbbn_2 _DFFSR_NNN_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    unmapped dff cell: $_DFFSR_PNN_
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+
+141.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+Mapping DFF cells in module `\i2c_master_controller':
+  mapped 13 $_DFF_PN0_ cells to \sky130_fd_sc_hd__dfrtp_2 cells.
+  mapped 4 $_DFF_PN1_ cells to \sky130_fd_sc_hd__dfstp_2 cells.
+  mapped 28 $_DFF_P_ cells to \sky130_fd_sc_hd__dfxtp_2 cells.
+{
+   "creator": "Yosys 0.46 (git sha1 e97731b9dda91fa5fa53ed87df7c34163ba59a41, clang++ 17.0.6 -fPIC -O3)",
+   "invocation": "stat -json -liberty /home/davidsales/Documentos/Coding/Main_HDL/Synthesis/designs/i2c_master/runs/RUN_2026-02-24_21-34-25/tmp/a683b697808c452e9934c1b92a8249d2.lib ",
+   "modules": {
+      "\\i2c_master_controller": {
+         "num_wires":         232,
+         "num_wire_bits":     289,
+         "num_pub_wires":     19,
+         "num_pub_wire_bits": 67,
+         "num_ports":         10,
+         "num_port_bits":     30,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         262,
+         "area":              1053.510400,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 49,
+            "$_AND_": 7,
+            "$_MUX_": 60,
+            "$_NAND_": 5,
+            "$_NOR_": 6,
+            "$_NOT_": 26,
+            "$_ORNOT_": 13,
+            "$_OR_": 45,
+            "$_XNOR_": 2,
+            "$_XOR_": 3,
+            "sky130_fd_sc_hd__dfrtp_2": 13,
+            "sky130_fd_sc_hd__dfstp_2": 4,
+            "sky130_fd_sc_hd__dfxtp_2": 28,
+            "sky130_fd_sc_hd__ebufn_2": 1
+         }
+      }
+   },
+      "design": {
+         "num_wires":         232,
+         "num_wire_bits":     289,
+         "num_pub_wires":     19,
+         "num_pub_wire_bits": 67,
+         "num_ports":         10,
+         "num_port_bits":     30,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         262,
+         "area":              1053.510400,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 49,
+            "$_AND_": 7,
+            "$_MUX_": 60,
+            "$_NAND_": 5,
+            "$_NOR_": 6,
+            "$_NOT_": 26,
+            "$_ORNOT_": 13,
+            "$_OR_": 45,
+            "$_XNOR_": 2,
+            "$_XOR_": 3,
+            "sky130_fd_sc_hd__dfrtp_2": 13,
+            "sky130_fd_sc_hd__dfstp_2": 4,
+            "sky130_fd_sc_hd__dfxtp_2": 28,
+            "sky130_fd_sc_hd__ebufn_2": 1
+         }
+      }
+}
+
+142. Printing statistics.
+
+=== i2c_master_controller ===
+
+   Number of wires:                232
+   Number of wire bits:            289
+   Number of public wires:          19
+   Number of public wire bits:      67
+   Number of ports:                 10
+   Number of port bits:             30
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                262
+     $_ANDNOT_                      49
+     $_AND_                          7
+     $_MUX_                         60
+     $_NAND_                         5
+     $_NOR_                          6
+     $_NOT_                         26
+     $_ORNOT_                       13
+     $_OR_                          45
+     $_XNOR_                         2
+     $_XOR_                          3
+     sky130_fd_sc_hd__dfrtp_2       13
+     sky130_fd_sc_hd__dfstp_2        4
+     sky130_fd_sc_hd__dfxtp_2       28
+     sky130_fd_sc_hd__ebufn_2        1
+
+   Area for cell type $_NOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type $_NOR_ is unknown!
+   Area for cell type $_XOR_ is unknown!
+   Area for cell type $_XNOR_ is unknown!
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_ORNOT_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+
+   Chip area for module '\i2c_master_controller': 1053.510400
+     of which used for sequential elements: 1042.249600 (98.93%)
+
+[INFO] Using generated ABC script '/home/davidsales/Documentos/Coding/Main_HDL/Synthesis/designs/i2c_master/runs/RUN_2026-02-24_21-34-25/06-yosys-synthesis/AREA_0.abc'…
+
+143. Executing ABC pass (technology mapping using ABC).
+
+143.1. Extracting gate netlist of module `\i2c_master_controller' to `/tmp/yosys-abc-Uxcabx/input.blif'..
+Extracted 216 gates and 282 wires to a netlist network with 64 inputs and 67 outputs.
+
+143.1.1. Executing ABC.
+Running ABC command: "/nix/store/6l3aj1gi4lja8z5s4lan2k2cfz9mqkrz-yosys-abc/bin/abc" -s -f /tmp/yosys-abc-Uxcabx/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-Uxcabx/abc.script".
+ABC: 
+ABC: + read_blif /tmp/yosys-abc-Uxcabx/input.blif 
+ABC: + read_lib -w /home/davidsales/Documentos/Coding/Main_HDL/Synthesis/designs/i2c_master/runs/RUN_2026-02-24_21-34-25/tmp/a683b697808c452e9934c1b92a8249d2.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.03 sec
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_8".
+ABC: Library "sky130_fd_sc_hd__tt_025C_1v80" from "/home/davidsales/Documentos/Coding/Main_HDL/Synthesis/designs/i2c_master/runs/RUN_2026-02-24_21-34-25/tmp/a683b697808c452e9934c1b92a8249d2.lib" has 175 cells (17 skipped: 14 seq; 3 tri-state; 0 no func; 0 dont_use).  Time =     0.06 sec
+ABC: Memory =    9.54 MB. Time =     0.06 sec
+ABC: Warning: Detected 2 multi-output gates (for example, "sky130_fd_sc_hd__fa_1").
+ABC: + read_constr -v /home/davidsales/Documentos/Coding/Main_HDL/Synthesis/designs/i2c_master/runs/RUN_2026-02-24_21-34-25/06-yosys-synthesis/synthesis.abc.sdc 
+ABC: Setting driving cell to be "sky130_fd_sc_hd__inv_2/Y".
+ABC: Setting output load to be 33.442001.
+ABC: + source /home/davidsales/Documentos/Coding/Main_HDL/Synthesis/designs/i2c_master/runs/RUN_2026-02-24_21-34-25/06-yosys-synthesis/AREA_0.abc 
+ABC: Error: The network is combinational.
+ABC: Cannot find the default PI driving cell (sky130_fd_sc_hd__inv_2/Y) in the library.
+ABC: WireLoad = "none"  Gates =    137 ( 21.9 %)   Cap = 16.1 ff (  7.5 %)   Area =     1128.58 ( 60.6 %)   Delay =  1576.94 ps  (  3.6 %)               
+ABC: Path  0 --       8 : 0   10 pi                       A =   0.00  Df =   0.0   -0.0 ps  S =   0.0 ps  Cin =  0.0 ff  Cout =  26.7 ff  Cmax =   0.0 ff  G =    0  
+ABC: Path  1 --     141 : 2    7 sky130_fd_sc_hd__or2_2   A =   6.26  Df = 331.2 -189.2 ps  S = 112.5 ps  Cin =  1.5 ff  Cout =  20.0 ff  Cmax = 299.4 ff  G = 1302  
+ABC: Path  2 --     177 : 3    5 sky130_fd_sc_hd__or3_2   A =   7.51  Df = 814.0 -499.2 ps  S = 119.7 ps  Cin =  1.5 ff  Cout =  16.6 ff  Cmax = 310.4 ff  G = 1035  
+ABC: Path  3 --     208 : 2    2 sky130_fd_sc_hd__nor2_2  A =   6.26  Df = 966.4 -213.1 ps  S = 114.1 ps  Cin =  4.4 ff  Cout =   6.9 ff  Cmax = 141.9 ff  G =  147  
+ABC: Path  4 --     210 : 3    1 sky130_fd_sc_hd__a21oi_2 A =   8.76  Df =1576.9 -465.1 ps  S = 418.1 ps  Cin =  4.6 ff  Cout =  33.4 ff  Cmax = 128.2 ff  G =  733  
+ABC: Start-point = pi7 (\counter [0]).  End-point = po27 ($auto$rtlil.cc:2739:MuxGate$1360).
+ABC: netlist                       : i/o =   64/   67  lat =    0  nd =   137  edge =    366  area =1128.59  delay = 5.00  lev = 5
+ABC: + write_blif /tmp/yosys-abc-Uxcabx/output.blif 
+
+143.1.2. Re-integrating ABC results.
+ABC RESULTS:   sky130_fd_sc_hd__o21ba_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__and2b_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__or3b_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nand2b_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o221a_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o22a_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__or4_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__or4bb_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a221o_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nor4_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a311o_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o211a_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__xnor2_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__and2_2 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__a221oi_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nand2_2 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__o32a_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__and3b_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a31oi_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a2bb2o_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__a21oi_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nor3_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__nor2_2 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__and3_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a21o_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__o31a_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__or2_2 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__o21a_2 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__a22o_2 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__a31o_2 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__o21bai_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__or3_2 cells:        7
+ABC RESULTS:   sky130_fd_sc_hd__a32o_2 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__mux2_1 cells:       22
+ABC RESULTS:   sky130_fd_sc_hd__inv_2 cells:       30
+ABC RESULTS:        internal signals:      151
+ABC RESULTS:           input signals:       64
+ABC RESULTS:          output signals:       67
+Removing temp directory.
+
+144. Executing SETUNDEF pass (replace undef values with defined constants).
+
+145. Executing HILOMAP pass (mapping to constant drivers).
+
+146. Executing SPLITNETS pass (splitting up multi-bit signals).
+
+147. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \i2c_master_controller..
+Removed 1 unused cells and 289 unused wires.
+<suppressed ~2 debug messages>
+
+148. Executing INSBUF pass (insert buffer cells for connected wires).
+
+149. Executing CHECK pass (checking for obvious problems).
+Checking module i2c_master_controller...
+Found and reported 0 problems.
+{
+   "creator": "Yosys 0.46 (git sha1 e97731b9dda91fa5fa53ed87df7c34163ba59a41, clang++ 17.0.6 -fPIC -O3)",
+   "invocation": "stat -json -liberty /home/davidsales/Documentos/Coding/Main_HDL/Synthesis/designs/i2c_master/runs/RUN_2026-02-24_21-34-25/tmp/a683b697808c452e9934c1b92a8249d2.lib ",
+   "modules": {
+      "\\i2c_master_controller": {
+         "num_wires":         182,
+         "num_wire_bits":     202,
+         "num_pub_wires":     47,
+         "num_pub_wire_bits": 67,
+         "num_ports":         10,
+         "num_port_bits":     30,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         183,
+         "area":              2182.092800,
+         "num_cells_by_type": {
+            "sky130_fd_sc_hd__a21o_2": 3,
+            "sky130_fd_sc_hd__a21oi_2": 1,
+            "sky130_fd_sc_hd__a221o_2": 1,
+            "sky130_fd_sc_hd__a221oi_2": 1,
+            "sky130_fd_sc_hd__a22o_2": 4,
+            "sky130_fd_sc_hd__a2bb2o_2": 2,
+            "sky130_fd_sc_hd__a311o_2": 1,
+            "sky130_fd_sc_hd__a31o_2": 5,
+            "sky130_fd_sc_hd__a31oi_2": 1,
+            "sky130_fd_sc_hd__a32o_2": 5,
+            "sky130_fd_sc_hd__and2_2": 4,
+            "sky130_fd_sc_hd__and2b_2": 1,
+            "sky130_fd_sc_hd__and3_2": 1,
+            "sky130_fd_sc_hd__and3b_2": 1,
+            "sky130_fd_sc_hd__dfrtp_2": 13,
+            "sky130_fd_sc_hd__dfstp_2": 4,
+            "sky130_fd_sc_hd__dfxtp_2": 28,
+            "sky130_fd_sc_hd__ebufn_2": 1,
+            "sky130_fd_sc_hd__inv_2": 30,
+            "sky130_fd_sc_hd__mux2_1": 22,
+            "sky130_fd_sc_hd__nand2_2": 5,
+            "sky130_fd_sc_hd__nand2b_2": 2,
+            "sky130_fd_sc_hd__nor2_2": 9,
+            "sky130_fd_sc_hd__nor3_2": 3,
+            "sky130_fd_sc_hd__nor4_2": 1,
+            "sky130_fd_sc_hd__o211a_2": 1,
+            "sky130_fd_sc_hd__o21a_2": 6,
+            "sky130_fd_sc_hd__o21ba_2": 1,
+            "sky130_fd_sc_hd__o21bai_2": 2,
+            "sky130_fd_sc_hd__o221a_2": 2,
+            "sky130_fd_sc_hd__o22a_2": 1,
+            "sky130_fd_sc_hd__o31a_2": 2,
+            "sky130_fd_sc_hd__o32a_2": 2,
+            "sky130_fd_sc_hd__or2_2": 5,
+            "sky130_fd_sc_hd__or3_2": 7,
+            "sky130_fd_sc_hd__or3b_2": 1,
+            "sky130_fd_sc_hd__or4_2": 1,
+            "sky130_fd_sc_hd__or4bb_2": 1,
+            "sky130_fd_sc_hd__xnor2_2": 2
+         }
+      }
+   },
+      "design": {
+         "num_wires":         182,
+         "num_wire_bits":     202,
+         "num_pub_wires":     47,
+         "num_pub_wire_bits": 67,
+         "num_ports":         10,
+         "num_port_bits":     30,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         183,
+         "area":              2182.092800,
+         "num_cells_by_type": {
+            "sky130_fd_sc_hd__a21o_2": 3,
+            "sky130_fd_sc_hd__a21oi_2": 1,
+            "sky130_fd_sc_hd__a221o_2": 1,
+            "sky130_fd_sc_hd__a221oi_2": 1,
+            "sky130_fd_sc_hd__a22o_2": 4,
+            "sky130_fd_sc_hd__a2bb2o_2": 2,
+            "sky130_fd_sc_hd__a311o_2": 1,
+            "sky130_fd_sc_hd__a31o_2": 5,
+            "sky130_fd_sc_hd__a31oi_2": 1,
+            "sky130_fd_sc_hd__a32o_2": 5,
+            "sky130_fd_sc_hd__and2_2": 4,
+            "sky130_fd_sc_hd__and2b_2": 1,
+            "sky130_fd_sc_hd__and3_2": 1,
+            "sky130_fd_sc_hd__and3b_2": 1,
+            "sky130_fd_sc_hd__dfrtp_2": 13,
+            "sky130_fd_sc_hd__dfstp_2": 4,
+            "sky130_fd_sc_hd__dfxtp_2": 28,
+            "sky130_fd_sc_hd__ebufn_2": 1,
+            "sky130_fd_sc_hd__inv_2": 30,
+            "sky130_fd_sc_hd__mux2_1": 22,
+            "sky130_fd_sc_hd__nand2_2": 5,
+            "sky130_fd_sc_hd__nand2b_2": 2,
+            "sky130_fd_sc_hd__nor2_2": 9,
+            "sky130_fd_sc_hd__nor3_2": 3,
+            "sky130_fd_sc_hd__nor4_2": 1,
+            "sky130_fd_sc_hd__o211a_2": 1,
+            "sky130_fd_sc_hd__o21a_2": 6,
+            "sky130_fd_sc_hd__o21ba_2": 1,
+            "sky130_fd_sc_hd__o21bai_2": 2,
+            "sky130_fd_sc_hd__o221a_2": 2,
+            "sky130_fd_sc_hd__o22a_2": 1,
+            "sky130_fd_sc_hd__o31a_2": 2,
+            "sky130_fd_sc_hd__o32a_2": 2,
+            "sky130_fd_sc_hd__or2_2": 5,
+            "sky130_fd_sc_hd__or3_2": 7,
+            "sky130_fd_sc_hd__or3b_2": 1,
+            "sky130_fd_sc_hd__or4_2": 1,
+            "sky130_fd_sc_hd__or4bb_2": 1,
+            "sky130_fd_sc_hd__xnor2_2": 2
+         }
+      }
+}
+
+150. Printing statistics.
+
+=== i2c_master_controller ===
+
+   Number of wires:                182
+   Number of wire bits:            202
+   Number of public wires:          47
+   Number of public wire bits:      67
+   Number of ports:                 10
+   Number of port bits:             30
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                183
+     sky130_fd_sc_hd__a21o_2         3
+     sky130_fd_sc_hd__a21oi_2        1
+     sky130_fd_sc_hd__a221o_2        1
+     sky130_fd_sc_hd__a221oi_2       1
+     sky130_fd_sc_hd__a22o_2         4
+     sky130_fd_sc_hd__a2bb2o_2       2
+     sky130_fd_sc_hd__a311o_2        1
+     sky130_fd_sc_hd__a31o_2         5
+     sky130_fd_sc_hd__a31oi_2        1
+     sky130_fd_sc_hd__a32o_2         5
+     sky130_fd_sc_hd__and2_2         4
+     sky130_fd_sc_hd__and2b_2        1
+     sky130_fd_sc_hd__and3_2         1
+     sky130_fd_sc_hd__and3b_2        1
+     sky130_fd_sc_hd__dfrtp_2       13
+     sky130_fd_sc_hd__dfstp_2        4
+     sky130_fd_sc_hd__dfxtp_2       28
+     sky130_fd_sc_hd__ebufn_2        1
+     sky130_fd_sc_hd__inv_2         30
+     sky130_fd_sc_hd__mux2_1        22
+     sky130_fd_sc_hd__nand2_2        5
+     sky130_fd_sc_hd__nand2b_2       2
+     sky130_fd_sc_hd__nor2_2         9
+     sky130_fd_sc_hd__nor3_2         3
+     sky130_fd_sc_hd__nor4_2         1
+     sky130_fd_sc_hd__o211a_2        1
+     sky130_fd_sc_hd__o21a_2         6
+     sky130_fd_sc_hd__o21ba_2        1
+     sky130_fd_sc_hd__o21bai_2       2
+     sky130_fd_sc_hd__o221a_2        2
+     sky130_fd_sc_hd__o22a_2         1
+     sky130_fd_sc_hd__o31a_2         2
+     sky130_fd_sc_hd__o32a_2         2
+     sky130_fd_sc_hd__or2_2          5
+     sky130_fd_sc_hd__or3_2          7
+     sky130_fd_sc_hd__or3b_2         1
+     sky130_fd_sc_hd__or4_2          1
+     sky130_fd_sc_hd__or4bb_2        1
+     sky130_fd_sc_hd__xnor2_2        2
+
+   Chip area for module '\i2c_master_controller': 2182.092800
+     of which used for sequential elements: 1042.249600 (47.76%)
+
+151. Executing Verilog backend.
+Dumping module `\i2c_master_controller'.
+
+152. Executing JSON backend.

@@ -1,0 +1,250 @@
+library (i2c_master_controller) {
+  comment                        : "";
+  delay_model                    : table_lookup;
+  simulation                     : false;
+  capacitive_load_unit (1,pF);
+  leakage_power_unit             : 1pW;
+  current_unit                   : "1A";
+  pulling_resistance_unit        : "1kohm";
+  time_unit                      : "1ns";
+  voltage_unit                   : "1v";
+  library_features(report_delay_calculation);
+
+  input_threshold_pct_rise : 50;
+  input_threshold_pct_fall : 50;
+  output_threshold_pct_rise : 50;
+  output_threshold_pct_fall : 50;
+  slew_lower_threshold_pct_rise : 20;
+  slew_lower_threshold_pct_fall : 20;
+  slew_upper_threshold_pct_rise : 80;
+  slew_upper_threshold_pct_fall : 80;
+  slew_derate_from_library : 1.0;
+
+
+  nom_process                    : 1.0;
+  nom_temperature                : 100.0;
+  nom_voltage                    : 1.60;
+
+  lu_table_template(template_1) {
+    variable_1 : total_output_net_capacitance;
+    index_1("0.00050,  0.00166,  0.00551,  0.01830,  0.06076,  0.20175,  0.66987");
+  }
+  type ("address") {
+    base_type : array;
+    data_type : bit;
+    bit_width : 7;
+    bit_from : 6;
+    bit_to : 0;
+  }
+  type ("data_in") {
+    base_type : array;
+    data_type : bit;
+    bit_width : 8;
+    bit_from : 7;
+    bit_to : 0;
+  }
+  type ("data_out") {
+    base_type : array;
+    data_type : bit;
+    bit_width : 8;
+    bit_from : 7;
+    bit_to : 0;
+  }
+
+  cell ("i2c_master_controller") {
+    area : 3413.273 
+    is_macro_cell : true;
+    pin("clk") {
+      direction : input;
+      clock : true;
+      capacitance : 0.0103;
+      timing() {
+        timing_sense : positive_unate;
+        timing_type : min_clock_tree_path;
+	cell_rise(scalar) {
+          values("0.47481");
+	}
+	cell_fall(scalar) {
+          values("0.49993");
+	}
+      }
+      timing() {
+        timing_sense : positive_unate;
+        timing_type : max_clock_tree_path;
+	cell_rise(scalar) {
+          values("0.48244");
+	}
+	cell_fall(scalar) {
+          values("0.50616");
+	}
+      }
+    }
+    pin("enable") {
+      direction : input;
+      capacitance : 0.0027;
+    }
+    pin("i2c_scl") {
+      direction : inout;
+      capacitance : 0.0348;
+    }
+    pin("i2c_sda") {
+      direction : inout;
+      capacitance : 0.0736;
+    }
+    pin("ready") {
+      direction : output;
+      capacitance : 0.0007;
+      timing() {
+        related_pin : "rst";
+        timing_sense : negative_unate;
+        timing_type : combinational;
+	cell_rise(template_1) {
+          index_1("0.00050,  0.00166,  0.00551,  0.01830,  0.06076,  0.20175,  0.66987");
+          values("1.19681,1.20708,1.23386,1.30614,1.53152,2.27139,4.73979");
+	}
+	rise_transition(template_1) {
+          index_1("0.00050,  0.00166,  0.00551,  0.01830,  0.06076,  0.20175,  0.66987");
+          values("0.03058,0.03936,0.06670,0.15760,0.47289,1.52754,5.00147");
+	}
+	cell_fall(template_1) {
+          index_1("0.00050,  0.00166,  0.00551,  0.01830,  0.06076,  0.20175,  0.66987");
+          values("1.24943,1.25934,1.28339,1.33701,1.47287,1.89408,3.28688");
+	}
+	fall_transition(template_1) {
+          index_1("0.00050,  0.00166,  0.00551,  0.01830,  0.06076,  0.20175,  0.66987");
+          values("0.03257,0.03943,0.05709,0.10711,0.27048,0.84213,2.74331");
+	}
+      }
+    }
+    pin("rst") {
+      direction : input;
+      capacitance : 0.0027;
+      timing() {
+        related_pin : "clk";
+        timing_type : hold_rising;
+	fall_constraint(scalar) {
+          values("0.38181");
+	}
+      }
+      timing() {
+        related_pin : "clk";
+        timing_type : setup_rising;
+	fall_constraint(scalar) {
+          values("0.00128");
+	}
+      }
+    }
+    pin("rw") {
+      direction : input;
+      capacitance : 0.0026;
+    }
+    bus("address") {
+      bus_type : address;
+      direction : input;
+      capacitance : 0.0000;
+    pin("address[6]") {
+      direction : input;
+      capacitance : 0.0027;
+    }
+    pin("address[5]") {
+      direction : input;
+      capacitance : 0.0026;
+    }
+    pin("address[4]") {
+      direction : input;
+      capacitance : 0.0029;
+    }
+    pin("address[3]") {
+      direction : input;
+      capacitance : 0.0028;
+    }
+    pin("address[2]") {
+      direction : input;
+      capacitance : 0.0027;
+    }
+    pin("address[1]") {
+      direction : input;
+      capacitance : 0.0032;
+    }
+    pin("address[0]") {
+      direction : input;
+      capacitance : 0.0026;
+    }
+    }
+    bus("data_in") {
+      bus_type : data_in;
+      direction : input;
+      capacitance : 0.0000;
+    pin("data_in[7]") {
+      direction : input;
+      capacitance : 0.0027;
+    }
+    pin("data_in[6]") {
+      direction : input;
+      capacitance : 0.0026;
+    }
+    pin("data_in[5]") {
+      direction : input;
+      capacitance : 0.0030;
+    }
+    pin("data_in[4]") {
+      direction : input;
+      capacitance : 0.0026;
+    }
+    pin("data_in[3]") {
+      direction : input;
+      capacitance : 0.0027;
+    }
+    pin("data_in[2]") {
+      direction : input;
+      capacitance : 0.0026;
+    }
+    pin("data_in[1]") {
+      direction : input;
+      capacitance : 0.0026;
+    }
+    pin("data_in[0]") {
+      direction : input;
+      capacitance : 0.0031;
+    }
+    }
+    bus("data_out") {
+      bus_type : data_out;
+      direction : output;
+      capacitance : 0.0000;
+    pin("data_out[7]") {
+      direction : output;
+      capacitance : 0.0008;
+    }
+    pin("data_out[6]") {
+      direction : output;
+      capacitance : 0.0010;
+    }
+    pin("data_out[5]") {
+      direction : output;
+      capacitance : 0.0010;
+    }
+    pin("data_out[4]") {
+      direction : output;
+      capacitance : 0.0006;
+    }
+    pin("data_out[3]") {
+      direction : output;
+      capacitance : 0.0009;
+    }
+    pin("data_out[2]") {
+      direction : output;
+      capacitance : 0.0009;
+    }
+    pin("data_out[1]") {
+      direction : output;
+      capacitance : 0.0007;
+    }
+    pin("data_out[0]") {
+      direction : output;
+      capacitance : 0.0006;
+    }
+    }
+  }
+
+}

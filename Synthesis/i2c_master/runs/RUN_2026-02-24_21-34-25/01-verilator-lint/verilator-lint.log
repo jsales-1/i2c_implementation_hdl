@@ -1,0 +1,32 @@
+%Warning-WIDTHEXPAND: i2c_master.sv:63:34: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'clk_counter' generates 3 bits.
+                                         : ... note: In instance 'i2c_master_controller'
+   63 |         end else if (clk_counter == (CLOCK_DIV/2)-1) begin
+      |                                  ^~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.018
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: i2c_master.sv:108:29: Operator ASSIGNDLY expects 4 bits on the Assign RHS, but Assign RHS's VARREF 'ADDR_WIDTH' generates 32 bits.
+                                         : ... note: In instance 'i2c_master_controller'
+  108 |                     counter <= ADDR_WIDTH;
+      |                             ^~
+%Warning-WIDTHTRUNC: i2c_master.sv:121:33: Operator ASSIGNDLY expects 4 bits on the Assign RHS, but Assign RHS's SUB generates 32 bits.
+                                         : ... note: In instance 'i2c_master_controller'
+  121 |                         counter <= DATA_WIDTH-1;
+      |                                 ^~
+%Warning-WIDTHTRUNC: i2c_master.sv:145:29: Bit extraction of var[7:0] requires 3 bit index, not 4 bits.
+                                         : ... note: In instance 'i2c_master_controller'
+  145 |                     data_out[counter] <= i2c_sda;
+      |                             ^
+%Warning-WIDTHTRUNC: i2c_master.sv:185:43: Bit extraction of var[7:0] requires 3 bit index, not 4 bits.
+                                         : ... note: In instance 'i2c_master_controller'
+  185 |                     sda_out <= address_reg[counter];
+      |                                           ^
+%Warning-WIDTHTRUNC: i2c_master.sv:194:51: Bit extraction of var[7:0] requires 3 bit index, not 4 bits.
+                                         : ... note: In instance 'i2c_master_controller'
+  194 |                     sda_out      <= write_data_reg[counter];
+      |                                                   ^
+%Warning-CASEINCOMPLETE: i2c_master.sv:92:13: Case values incompletely covered (example pattern 0xa)
+   92 |             case (state)
+      |             ^~~~
+%Warning-CASEINCOMPLETE: i2c_master.sv:172:13: Case values incompletely covered (example pattern 0x0)
+  172 |             case (state)
+      |             ^~~~
