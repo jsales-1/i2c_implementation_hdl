@@ -3,6 +3,8 @@
 This repository contains the second-semester project for the CI-Digital course, focusing on the implementation and verification of I2C master and slave controllers using multiple verification methods.
 
 ## Project Structure
+
+<pre>
 i2c_implementation_hdl/
 ├── RTL/ # RTL implementations
 │ ├── V1.0/
@@ -19,7 +21,7 @@ i2c_implementation_hdl/
 │ └── slave/ # UVM environment for I2C slave
 ├── Synthesis/ # Synthesis files and scripts
 └── README.md
-
+</pre>
 
 ## Modules
 
