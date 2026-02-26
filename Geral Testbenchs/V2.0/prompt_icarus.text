@@ -2,3 +2,13 @@
 run on Testbench/V1.0
 
 iverilog -g2012 "../../RTL/V2.0/i2c_master.sv" "../../RTL/V2.0/i2c_slave.sv" "i2c_tb.sv" -o "i2c_sim.out"
+
+
+then run 
+
+vvp i2c_sim.out
+
+
+and finally
+
+gtkwave waveform.vcd

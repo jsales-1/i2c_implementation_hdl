@@ -19,7 +19,6 @@ class my_env extends uvm_env;
 
     function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
-        // Connect agent analysis port to scoreboard
         agt.agent_ap.connect(scb.agent_aep);
     endfunction
     

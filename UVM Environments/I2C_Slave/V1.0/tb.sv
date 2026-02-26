@@ -1,16 +1,11 @@
 //==================================================
-// 9. Top-level testbench (instantiates DUT and interface)
+// 9. Top-level testbench (instantiates I2C slave DUT)
 //==================================================
 module tb;
 
-    // ------------------------------------------
-    // UVM macros include
-    // ------------------------------------------
     import uvm_pkg::*;
     `include "uvm_macros.svh"
 
-    // i2c_if.sv is already included in testbench.sv, so we don't include it here again
-    
     `include "my_seq_item.sv"
     `include "my_sequence.sv"
     `include "my_driver.sv"
@@ -24,7 +19,7 @@ module tb;
     logic clk;
     logic rst;
     
-    // String for test name (declared at module level, not inside initial)
+    // String for test name
     string test_name;
     
     // I2C interface instance
@@ -32,32 +27,27 @@ module tb;
         .clk(clk)
     );
     
-    // Pull-up resistors for I2C bus (required for I2C)
-    pullup (i2c_if_inst.i2c_sda);
-    pullup (i2c_if_inst.i2c_scl);
+    // Pull-up resistors for I2C bus
+    pullup (i2c_if_inst.sda);
+    pullup (i2c_if_inst.scl);
     
-    // DUT - I2C Master Controller
-    i2c_master_controller #(
+    // DUT - I2C Slave Controller
+    i2c_slave_controller #(
         .ADDR_WIDTH(7),
         .DATA_WIDTH(8),
-        .CLOCK_DIV(4)
+        .SLAVE_ADDR(7'b0101010)  // 0x50 in binary (7'h50)
     ) DUT (
-        .clk(clk),
+        .sda(i2c_if_inst.sda),
+        .scl(i2c_if_inst.scl),
         .rst(rst),
-        .address(i2c_if_inst.address),
-        .data_in(i2c_if_inst.data_in),
-        .enable(i2c_if_inst.enable),
-        .rw(i2c_if_inst.rw),
-        .data_out(i2c_if_inst.data_out),
-        .ready(i2c_if_inst.ready),
-        .i2c_sda(i2c_if_inst.i2c_sda),
-        .i2c_scl(i2c_if_inst.i2c_scl)
+        .data_received(i2c_if_inst.data_received),
+        .data_to_send(i2c_if_inst.data_to_send)
     );
     
-    // Clock generation
+    // Clock generation (100MHz)
     initial begin
         clk = 0;
-        forever #5 clk = ~clk;  // 100MHz clock
+        forever #5 clk = ~clk;
     end
     
     // Reset generation
@@ -68,38 +58,37 @@ module tb;
         `uvm_info("TB", "Reset released", UVM_LOW)
     end
     
-    // I2C Slave Model - ativado para responder às transações do master
+    // Set data for slave to send during read operations
     initial begin
-        // Pequeno delay para garantir que o DUT já está resetado
         #150;
-        `uvm_info("TB", "Starting I2C Slave Model", UVM_LOW)
         fork
-            i2c_if_inst.i2c_slave_model();
+            forever begin
+                @(posedge clk);
+                // Randomize data to send for reads
+                i2c_if_inst.data_to_send = $urandom_range(0, 255);
+            end
         join_none
     end
     
-    // I2C Bus Monitor (opcional, para debug)
+    // I2C Bus Monitor (debug)
     initial begin
-        // Pequeno delay para iniciar após o reset
         #150;
         fork
             i2c_if_inst.monitor_i2c_bus();
         join_none
     end
     
-    // VCD dump for waveform debugging
+    // VCD dump
     initial begin
-        $dumpfile("i2c_test.vcd");
+        $dumpfile("i2c_slave_test.vcd");
         $dumpvars(0, tb);
         `uvm_info("TB", "VCD dump enabled", UVM_LOW)
     end
     
     // UVM test initialization
     initial begin
-        // Set interface in config DB
         uvm_config_db #(virtual i2c_if)::set(null, "*", "vif", i2c_if_inst);
         
-        // Run test with default test name if none provided
         if ($value$plusargs("UVM_TESTNAME=%s", test_name)) begin
             `uvm_info("TB", $sformatf("Running test: %s", test_name), UVM_LOW)
             run_test(test_name);
@@ -110,7 +99,6 @@ module tb;
         end
     end
     
-    // Monitor test completion
     final begin
         `uvm_info("TB", "Simulation completed", UVM_LOW)
     end

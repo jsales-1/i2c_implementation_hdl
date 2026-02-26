@@ -1,5 +1,5 @@
 //================================================== 
-// 6. Agent — groups driver, monitor and sequencer
+// 6. Agent — groups driver, monitor and sequencer for slave
 //================================================== 
 class my_agent extends uvm_agent; 
     `uvm_component_utils(my_agent)
@@ -24,9 +24,7 @@ class my_agent extends uvm_agent;
     
     function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
-        // Connect monitor analysis port to agent analysis port
         agent_ap = mon.mon_ap;
-        // Connect driver and sequencer
         drv.seq_item_port.connect(seqr.seq_item_export);
     endfunction
     

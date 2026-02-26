@@ -1,3 +1,15 @@
+/* 
+I2C MASTER CONTROLLER – Version 3.0
+
+Revision Notes:
+ - Master timing corrected to wait for a full i2c_scl cycle
+   before starting ADDRESS transmission.
+ - Ensures proper START-to-ADDRESS alignment.
+ - Prevents premature address shifting relative to SCL.
+ - Improves synchronization with slave sampling edge.
+ */
+
+
 module i2c_master_controller #(
     parameter int ADDR_WIDTH = 7,   // I2C address width (7 bits default)
     parameter int DATA_WIDTH = 8,   // Data width (8 bits default)
@@ -17,24 +29,25 @@ module i2c_master_controller #(
     inout  logic i2c_scl                       // I2C clock line
 );
 
-    // -------------------------------
+    
     // FSM state definition
-    // -------------------------------
+    
     typedef enum logic [3:0] {
-        IDLE        = 4'd0,
-        START       = 4'd1,
-        ADDRESS     = 4'd2,
-        READ_ACK    = 4'd3,
-        WRITE_DATA  = 4'd4,
-        READ_ACK2   = 4'd5,
-        READ_DATA   = 4'd6,
-        WRITE_ACK   = 4'd7,
-        STOP        = 4'd8
+        IDLE,
+        START,
+        WAIT,
+        ADDRESS,
+        READ_ACK,
+        WRITE_DATA,
+        READ_ACK2,
+        READ_DATA,
+        WRITE_ACK,
+        STOP
     } state_t;
 
-    // -------------------------------
+    
     // Internal registers
-    // -------------------------------
+    
     state_t state;
     logic [ADDR_WIDTH:0] address_reg;        // Address + R/W bit
     logic [DATA_WIDTH-1:0] write_data_reg;   // Stored write data
@@ -45,16 +58,16 @@ module i2c_master_controller #(
     logic scl_enable;
     logic i2c_clk;
 
-    // -------------------------------
+    
     // Output signals
-    // -------------------------------
+    
     assign ready   = (!rst && state == IDLE);
     assign i2c_scl = (scl_enable == 0) ? 1'b1 : i2c_clk;
     assign i2c_sda = (sda_drive_en == 1) ? sda_out : 1'bz;
 
-    // -------------------------------
+    
     // I2C clock divider
-    // -------------------------------
+    
     always_ff @(posedge clk or posedge rst) begin
         if (rst) begin
             clk_counter <= 0;
@@ -67,9 +80,9 @@ module i2c_master_controller #(
         end
     end
 
-    // -------------------------------
+    
     // SCL enable control
-    // -------------------------------
+    
     always_ff @(negedge i2c_clk or posedge rst) begin
         if (rst) begin
             scl_enable <= 0;
@@ -81,9 +94,9 @@ module i2c_master_controller #(
         end
     end
 
-    // -------------------------------
+    
     // State machine (main FSM)
-    // -------------------------------
+    
     always_ff @(posedge i2c_clk or posedge rst) begin
         if (rst) begin
             state <= IDLE;
@@ -100,6 +113,10 @@ module i2c_master_controller #(
                 end
 
                 START: begin
+                    state   <= WAIT;
+                end
+
+                WAIT: begin
                     counter <= ADDR_WIDTH;
                     state   <= ADDRESS;
                 end
@@ -156,9 +173,9 @@ module i2c_master_controller #(
         end
     end
 
-    // -------------------------------
+    
     // SDA line control
-    // -------------------------------
+    
     always_ff @(negedge i2c_clk or posedge rst) begin
         if (rst) begin
             sda_drive_en <= 1;
@@ -167,6 +184,11 @@ module i2c_master_controller #(
             case (state)
 
                 START: begin
+                    sda_drive_en <= 1;
+                    sda_out      <= 0; // START condition
+                end
+
+                WAIT: begin
                     sda_drive_en <= 1;
                     sda_out      <= 0; // START condition
                 end
@@ -187,6 +209,9 @@ module i2c_master_controller #(
                 WRITE_ACK: begin
                     sda_drive_en <= 1;
                     sda_out      <= 0; // ACK
+                end
+              	READ_ACK2: begin
+                    sda_drive_en <= 0;
                 end
 
                 READ_DATA: begin
