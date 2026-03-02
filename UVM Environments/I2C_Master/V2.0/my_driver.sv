@@ -1,6 +1,4 @@
-//==================================================
 // 4. Driver — sends transactions to DUT via interface
-//==================================================
 class my_driver extends uvm_driver #(my_seq_item);
     `uvm_component_utils(my_driver)
     

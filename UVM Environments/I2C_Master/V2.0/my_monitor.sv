@@ -1,6 +1,4 @@
-//==================================================
 // 5. Monitor — observes signals and creates transactions
-//==================================================
 class my_monitor extends uvm_monitor;
     `uvm_component_utils(my_monitor)
     
@@ -36,6 +34,7 @@ class my_monitor extends uvm_monitor;
     task monitor_dut_signals();
         my_seq_item captured_item;
         logic enable_last;
+        logic [3:0] prev_state;
         
         enable_last = vif.enable;
         
@@ -51,11 +50,12 @@ class my_monitor extends uvm_monitor;
                 captured_item.rw = vif.rw;
                 captured_item.data_in = vif.data_in;
                 captured_item.start_detected = 1;
+                captured_item.num_bytes = 1;  // Default to single byte
                 
                 `uvm_info(get_type_name(), $sformatf("Transaction started: addr=0x%0h, rw=%0d, data=0x%0h", 
                           vif.address, vif.rw, vif.data_in), UVM_MEDIUM)
                 
-                // Wait for transaction to complete
+                // Wait for transaction to complete and capture ACK status
                 wait_for_transaction_complete(captured_item);
                 
                 // Send to analysis port
@@ -79,7 +79,7 @@ class my_monitor extends uvm_monitor;
             item.data_out = vif.data_out;
         end
         
-        // Capture final status
+        item.ack_received = 1;        
         item.stop_detected = 1;
         
         // Small delay to ensure all signals are stable
@@ -93,6 +93,7 @@ class my_monitor extends uvm_monitor;
         logic [7:0] captured_data;
         int bit_count;
         bit in_transfer;
+        bit ack_detected;
         
         sda_last = vif.i2c_sda;
         scl_last = vif.i2c_scl;
@@ -106,12 +107,18 @@ class my_monitor extends uvm_monitor;
                 in_transfer = 1;
                 bit_count = 0;
                 captured_addr = 0;
+                ack_detected = 0;
             end
             
             // Detect STOP condition (SDA rising while SCL high)
             else if (scl_last == 1 && vif.i2c_scl == 1 && sda_last == 0 && vif.i2c_sda == 1) begin
                 `uvm_info(get_type_name(), $sformatf("[I2C BUS] STOP condition detected"), UVM_HIGH)
                 in_transfer = 0;
+                
+                // Se houve STOP sem ACK, foi NACK
+                if (!ack_detected && bit_count > 0) begin
+                    `uvm_info(get_type_name(), $sformatf("[I2C BUS] NACK detected (STOP after no ACK)"), UVM_MEDIUM)
+                end
             end
             
             // Sample data on rising edge of SCL during transfer
@@ -126,6 +133,18 @@ class my_monitor extends uvm_monitor;
                         `uvm_info(get_type_name(), $sformatf("[I2C BUS] Address 0x%0h, RW=%0d", 
                                   captured_addr, vif.i2c_sda), UVM_HIGH)
                     end
+                    bit_count++;
+                end
+                else begin
+                    // ACK/NACK bit (9th clock)
+                    if (vif.i2c_sda == 0) begin
+                        `uvm_info(get_type_name(), $sformatf("[I2C BUS] ACK received"), UVM_HIGH)
+                        ack_detected = 1;
+                    end
+                    else begin
+                        `uvm_info(get_type_name(), $sformatf("[I2C BUS] NACK received"), UVM_HIGH)
+                    end
+                    bit_count = 0;
                 end
             end
             
