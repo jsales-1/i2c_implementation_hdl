@@ -1,10 +1,9 @@
 /*
-I2C SLAVE CONTROLLER – Version 3.0
+I2C SLAVE CONTROLLER – Version 4.0
 
 Revision Notes:
- - IDLE state added to the FSM to ensure proper bus initialization and START detection handling.
- - always_ff blocks corrected to prevent multiple drivers controlling the same variable.
- - Each registered signal is now driven by a single always_ff block, ensuring synthesizable and deterministic behavior.
+ - Fixes in start/stop event handling;
+ - Corrected open-drain with removal of sda_out and single assign control using sda_drive_en and stop_event
 */
 
 
@@ -41,13 +40,9 @@ module i2c_slave_controller #(
     logic [ADDR_WIDTH:0] address_reg;   // Stores received address + R/W bit
   	logic [3:0] counter;                // Bit counter (address and data)
 
-    logic sda_out;                      // SDA output value
     logic sda_drive_en;                 // SDA drive enable (tri-state control)
 
-    
-    // Open-drain SDA control
-    
-    assign sda = (sda_drive_en) ? sda_out : 1'bz;
+
 
 
     // START/STOP detection logic
@@ -55,6 +50,9 @@ module i2c_slave_controller #(
     logic start_event;                  // START condition detected
     logic stop_event;                   // STOP condition detected
 
+    // Open-drain SDA control
+    
+    assign sda = (sda_drive_en && !stop_event) ? 0 : 1'bz;
 
     // START condition detection
     // START occurs when SDA falls while SCL is high
@@ -70,30 +68,40 @@ module i2c_slave_controller #(
             start_event <= 0;
     end
 
+    
+
 
     // STOP condition detection
     // STOP occurs when SDA rises while SCL is high
 
-    always_ff @(posedge sda or posedge rst) begin
-        if (scl == 1)
-            stop_event <= 1;
+    always_ff @(posedge sda or posedge rst ) begin
+        if (scl == 1) begin
+            if(state != IDLE)
+                stop_event <= 1;
+        end
         else 
       	    stop_event <= 0;
         if (start_event == 1)
             stop_event <= 0;
+        
+        
     end
 
 
     // Main FSM
     // All state transitions and data sampling occur on SCL rising edge
 
-    always_ff @(posedge scl or posedge rst) begin
+    always_ff @(posedge scl or posedge rst  or posedge start_event or posedge stop_event) begin
         if (rst) begin
             state         <= IDLE;
             counter       <= '0;
             address_reg   <= '0;
             data_received <= '0;
         end
+
+        if(stop_event && !start_event) 
+            state <= IDLE;
+
         else begin
             case (state)
 
@@ -148,7 +156,7 @@ module i2c_slave_controller #(
 
                 // ACK after data reception
                 SEND_ACK2: begin
-                    state <= IDLE;
+                    state <= SEND_ACK2;
                 end
 
 
@@ -177,7 +185,6 @@ module i2c_slave_controller #(
     always_ff @(negedge scl or posedge rst) begin
         if (rst) begin
             sda_drive_en <= 1'b0;
-            sda_out      <= 1'b1;
         end
         else begin
             case (state)
@@ -193,7 +200,6 @@ module i2c_slave_controller #(
                 // ACK after address match
                 SEND_ACK: begin
                     if (address_reg[ADDR_WIDTH:1] == SLAVE_ADDR) begin
-                        sda_out      <= 1'b0;
                         sda_drive_en <= 1'b1;
                     end
                     else begin
@@ -204,15 +210,13 @@ module i2c_slave_controller #(
 
                 // ACK after data reception
                 SEND_ACK2: begin
-                    sda_out      <= 1'b0;
                     sda_drive_en <= 1'b1;
                 end
 
 
                 // Data transmission to master
                 WRITE_DATA: begin
-                    sda_out      <= data_to_send[counter];
-                    sda_drive_en <= 1'b1;
+                    sda_drive_en <= !data_to_send[counter]; //Low becames zero and high becames z'
                 end
 
             endcase

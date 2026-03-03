@@ -1,5 +1,5 @@
-// Testbench for I2C Multi-Slave Communication
-module i2c_multi_slave_tb;
+// Testbench for I2C Single-Slave Communication
+module i2c_single_slave_tb;
 
     
     // Master Interface Signals
@@ -14,14 +14,8 @@ module i2c_multi_slave_tb;
 
     
     // Slave Interface Signals
-    logic [7:0] slave0_data_to_send;   // Data slave0 will send on read
-    logic [7:0] slave0_data_received;  // Data slave0 received on write
-
-    logic [7:0] slave1_data_to_send;   // Data slave1 will send on read
-    logic [7:0] slave1_data_received;  // Data slave1 received on write
-
-    logic [7:0] slave2_data_to_send;   // Data slave2 will send on read
-    logic [7:0] slave2_data_received;  // Data slave2 received on write
+    logic [7:0] slave_data_to_send;   // Data slave will send on read
+    logic [7:0] slave_data_received;  // Data slave received on write
 
     
     // I2C Bus Signals (tri-state)
@@ -48,39 +42,28 @@ module i2c_multi_slave_tb;
     );
 
     
-    // Slaves Instantiation with different addresses
-    i2c_slave_controller #(.SLAVE_ADDR(7'b0101010)) slave0 (
-        .rst(rst), .sda(sda), .scl(scl),
-        .data_received(slave0_data_received),
-        .data_to_send(slave0_data_to_send)
+    // Single Slave Instantiation with fixed address
+    i2c_slave_controller #(.SLAVE_ADDR(7'b0101010)) slave (
+        .rst(rst), 
+        .sda(sda), 
+        .scl(scl),
+        .data_received(slave_data_received),
+        .data_to_send(slave_data_to_send)
     );
 
-    i2c_slave_controller #(.SLAVE_ADDR(7'b0110011)) slave1 (
-        .rst(rst), .sda(sda), .scl(scl),
-        .data_received(slave1_data_received),
-        .data_to_send(slave1_data_to_send)
-    );
-
-    i2c_slave_controller #(.SLAVE_ADDR(7'b0011101)) slave2 (
-        .rst(rst), .sda(sda), .scl(scl),
-        .data_received(slave2_data_received),
-        .data_to_send(slave2_data_to_send)
-    );
-
-        // ENUMERATED TYPE DEFINITIONS FOR FSM STATES
-        
+    // ENUMERATED TYPE DEFINITIONS FOR FSM STATES
+    
     // Master States (based on i2c_master_controller)
     typedef enum logic [3:0] {
-        IDLE      = 4'd0,  // Idle state
-        START     = 4'd1,  // Generate START condition
-        WAIT_S    = 4'd2,  // Wait for SCL low after START
-        ADDRESS   = 4'd3,  // Transmit address + R/W bit
-        READ_ACK  = 4'd4,  // Read ACK/NACK after address
-        WRITE_DATA = 4'd5, // Write data to slave
-        READ_ACK2 = 4'd6,  // Read ACK/NACK after data write
-        READ_DATA = 4'd7,  // Read data from slave
-        WRITE_ACK = 4'd8,  // Write ACK after data read
-        STOP      = 4'd9   // Generate STOP condition
+        MASTER_IDLE      = 4'd0,  // Idle state
+        MASTER_START     = 4'd1,  // Generate START condition
+        MASTER_ADDRESS   = 4'd2,  // Transmit address + R/W bit
+        MASTER_READ_ACK  = 4'd3,  // Read ACK/NACK after address
+        MASTER_WRITE_DATA = 4'd4, // Write data to slave
+        MASTER_READ_ACK2 = 4'd5,  // Read ACK/NACK after data write
+        MASTER_READ_DATA = 4'd6,  // Read data from slave
+        MASTER_WRITE_ACK = 4'd7,  // Write ACK after data read
+        MASTER_STOP      = 4'd8   // Generate STOP condition
     } master_state_t;
     
     // Slave States (based on i2c_slave_controller)
@@ -93,53 +76,40 @@ module i2c_multi_slave_tb;
         SLAVE_WRITE_DATA  = 3'd5   // Writing data to bus (read operation)
     } slave_state_t;
     
-        // COVERGROUP VARIABLES (copies of signals for coverage)
+    // COVERGROUP VARIABLES (copies of signals for coverage)
         
-    logic [7:0] slave0_rec_cg;   // Copy of slave0 received data
-    logic [7:0] slave0_send_cg;  // Copy of slave0 data to send
-    logic [7:0] slave1_rec_cg;   // Copy of slave1 received data
-    logic [7:0] slave1_send_cg;  // Copy of slave1 data to send
-    logic [7:0] slave2_rec_cg;   // Copy of slave2 received data
-    logic [7:0] slave2_send_cg;  // Copy of slave2 data to send
+    logic [7:0] slave_rec_cg;   // Copy of slave received data
+    logic [7:0] slave_send_cg;  // Copy of slave data to send
     
     // Update covergroup variables on each change
-    always @(slave0_data_received) slave0_rec_cg = slave0_data_received;
-    always @(slave0_data_to_send) slave0_send_cg = slave0_data_to_send;
-    always @(slave1_data_received) slave1_rec_cg = slave1_data_received;
-    always @(slave1_data_to_send) slave1_send_cg = slave1_data_to_send;
-    always @(slave2_data_received) slave2_rec_cg = slave2_data_received;
-    always @(slave2_data_to_send) slave2_send_cg = slave2_data_to_send;
+    always @(slave_data_received) slave_rec_cg = slave_data_received;
+    always @(slave_data_to_send) slave_send_cg = slave_data_to_send;
     
-        // SLAVE STATE SIGNALS FOR COVERAGE
+    // SLAVE STATE SIGNALS FOR COVERAGE
         
-    logic [2:0] slave0_state_cg;  // Copy of slave0 state
-    logic [2:0] slave1_state_cg;  // Copy of slave1 state
-    logic [2:0] slave2_state_cg;  // Copy of slave2 state
+    logic [2:0] slave_state_cg;  // Copy of slave state
     
     // Update state signals for covergroup
-    always @(slave0.state) slave0_state_cg = slave0.state;
-    always @(slave1.state) slave1_state_cg = slave1.state;
-    always @(slave2.state) slave2_state_cg = slave2.state;
+    always @(slave.state) slave_state_cg = slave_state_t'(slave.state);
     
-        // COVERGROUPS DEFINITION
+    // COVERGROUPS DEFINITION
         
     // Covergroup for Master Coverage Collection
     covergroup i2c_master_cg (string name) @(posedge clk);
         option.per_instance = 1;  // Separate coverage per instance
         option.name = name;       // Instance name
         
-        // FSM coverage for master - using cast to correct type
+        // FSM coverage for master
         master_state: coverpoint master.state {
-            bins idle = {master_state_t'(IDLE)};
-            bins start = {master_state_t'(START)};
-            bins wait_s = {master_state_t'(WAIT_S)};
-            bins address = {master_state_t'(ADDRESS)};
-            bins read_ack = {master_state_t'(READ_ACK)};
-            bins write_data = {master_state_t'(WRITE_DATA)};
-            bins read_ack2 = {master_state_t'(READ_ACK2)};
-            bins read_data = {master_state_t'(READ_DATA)};
-            bins write_ack = {master_state_t'(WRITE_ACK)};
-            bins stop = {master_state_t'(STOP)};
+            bins idle = {MASTER_IDLE};
+            bins start = {MASTER_START};
+            bins address = {MASTER_ADDRESS};
+            bins read_ack = {MASTER_READ_ACK};
+            bins write_data = {MASTER_WRITE_DATA};
+            bins read_ack2 = {MASTER_READ_ACK2};
+            bins read_data = {MASTER_READ_DATA};
+            bins write_ack = {MASTER_WRITE_ACK};
+            bins stop = {MASTER_STOP};
             bins illegal_states = default;  // Catch any illegal states
         }
         
@@ -149,19 +119,17 @@ module i2c_multi_slave_tb;
             bins read  = {1};  // Read operation
         }
         
-        // Slave addresses coverage
+        // Slave address coverage
         slave_addr: coverpoint address {
-            bins slave0 = {7'b0101010};  // Slave0 address
-            bins slave1 = {7'b0110011};  // Slave1 address
-            bins slave2 = {7'b0011101};  // Slave2 address
-            bins others = default;       // Other addresses
+            bins slave_addr = {7'b0101010};  // Valid slave address
+            bins other_addr = default;       // Other addresses
         }
         
         // Written data coverage
         write_data: coverpoint master_data_in {
             bins zero    = {8'h00};       // All zeros
             bins ones    = {8'hFF};       // All ones
-            bins pattern[] = {8'hA5, 8'h3C, 8'h77};  // Specific patterns
+            bins pattern[] = {8'hA5, 8'h3C, 8'h77, 8'h55};  // Specific patterns
             bins others  = default;       // Other values
         }
         
@@ -169,7 +137,7 @@ module i2c_multi_slave_tb;
         read_data: coverpoint master_data_out {
             bins zero    = {8'h00};       // All zeros
             bins ones    = {8'hFF};       // All ones
-            bins pattern[] = {8'hF0, 8'h55, 8'h99};  // Specific patterns
+            bins pattern[] = {8'hF0, 8'h55, 8'h99, 8'hAA};  // Specific patterns
             bins others  = default;       // Other values
         }
         
@@ -182,24 +150,21 @@ module i2c_multi_slave_tb;
     endgroup
     
     // Covergroup for Slave Coverage Collection
-    covergroup i2c_slave_cg (string name, int slave_id, 
+    covergroup i2c_slave_cg (string name, 
                              ref logic [7:0] rec, 
                              ref logic [7:0] send,
                              ref logic [2:0] state_signal) @(posedge clk);
         option.per_instance = 1;  // Separate coverage per instance
         option.name = name;       // Instance name
         
-        // Slave identifier coverage
-        id_cp: coverpoint slave_id;
-        
-        // Slave FSM coverage - using cast to correct type
+        // Slave FSM coverage
         slave_state: coverpoint state_signal {
-            bins idle = {slave_state_t'(SLAVE_IDLE)};
-            bins read_addr = {slave_state_t'(SLAVE_READ_ADDR)};
-            bins send_ack = {slave_state_t'(SLAVE_SEND_ACK)};
-            bins read_data = {slave_state_t'(SLAVE_READ_DATA)};
-            bins send_ack2 = {slave_state_t'(SLAVE_SEND_ACK2)};
-            bins write_data = {slave_state_t'(SLAVE_WRITE_DATA)};
+            bins idle = {SLAVE_IDLE};
+            bins read_addr = {SLAVE_READ_ADDR};
+            bins send_ack = {SLAVE_SEND_ACK};
+            bins read_data = {SLAVE_READ_DATA};
+            bins send_ack2 = {SLAVE_SEND_ACK2};
+            bins write_data = {SLAVE_WRITE_DATA};
             bins illegal_states = default;  // Catch any illegal states
         }
         
@@ -207,7 +172,7 @@ module i2c_multi_slave_tb;
         data_received: coverpoint rec {
             bins zero    = {8'h00};       // All zeros
             bins ones    = {8'hFF};       // All ones
-            bins pattern[] = {8'hA5, 8'h3C, 8'h77};  // Specific patterns
+            bins pattern[] = {8'hA5, 8'h3C, 8'h77, 8'h55};  // Specific patterns
             bins others  = default;       // Other values
         }
         
@@ -215,7 +180,7 @@ module i2c_multi_slave_tb;
         data_sent: coverpoint send {
             bins zero    = {8'h00};       // All zeros
             bins ones    = {8'hFF};       // All ones
-            bins pattern[] = {8'hF0, 8'h55, 8'h99};  // Specific patterns
+            bins pattern[] = {8'hF0, 8'h55, 8'h99, 8'hAA};  // Specific patterns
             bins others  = default;       // Other values
         }
         
@@ -227,12 +192,10 @@ module i2c_multi_slave_tb;
         
     endgroup
     
-        // COVERGROUPS INSTANTIATION
+    // COVERGROUPS INSTANTIATION
         
     i2c_master_cg master_cg = new("master_cg");
-    i2c_slave_cg slave0_cg = new("slave0_cg", 0, slave0_rec_cg, slave0_send_cg, slave0_state_cg);
-    i2c_slave_cg slave1_cg = new("slave1_cg", 1, slave1_rec_cg, slave1_send_cg, slave1_state_cg);
-    i2c_slave_cg slave2_cg = new("slave2_cg", 2, slave2_rec_cg, slave2_send_cg, slave2_state_cg);
+    i2c_slave_cg slave_cg = new("slave_cg", slave_rec_cg, slave_send_cg, slave_state_cg);
     
     // Clock Generation
     initial begin
@@ -240,12 +203,98 @@ module i2c_multi_slave_tb;
         forever #1 clk = ~clk;  // 2ns period (500MHz)
     end
     
+    // =========================================================
+    // ASSERTIONS MONITOR - ORGANIZED OUTPUT
+    // =========================================================
+    
+    // Variáveis para contar assertions
+    int master_assert_count, slave_assert_count;
+    int master_assert_pass, slave_assert_pass;
+    int master_assert_fail, slave_assert_fail;
+    
+    // Tarefa para imprimir cabeçalho organizado
+    task print_assert_header(string title);
+        $display("\n%s", title);
+        $display("=================================================================");
+    endtask
+    
+    // Tarefa para imprimir resultado de assertion master
+    task print_master_assert(string name, string desc, bit result);
+        if (result) begin
+            $display("PASS: [MASTER] %-30s - %s", name, desc);
+            master_assert_pass++;
+        end else begin
+            $display("FAIL: [MASTER] %-30s - %s", name, desc);
+            master_assert_fail++;
+        end
+        master_assert_count++;
+    endtask
+    
+    // Tarefa para imprimir resultado de assertion slave
+    task print_slave_assert(string name, string desc, bit result);
+        if (result) begin
+            $display("PASS: [SLAVE ] %-30s - %s", name, desc);
+            slave_assert_pass++;
+        end else begin
+            $display("FAIL: [SLAVE ] %-30s - %s", name, desc);
+            slave_assert_fail++;
+        end
+        slave_assert_count++;
+    endtask
+    
+    // Tarefa para imprimir resumo final
+    task print_assert_summary();
+        $display("\n");
+        $display("=================================================================");
+        $display("                    ASSERTIONS SUMMARY                          ");
+        $display("=================================================================");
+        
+        $display("\nMASTER ASSERTIONS:");
+        $display("  Total:  %0d", master_assert_count);
+        $display("  Passed: %0d", master_assert_pass);
+        $display("  Failed: %0d", master_assert_fail);
+        if (master_assert_count > 0)
+            $display("  Coverage: %0.2f%%", (master_assert_pass * 100.0 / master_assert_count));
+        else
+            $display("  Coverage: N/A (no assertions)");
+        
+        $display("\nSLAVE ASSERTIONS:");
+        $display("  Total:  %0d", slave_assert_count);
+        $display("  Passed: %0d", slave_assert_pass);
+        $display("  Failed: %0d", slave_assert_fail);
+        if (slave_assert_count > 0)
+            $display("  Coverage: %0.2f%%", (slave_assert_pass * 100.0 / slave_assert_count));
+        else
+            $display("  Coverage: N/A (no assertions)");
+        
+        $display("\nOVERALL:");
+        $display("  Total Assertions:  %0d", master_assert_count + slave_assert_count);
+        $display("  Total Passed:      %0d", master_assert_pass + slave_assert_pass);
+        $display("  Total Failed:      %0d", master_assert_fail + slave_assert_fail);
+        if (master_assert_count + slave_assert_count > 0)
+            $display("  Overall Coverage:  %0.2f%%", 
+                    ((master_assert_pass + slave_assert_pass) * 100.0 / 
+                     (master_assert_count + slave_assert_count)));
+        else
+            $display("  Overall Coverage:  N/A (no assertions)");
+        
+        $display("\n=================================================================");
+        
+        if (master_assert_fail > 0 || slave_assert_fail > 0) begin
+            $display("\n  WARNING: Some assertions failed! Check the FAIL entries above.\n");
+        end else if (master_assert_count + slave_assert_count > 0) begin
+            $display("\n ALL ASSERTIONS PASSED!\n");
+        end else begin
+            $display("\nℹ  No assertions were executed.\n");
+        end
+    endtask
+    
     // Test Sequence
     initial begin
 
         // VCD file generation for waveform viewing
         $dumpfile("waveform.vcd");
-        $dumpvars(0, i2c_multi_slave_tb);
+        $dumpvars(0, i2c_single_slave_tb);
 
         // Initial reset and disable
         rst = 1;
@@ -253,116 +302,276 @@ module i2c_multi_slave_tb;
         rw = 0;
         address = 0;
         master_data_in = 0;
+        slave_data_to_send = 0;
 
-        slave0_data_to_send = 0;
-        slave1_data_to_send = 0;
-        slave2_data_to_send = 0;
+        $display("\n");
+        $display("=================================================================");
+        $display("           I2C SINGLE-SLAVE TESTBENCH SIMULATION                ");
+        $display("=================================================================");
+        $display("Start time: %t", $realtime);
+        $display("Slave Address: 0x2A (7'b0101010)");
+        $display("");
 
         // Release reset after 20ns
         #20 rst = 0;
-
+        $display("Reset released at %t", $realtime);
         
-        // TEST CASE 1: WRITE TO SLAVE 0
-        // Write 0xA5 to slave with address 0b0101010
-        address = 7'b0101010;
+        // Inicializar contadores
+        master_assert_count = 0;
+        slave_assert_count = 0;
+        master_assert_pass = 0;
+        slave_assert_pass = 0;
+        master_assert_fail = 0;
+        slave_assert_fail = 0;
+        
+        // ====================================================
+        // TEST CASE 1: WRITE TO SLAVE - MULTIPLE PATTERNS
+        // ====================================================
+        print_assert_header("TEST CASE 1: WRITE OPERATIONS TO SLAVE");
+        address = 7'b0101010;  // Slave address
+        
+        // Write 0xA5
+        $display("\n--- Writing 0xA5 to slave ---");
         master_data_in = 8'hA5;
         rw = 0;  // Write operation
         enable = 1; #10 enable = 0;  // Pulse enable
         #400;  // Wait for transaction to complete
 
-        // Check result
-        if (slave0_data_received == 8'hA5)
-            $display("OK WRITE: Slave0 received %h", slave0_data_received);
-        else
-            $display("ERROR WRITE: Slave0 received %h", slave0_data_received);
-
+        print_slave_assert("Write 0xA5", 
+                          $sformatf("Received: 0x%h (expected 0xA5)", slave_data_received),
+                          slave_data_received == 8'hA5);
         
-        // TEST CASE 2: WRITE TO SLAVE 1
-        // Write 0x3C to slave with address 0b0110011
-        address = 7'b0110011;
+        // Write 0x3C
+        $display("\n--- Writing 0x3C to slave ---");
         master_data_in = 8'h3C;
-        rw = 0;  // Write operation
         enable = 1; #10 enable = 0;  // Pulse enable
         #400;  // Wait for transaction to complete
 
-        // Check result
-        if (slave1_data_received == 8'h3C)
-            $display("OK WRITE: Slave1 received %h", slave1_data_received);
-        else
-            $display("ERROR WRITE: Slave1 received %h", slave1_data_received);
-
+        print_slave_assert("Write 0x3C", 
+                          $sformatf("Received: 0x%h (expected 0x3C)", slave_data_received),
+                          slave_data_received == 8'h3C);
         
-        // TEST CASE 3: WRITE TO SLAVE 2
-        // Write 0x77 to slave with address 0b0011101
-        address = 7'b0011101;
-        master_data_in = 8'h77;
-        rw = 0;  // Write operation
+        // Write 0x00
+        $display("\n--- Writing 0x00 to slave ---");
+        master_data_in = 8'h00;
         enable = 1; #10 enable = 0;  // Pulse enable
         #400;  // Wait for transaction to complete
 
-        // Check result
-        if (slave2_data_received == 8'h77)
-            $display("OK WRITE: Slave2 received %h", slave2_data_received);
-        else
-            $display("ERROR WRITE: Slave2 received %h", slave2_data_received);
-
+        print_slave_assert("Write 0x00", 
+                          $sformatf("Received: 0x%h (expected 0x00)", slave_data_received),
+                          slave_data_received == 8'h00);
         
-        // TEST CASE 4: READ FROM SLAVE 0
-        // Read from slave0, which will send 0xF0
-        slave0_data_to_send = 8'hF0;
+        // Write 0xFF
+        $display("\n--- Writing 0xFF to slave ---");
+        master_data_in = 8'hFF;
+        enable = 1; #10 enable = 0;  // Pulse enable
+        #400;  // Wait for transaction to complete
+
+        print_slave_assert("Write 0xFF", 
+                          $sformatf("Received: 0x%h (expected 0xFF)", slave_data_received),
+                          slave_data_received == 8'hFF);
+        
+        // Write 0x55
+        $display("\n--- Writing 0x55 to slave ---");
+        master_data_in = 8'h55;
+        enable = 1; #10 enable = 0;  // Pulse enable
+        #400;  // Wait for transaction to complete
+
+        print_slave_assert("Write 0x55", 
+                          $sformatf("Received: 0x%h (expected 0x55)", slave_data_received),
+                          slave_data_received == 8'h55);
+        
+        // ====================================================
+        // TEST CASE 2: READ FROM SLAVE - MULTIPLE PATTERNS
+        // ====================================================
+        print_assert_header("TEST CASE 2: READ OPERATIONS FROM SLAVE");
+        address = 7'b0101010;  // Slave address
+        
+        // Read with data 0xF0
+        $display("\n--- Reading from slave (expected 0xF0) ---");
+        slave_data_to_send = 8'hF0;
+        rw = 1;  // Read operation
+        enable = 1; #10 enable = 0;  // Pulse enable
+        #600;  // Wait for transaction to complete
+
+        print_master_assert("Read 0xF0", 
+                           $sformatf("Master read: 0x%h (expected 0xF0)", master_data_out),
+                           master_data_out == 8'hF0);
+        
+        // Read with data 0x55
+        $display("\n--- Reading from slave (expected 0x55) ---");
+        slave_data_to_send = 8'h55;
+        enable = 1; #10 enable = 0;  // Pulse enable
+        #600;  // Wait for transaction to complete
+
+        print_master_assert("Read 0x55", 
+                           $sformatf("Master read: 0x%h (expected 0x55)", master_data_out),
+                           master_data_out == 8'h55);
+        
+        // Read with data 0xAA
+        $display("\n--- Reading from slave (expected 0xAA) ---");
+        slave_data_to_send = 8'hAA;
+        enable = 1; #10 enable = 0;  // Pulse enable
+        #600;  // Wait for transaction to complete
+
+        print_master_assert("Read 0xAA", 
+                           $sformatf("Master read: 0x%h (expected 0xAA)", master_data_out),
+                           master_data_out == 8'hAA);
+        
+        // Read with data 0x12
+        $display("\n--- Reading from slave (expected 0x12) ---");
+        slave_data_to_send = 8'h12;
+        enable = 1; #10 enable = 0;  // Pulse enable
+        #600;  // Wait for transaction to complete
+
+        print_master_assert("Read 0x12", 
+                           $sformatf("Master read: 0x%h (expected 0x12)", master_data_out),
+                           master_data_out == 8'h12);
+        
+        // ====================================================
+        // TEST CASE 3: UNRECOGNIZED ADDRESS - NO SLAVE RESPONDS
+        // ====================================================
+        print_assert_header("TEST CASE 3: UNRECOGNIZED ADDRESS");
+        
+        // First, set known data in slave
+        $display("\nSetting slave known data (0x55)...");
         address = 7'b0101010;
-        rw = 1;  // Read operation
-        enable = 1; #10 enable = 0;  // Pulse enable
-        #600;  // Wait for transaction to complete (reads take longer)
-
-        // Check result
-        if (master_data_out == 8'hF0)
-            $display("OK READ: Master read %h from Slave0", master_data_out);
-        else
-            $display("ERROR READ: Master read %h from Slave0", master_data_out);
-
+        master_data_in = 8'h55;
+        rw = 0;
+        enable = 1; #10 enable = 0;
+        #400;
+        print_slave_assert("Set initial data", 
+                          $sformatf("Slave set to: 0x%h", slave_data_received),
+                          slave_data_received == 8'h55);
         
-        // TEST CASE 5: READ FROM SLAVE 1
-        // Read from slave1, which will send 0x55
-        slave1_data_to_send = 8'h55;
-        address = 7'b0110011;
-        rw = 1;  // Read operation
-        enable = 1; #10 enable = 0;  // Pulse enable
-        #600;  // Wait for transaction to complete
-
-        // Check result
-        if (master_data_out == 8'h55)
-            $display("OK READ: Master read %h from Slave1", master_data_out);
-        else
-            $display("ERROR READ: Master read %h from Slave1", master_data_out);
-
+        // Try write to different address
+        $display("\n--- Write to unrecognized address 0x00 ---");
+        address = 7'b0000000;
+        master_data_in = 8'hAA;
+        rw = 0;
+        enable = 1; #10 enable = 0;
+        #300;
         
-        // TEST CASE 6: READ FROM SLAVE 2
-        // Read from slave2, which will send 0x99
-        slave2_data_to_send = 8'h99;
-        address = 7'b0011101;
-        rw = 1;  // Read operation
-        enable = 1; #10 enable = 0;  // Pulse enable
-        #600;  // Wait for transaction to complete
+        print_slave_assert("Unrecognized addr write", 
+                          $sformatf("Slave data unchanged: 0x%h (expected 0x55)", slave_data_received),
+                          slave_data_received == 8'h55);
+        
+        // Try read from different address
+        $display("\n--- Read from unrecognized address 0x7F ---");
+        address = 7'b1111111;
+        slave_data_to_send = 8'hBB;  // This should not be sent
+        rw = 1;
+        enable = 1; #10 enable = 0;
+        #300;
+        
+        $display("Master data out: 0x%h (should be unknown/X)", master_data_out);
+        print_slave_assert("Unrecognized addr read", 
+                          $sformatf("Slave data still: 0x%h", slave_data_received),
+                          slave_data_received == 8'h55);
+        
+        // ====================================================
+        // TEST CASE 4: MIXED OPERATIONS
+        // ====================================================
+        print_assert_header("TEST CASE 4: MIXED OPERATIONS");
+        address = 7'b0101010;
+        
+        // Write then read
+        $display("\n--- Write 0x77, then read back ---");
+        
+        // Write 0x77
+        master_data_in = 8'h77;
+        rw = 0; enable = 1; #10 enable = 0; #400;
+        print_slave_assert("Write 0x77", 
+                          $sformatf("Slave received: 0x%h", slave_data_received),
+                          slave_data_received == 8'h77);
+        
+        // Read back (slave should send what it has)
+        slave_data_to_send = slave_data_received;  // Send back received data
+        rw = 1; enable = 1; #10 enable = 0; #600;
+        print_master_assert("Read back 0x77", 
+                           $sformatf("Master read: 0x%h (expected 0x77)", master_data_out),
+                           master_data_out == 8'h77);
+        
+        // ====================================================
+        // TEST CASE 5: CONSECUTIVE READS
+        // ====================================================
+        print_assert_header("TEST CASE 5: CONSECUTIVE READS");
+        address = 7'b0101010;
+        
+        // Set slave data
+        slave_data_to_send = 8'h99;
+        $display("\nSlave data set to: 0x99");
+        
+        // First read
+        rw = 1; enable = 1; #10 enable = 0; #600;
+        print_master_assert("Read 1 - 0x99", 
+                           $sformatf("Master read: 0x%h", master_data_out),
+                           master_data_out == 8'h99);
+        
+        // Second read with same data
+        enable = 1; #10 enable = 0; #600;
+        print_master_assert("Read 2 - 0x99", 
+                           $sformatf("Master read: 0x%h", master_data_out),
+                           master_data_out == 8'h99);
+        
+        // Change slave data
+        slave_data_to_send = 8'h66;
+        $display("\nSlave data changed to: 0x66");
+        
+        // Third read
+        enable = 1; #10 enable = 0; #600;
+        print_master_assert("Read 3 - 0x66", 
+                           $sformatf("Master read: 0x%h", master_data_out),
+                           master_data_out == 8'h66);
+        
+        // ====================================================
+        // TEST CASE 6: CONSECUTIVE WRITES
+        // ====================================================
+        print_assert_header("TEST CASE 6: CONSECUTIVE WRITES");
+        address = 7'b0101010;
+        
+        // Write 0x11
+        master_data_in = 8'h11;
+        rw = 0; enable = 1; #10 enable = 0; #400;
+        print_slave_assert("Write 1 - 0x11", 
+                          $sformatf("Slave received: 0x%h", slave_data_received),
+                          slave_data_received == 8'h11);
+        
+        // Write 0x22
+        master_data_in = 8'h22;
+        enable = 1; #10 enable = 0; #400;
+        print_slave_assert("Write 2 - 0x22", 
+                          $sformatf("Slave received: 0x%h", slave_data_received),
+                          slave_data_received == 8'h22);
+        
+        // Write 0x33
+        master_data_in = 8'h33;
+        enable = 1; #10 enable = 0; #400;
+        print_slave_assert("Write 3 - 0x33", 
+                          $sformatf("Slave received: 0x%h", slave_data_received),
+                          slave_data_received == 8'h33);
 
-        // Check result
-        if (master_data_out == 8'h99)
-            $display("OK READ: Master read %h from Slave2", master_data_out);
-        else
-            $display("ERROR READ: Master read %h from Slave2", master_data_out);
-
-        $display("==== END OF SIMULATION ====");
+        $display("\n");
+        $display("=================================================================");
+        $display("                    SIMULATION COMPLETE                         ");
+        $display("=================================================================");
+        $display("End time: %t", $realtime);
         
         // Display coverage results
-        $display("Coverage Results:");
-        $display("Master Coverage: %0.2f%%", master_cg.get_inst_coverage());
-        $display("Slave0 Coverage: %0.2f%%", slave0_cg.get_inst_coverage());
-        $display("Slave1 Coverage: %0.2f%%", slave1_cg.get_inst_coverage());
-        $display("Slave2 Coverage: %0.2f%%", slave2_cg.get_inst_coverage());
+        $display("\n");
+        $display("=================================================================");
+        $display("                    COVERAGE RESULTS                             ");
+        $display("=================================================================");
+        $display("Master Coverage:  %0.2f%%", master_cg.get_inst_coverage());
+        $display("Slave Coverage:   %0.2f%%", slave_cg.get_inst_coverage());
+        $display("=================================================================");
+        
+        // Chamar resumo das assertions
+        print_assert_summary();
         
         $finish;  // End simulation
     end
-  
+
     // I2C Protocol Assertions Monitor
     // These checkers verify I2C protocol compliance
 
@@ -385,7 +594,9 @@ module i2c_multi_slave_tb;
             .sda_drive_en(sda_drive_en),
             .slave_state(state),
             .data_received(data_received),
-            .data_to_send(data_to_send)
+            .data_to_send(data_to_send),
+            .SLAVE_ADDR(SLAVE_ADDR),
+            .address_reg(address_reg)
         );
 
 endmodule
