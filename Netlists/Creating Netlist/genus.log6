@@ -1,0 +1,94 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2024 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[15:33:52.360345] Configured Lic search path (22.01-s003): 5280@192.168.2.250
+
+Version: 22.16-s078_1, built Mon Jun 10 10:32:57 PDT 2024
+Options: 
+Date:    Thu Mar 05 15:33:52 2026
+Host:    saitama (x86_64 w/Linux 4.18.0-553.el8_10.x86_64) (1core*36cpus*71physical cpus*INTEL(R) XEON(R) GOLD 6542Y 61440KB) (428744744KB)
+PID:     1156665
+OS:      Red Hat Enterprise Linux Server release 7.9 (Maipo)
+
+Checking out license: Genus_Synthesis
+[15:33:52.445440] Periodic Lic check successful
+[15:33:52.445449] Feature usage summary:
+[15:33:52.445450] Genus_Synthesis
+
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Finished executable startup (0 seconds elapsed).
+
+Loading tool scripts...
+Finished loading tool scripts (9 seconds elapsed).
+
+WARNING: This version of the tool is 633 days old.
+@genus:root: 1> source genus_script_i2c_slave.tcl
+Sourcing './genus_script_i2c_slave.tcl' (Thu Mar 05 15:34:06 -03 2026)...
+#@ Begin verbose source ./genus_script_i2c_slave.tcl
+@file(genus_script_i2c_slave.tcl) 5: set_db init_lib_search_path ../LIB/
+  Setting attribute of root '/': 'init_lib_search_path' = ../LIB/
+@file(genus_script_i2c_slave.tcl) 6: set_db init_hdl_search_path ../RTL/
+  Setting attribute of root '/': 'init_hdl_search_path' = ../RTL/
+@file(genus_script_i2c_slave.tcl) 7: read_libs slow_vdd1v0_basicCells.lib
+
+  Message Summary for Library slow_vdd1v0_basicCells.lib:
+  *******************************************************
+  Missing a function attribute in the output pin definition. [LBR-518]: 1
+  *******************************************************
+ 
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'slow_vdd1v0_basicCells.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'ANTENNA' must have an output pin.
+        : Add the missing output pin(s), then reload the library. Else the library cell will be marked as timing model i.e. unusable. Timing_model means that the cell does not have any defined function. If there is no output pin, Genus will mark library cell as unusable i.e. the attribute 'usable' will be marked to 'false' on the libcell. Therefore, the cell is not used for mapping and it will not be picked up from the library for synthesis. If you query the attribute 'unusable_reason' on the libcell; result will be: 'Library cell has no output pins.'Note: The message LBR-9 is only for the logical pins and not for the power_ground pins. Genus will depend upon the output function defined in the pin group (output pin) of the cell, to use it for mapping. The pg_pin will not have any function defined.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'ANTENNA' must have an output pin.
+@file(genus_script_i2c_slave.tcl) 13: read_hdl -sv i2c_slave.sv
+        else if(stop_event && !start_event) begin
+                           |
+Warning : Expecting comparison to a signal in the edge event list. [VLOGPT-431]
+        : in file '../RTL/i2c_slave.sv' on line 106, column 28.
+        : Check all the edge event specifiers in the event list of an always block by an if-condition, except one. Take as clock, that one unchecked edge event.
+    always @(posedge scl or posedge rst  or posedge start_event or posedge stop_event) begin
+         |
+Warning : More than one clock has been defined in the always block. [VLOGPT-413]
+        : in file '../RTL/i2c_slave.sv' on line 99, column 10.
+        : More than one signal in the always block are not used as data, and these signals may be interpreted as clock signals. However, only one clock can be used in inferencing an asynchronous set-reset flip-flop.
+    reg data_out;
+    always @(posedge clock or posedge reset)
+        if ( reset )
+            data_out = 1'b1;
+        else
+            data_out = 1'b0.
+@file(genus_script_i2c_slave.tcl) 14: elaborate
+  Library has 324 usable logic and 128 usable sequential lib-cells.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'i2c_slave_controller' from file '../RTL/i2c_slave.sv'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'i2c_slave_controller' with default parameters value.
+Error   : Unsynthesizable Process. [CDFG-364] [elaborate]
+        : in file '../RTL/i2c_slave.sv' on line 99.
+        : Error during elaboration.
+Info    : Unable to elaborate the design. [ELAB-4]
+        : Module 'i2c_slave_controller' contains errors and cannot be elaborated.
+UM:   flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   elaborate
+#@ End verbose source ./genus_script_i2c_slave.tcl
+1
+@genus:root: 2> exit
+
+Lic Summary:
+[15:41:28.260090] Cdslmd servers: licserver
+[15:41:28.260097] Feature usage summary:
+[15:41:28.260097] Genus_Synthesis
+
+Normal exit.
