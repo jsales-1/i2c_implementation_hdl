@@ -1,0 +1,18 @@
+xrun(64): 23.09-s013: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	23.09-s013: Started on Mar 06, 2026 at 18:54:43 -03
+xrun
+	-Q
+	-timescale 1ns/1ns
+	../Netlists/i2c_master_controller.v
+	../Netlists/i2c_slave_controller.v
+	i2c_test.v
+	-v ../Netlists/slow_vdd1v0_basiccells.v
+	-access +rwc
+	-define SDF_TEST
+	Top level design units:
+		i2c_multi_slave_tb
+	$sdf_annotate("slave_delays.sdf", i2c_teste.slave0,"sdf.log","MAXIMUM");
+	                                                 |
+xmelab: *E,CUVHNF (./i2c_test.v,61|50): Hierarchical name component lookup failed at 'i2c_teste'.
+xrun: *E,ELBERR: Error (*E) or soft error (*SE) occurred during elaboration (status 1), exiting.
+TOOL:	xrun(64)	23.09-s013: Exiting on Mar 06, 2026 at 18:54:44 -03  (total: 00:00:01)

@@ -1,0 +1,16 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-Q
+-timescale
+1ns/1ns
+../Netlists/i2c_master_controller.v
+../Netlists/i2c_slave_controller.v
+i2c_test.v
+-v
+../Netlists/slow_vdd1v0_basiccells.v
+-access
++rwc
+-define
+SDF_TEST

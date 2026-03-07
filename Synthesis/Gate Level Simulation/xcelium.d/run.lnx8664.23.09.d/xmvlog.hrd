@@ -1,0 +1,8 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-VFILE
+../Netlists/slow_vdd1v0_basiccells.v
+-DEFINE
+SDF_TEST
