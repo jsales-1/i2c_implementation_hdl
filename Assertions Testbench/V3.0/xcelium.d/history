@@ -1,0 +1,13 @@
+//
+// File created by:  xrun
+// Do not modify this file
+
+s1::(03Mar2026:13:39:07):( xrun -Q -unbuffered -timescale 1ns/1ns -sysv -access +rw -coverage all -covoverwrite -abvcoveron design.sv testbench.sv )
+s2::(03Mar2026:13:40:54):( xrun -Q -unbuffered -timescale 1ns/1ns -sysv -access +rw -coverage all -covoverwrite -abvcoveron design.sv testbench.sv )
+s3::(03Mar2026:13:41:53):( xrun -Q -unbuffered -timescale 1ns/1ns -sysv -access +rw -coverage all -covoverwrite -abvcoveron design.sv testbench.sv )
+s4::(03Mar2026:13:43:00):( xrun -Q -unbuffered -timescale 1ns/1ns -sysv -access +rw -coverage all -covoverwrite -abvcoveron design.sv testbench.sv )
+s5::(03Mar2026:13:43:06):( xrun -Q -unbuffered -timescale 1ns/1ns -sysv -access +rw -coverage all -covoverwrite -abvcoveron design.sv testbench.sv )
+s6::(03Mar2026:13:43:57):( xrun -Q -unbuffered -timescale 1ns/1ns -sysv -access +rw -coverage all -covoverwrite -abvcoveron i2c_master.sv i2c_slave.sv testbench.sv )
+s7::(03Mar2026:13:57:12):( xrun -Q -unbuffered -timescale 1ns/1ns -sysv -access +rw -coverage all -covoverwrite -abvcoveron -covtest my_test -covdut i2c_single_slave_tb i2c_master.sv i2c_slave.sv testbench.sv )
+s8::(03Mar2026:14:09:16):( xrun -Q -unbuffered -timescale 1ns/1ns -sysv -access +rw -coverage all -covoverwrite -abvcoveron -covdut i2c_single_slave_tb i2c_master.sv i2c_slave.sv testbench.sv -gui )
+s9::(16Mar2026:17:11:01):( xrun -Q -unbuffered -timescale 1ns/1ns -sysv -access +rw -coverage all -covoverwrite -abvcoveron design.sv testbench.sv )

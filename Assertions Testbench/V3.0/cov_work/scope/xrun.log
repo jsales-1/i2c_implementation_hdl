@@ -1,0 +1,20 @@
+xrun(64): 23.09-s013: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	23.09-s013: Started on Mar 03, 2026 at 14:08:55 -03
+xrun
+	-Q
+	-unbuffered
+	-timescale 1ns/1ns
+	-sysv
+	-access +rw
+	-coverage all
+	-covoverwrite
+	-abvcoveron
+	-covdut i2c_single_slave_tb
+	i2c_master.sv
+	i2c_slave.sv
+	testbench.sv
+	-gui
+xrun: *E,FILEMIS: Cannot find the provided file i2c_master.sv.
+xrun: *E,FILEMIS: Cannot find the provided file i2c_slave.sv.
+xrun: *E,FILEMIS: Cannot find the provided file testbench.sv.
+TOOL:	xrun(64)	23.09-s013: Exiting on Mar 03, 2026 at 14:08:55 -03  (total: 00:00:00)

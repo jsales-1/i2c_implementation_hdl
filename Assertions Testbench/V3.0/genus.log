@@ -1,0 +1,83 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2024 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[11:33:20.360273] Configured Lic search path (22.01-s003): 5280@192.168.2.250
+
+Version: 22.16-s078_1, built Mon Jun 10 10:32:57 PDT 2024
+Options: 
+Date:    Thu Mar 05 11:33:20 2026
+Host:    saitama (x86_64 w/Linux 4.18.0-553.el8_10.x86_64) (1core*36cpus*71physical cpus*INTEL(R) XEON(R) GOLD 6542Y 61440KB) (428744744KB)
+PID:     1120659
+OS:      Red Hat Enterprise Linux Server release 7.9 (Maipo)
+
+Checking out license: Genus_Synthesis
+[11:33:20.034161] Periodic Lic check successful
+[11:33:20.034162] Feature usage summary:
+[11:33:20.034163] Genus_Synthesis
+
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Finished executable startup (1 second elapsed).
+
+Loading tool scripts...
+Finished loading tool scripts (9 seconds elapsed).
+
+WARNING: This version of the tool is 632 days old.
+@genus:root: 1> ls
+assertions.sv
+cov_work
+design.sv
+genus.cmd
+genus.log
+i2c_master.sv
+i2c_slave.sv
+i2c_tb.sv
+imc.log
+imc_cmd.txt
+mdv.log
+refine1.vRefine
+refine2.vRefine
+run_information.txt
+testbench.sv
+waveform.vcd
+xcelium.d
+xrun.history
+xrun.key
+xrun.log
+@genus:root: 2> cd ..
+@genus:root: 3> ls
+V1.0
+V2.0
+V3.0
+@genus:root: 4> cd ..
+@genus:root: 5> ls
+Assertions Testbench
+Geral Testbenchs
+README.md
+RTL
+Standartcells and Netlists
+Synthesis
+UVM Environments
+@genus:root: 6> cd Standartcell and Netlists
+wrong # args: should be "cd ?dirName?"
+@genus:root: 7> cd "Standartcell and Netlists"
+couldn't change working directory to "Standartcell and Netlists": no such file or directory
+@genus:root: 8> ls
+Assertions Testbench
+Geral Testbenchs
+README.md
+RTL
+Standartcells and Netlists
+Synthesis
+UVM Environments
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 133s, ST: 9s, FG: 9s, CPU: 1.8%}, MEM {curr: 1.2G, peak: 1.2G, phys curr: 0.4G, phys peak: 0.4G}, SYS {load: 0.7, cpu: 36, total: 408.9G, free: 355.3G}
+Abnormal exit.

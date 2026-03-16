@@ -1,0 +1,3 @@
+load -model ./cov_work/scope/icc_0802cba2_68671db6.ucm
+load -run ./cov_work/scope/test
+gui

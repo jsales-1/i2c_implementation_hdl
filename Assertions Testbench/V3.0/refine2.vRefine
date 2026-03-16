@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<refinement-file-root>
+  <information comment-version="2" creation-time="Tue 03 Mar 2026 14:57:22 -03" creator="aluno6" csCheck="false" save-ref-method="seq" tool-version="Cadence Verisium Manager24.09" rules-signature-c="a36635693d906e1504c3bf4c383851">
+    <ucm-files>
+      <ucm-file domain="icc" modelCheckSum="134400930" path="/prj/ci/workarea/aluno6/Verilog/i2c_implementation_hdl-main/Assertions Testbench/V3.0/cov_work/scope/icc_0802cba2_68671db6.ucm"></ucm-file>
+    </ucm-files>
+    <ccf-files></ccf-files>
+  </information>
+  <rules></rules>
+  <cache-map></cache-map>
+</refinement-file-root>

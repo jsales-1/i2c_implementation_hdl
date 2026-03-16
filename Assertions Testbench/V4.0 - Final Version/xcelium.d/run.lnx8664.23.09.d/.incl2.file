@@ -1,0 +1,8 @@
+i2c_master.sv
+/prj/ci/workarea/aluno6/Verilog/i2c_implementation_hdl-main/Assertions Testbench/V4.0 - Final Version/i2c_master.sv
+i2c_slave.sv
+/prj/ci/workarea/aluno6/Verilog/i2c_implementation_hdl-main/Assertions Testbench/V4.0 - Final Version/i2c_slave.sv
+assertions.sv
+/prj/ci/workarea/aluno6/Verilog/i2c_implementation_hdl-main/Assertions Testbench/V4.0 - Final Version/assertions.sv
+i2c_tb.sv
+/prj/ci/workarea/aluno6/Verilog/i2c_implementation_hdl-main/Assertions Testbench/V4.0 - Final Version/i2c_tb.sv

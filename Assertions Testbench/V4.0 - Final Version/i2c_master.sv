@@ -35,6 +35,7 @@ module i2c_master_controller #(
     typedef enum logic [3:0] {
         IDLE,
         START,
+        WAIT,
         ADDRESS,
         READ_ACK,
         WRITE_DATA,
@@ -112,10 +113,13 @@ module i2c_master_controller #(
                 end
 
                 START: begin
-                    state   <= ADDRESS;
-                    counter <= ADDR_WIDTH;
+                    state   <= WAIT;
                 end
 
+                WAIT: begin
+                    counter <= ADDR_WIDTH;
+                    state   <= ADDRESS;
+                end
 
                 ADDRESS: begin
                     if (counter == 0)
@@ -184,6 +188,11 @@ module i2c_master_controller #(
                     sda_out      <= 0; // START condition
                 end
 
+                WAIT: begin
+                    sda_drive_en <= 1;
+                    sda_out      <= 0; // START condition
+                end
+
                 ADDRESS: begin
                     sda_out <= address_reg[counter];
                 end
@@ -218,4 +227,3 @@ module i2c_master_controller #(
     end
 
 endmodule
-

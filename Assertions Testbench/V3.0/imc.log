@@ -1,0 +1,4 @@
+IMC(64): 24.09-s001: (c) Copyright 1995-2024 Cadence Design Systems Inc - Simulator version: 23.09-s013 - Coverage engine version: 23.09-s013
+Starting gui mode
+imc: *I,imc.tool.cov.version.diff: "There is a difference between the IMC tool version 24.09 and the coverage version 23.09-s013"
+imc: *I,RUNLD: Successfully loaded run /prj/ci/workarea/aluno6/Verilog/i2c_implementation_hdl-main/Assertions Testbench/V3.0/cov_work/scope/test.

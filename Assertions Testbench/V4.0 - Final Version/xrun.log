@@ -1,0 +1,549 @@
+xrun(64): 23.09-s013: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	23.09-s013: Started on Mar 16, 2026 at 17:34:28 -03
+xrun
+	-Q
+	-unbuffered
+	-timescale 1ns/1ns
+	-sysv
+	-access +rw
+	-coverage all
+	-covoverwrite
+	-abvcoveron
+	design.sv
+	testbench.sv
+	Top level design units:
+		i2c_single_slave_tb
+xmelab: *W,COVFDP: FSM description matching across instance of a module for "COVFDM" warning has been moved from elaboration to simulation dumping. To restore old matching behavior, use "set_backward_compat -COVFDM_during_elab". Also, it is recommended to use set_parameterized_module_coverage CCF command to avoid coverage loss due to FSM description difference across instances of a module.
+xmelab: *W,COVFHT: FSM hold transitions (transitions to the current state) are not extracted for any FSM in default mode.
+xmelab: *W,COVDCL: By default expression coverage is scored only for Verilog logical operators (|| and &&) and VHDL logical operators (OR, AND, NOR, and NAND), and is scored only in condition expressions. To score coverage for other operators and for expressions in other statements, use the "set_expr_coverable_operators" and "set_expr_coverable_statements" coverage configuration file commands with suitable options at elaboration.
+xmelab: *W,COVNOEN: By default, toggle coverage is not supported for systemverilog enumerated nets and variables. To enable toggle coverage of these objects, specify the 'set_toggle_scoring -sv_enum' command in the coverage configuration file.
+    int master_assert_count, slave_assert_count;
+                          |
+xmelab: *W,COVUTA (./i2c_tb.sv,211|26): Toggle coverage is not supported for SystemVerilog integer, real, string, dynamic array, sparse memory and reference ports. It is also not supported for VHDL multi-dimensional array and array of record. There may also be other such objects in the design.
+xmelab: *W,CGPIDF: Covergroup "per_instance" option , by default, is set as 0.
+xmelab: *N,COVCGN: Coverage configuration file command "set_covergroup -new_instance_reporting" can be specified to improve the scoping and naming of covergroup instances. It may be noted that subsequent merging of a coverage database saved with this command and a coverage database saved without this command is not allowed.
+            bins idle = {MASTER_IDLE};
+                                   |
+xmelab: *W,CUVBVE (./i2c_tb.sv,104|35): Bin value type mismatch with coverpoint type.
+            bins start = {MASTER_START};
+                                     |
+xmelab: *W,CUVBVE (./i2c_tb.sv,105|37): Bin value type mismatch with coverpoint type.
+            bins address = {MASTER_ADDRESS};
+                                         |
+xmelab: *W,CUVBVE (./i2c_tb.sv,106|41): Bin value type mismatch with coverpoint type.
+            bins read_ack = {MASTER_READ_ACK};
+                                           |
+xmelab: *W,CUVBVE (./i2c_tb.sv,107|43): Bin value type mismatch with coverpoint type.
+            bins write_data = {MASTER_WRITE_DATA};
+                                               |
+xmelab: *W,CUVBVE (./i2c_tb.sv,108|47): Bin value type mismatch with coverpoint type.
+            bins read_ack2 = {MASTER_READ_ACK2};
+                                             |
+xmelab: *W,CUVBVE (./i2c_tb.sv,109|45): Bin value type mismatch with coverpoint type.
+            bins read_data = {MASTER_READ_DATA};
+                                             |
+xmelab: *W,CUVBVE (./i2c_tb.sv,110|45): Bin value type mismatch with coverpoint type.
+            bins write_ack = {MASTER_WRITE_ACK};
+                                             |
+xmelab: *W,CUVBVE (./i2c_tb.sv,111|45): Bin value type mismatch with coverpoint type.
+            bins stop = {MASTER_STOP};
+                                   |
+xmelab: *W,CUVBVE (./i2c_tb.sv,112|35): Bin value type mismatch with coverpoint type.
+Loading snapshot worklib.i2c_single_slave_tb:sv .................... Done
+xcelium> source /tools/cadence/XCELIUM2309/tools/xcelium/files/xmsimrc
+xcelium> run
+
+
+=================================================================
+           I2C SINGLE-SLAVE TESTBENCH SIMULATION                
+=================================================================
+Start time:                    0
+Slave Address: 0x2A (7'b0101010)
+
+xmsim: *N,ASRTST (./assertions.sv,173): (time 1 NS) Assertion i2c_single_slave_tb.master.master_chk.__cover10_p_reset_idle has passed
+F10 (MASTER) COVER: Master returned to IDLE after reset
+xmsim: *N,ASRTST (./assertions.sv,180): (time 1 NS) Assertion i2c_single_slave_tb.master.master_chk.cover_property_master_idle has passed
+FSM (MASTER) COVER: Master reached IDLE state
+Reset released at                   20
+
+TEST CASE 1: WRITE OPERATIONS TO SLAVE
+=================================================================
+
+--- Writing 0xA5 to slave ---
+xmsim: *N,ASRTST (./assertions.sv,37): (time 21 NS) Assertion i2c_single_slave_tb.master.master_chk.__cover1_p_idle_state has passed
+F1 (MASTER) COVER: Master in IDLE state with ready asserted
+xmsim: *N,ASRTST (./assertions.sv,183): (time 29 NS) Assertion i2c_single_slave_tb.master.master_chk.cover_property_master_start has passed
+FSM (MASTER) COVER: Master reached START state
+xmsim: *N,ASRTST (./assertions.sv,53): (time 33 NS) Assertion i2c_single_slave_tb.master.master_chk.__cover2_p_start_condition has passed
+F2 (MASTER) COVER: START condition generated correctly
+xmsim: *N,ASRTST (./assertions.sv,186): (time 37 NS) Assertion i2c_single_slave_tb.master.master_chk.cover_property_master_address has passed
+FSM (MASTER) COVER: Master reached ADDRESS state
+xmsim: *N,ASRTST (./assertions.sv,312): (time 43 NS) Assertion i2c_single_slave_tb.slave.slave_chk.__cover5_p_addressed_slave_response has passed
+F7 (SLAVE) COVER: Only addressed slave responded
+xmsim: *N,ASRTST (./assertions.sv,362): (time 43 NS) Assertion i2c_single_slave_tb.slave.slave_chk.cover_property_slave_idle has passed
+FSM (SLAVE) COVER: Slave reached IDLE state
+xmsim: *N,ASRTST (./assertions.sv,189): (time 45 NS) Assertion i2c_single_slave_tb.master.master_chk.cover_property_master_read_ack has passed
+FSM (MASTER) COVER: Master reached READ_ACK state
+xmsim: *N,ASRTST (./assertions.sv,365): (time 51 NS) Assertion i2c_single_slave_tb.slave.slave_chk.cover_property_slave_read_addr has passed
+FSM (SLAVE) COVER: Slave reached READ_ADDR state
+xmsim: *N,ASRTST (./assertions.sv,85): (time 51 NS) Assertion i2c_single_slave_tb.master.master_chk.__cover4_p_ack_detection has passed
+F4 (MASTER) COVER: ACK detected from slave
+xmsim: *N,ASRTST (./assertions.sv,142): (time 51 NS) Assertion i2c_single_slave_tb.master.master_chk.__cover8_p_multi_slave_operation has passed
+F7 (MASTER) COVER: Addressed slave responded with ACK
+xmsim: *E,ASRTST (./assertions.sv,139): (time 59 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 59 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *N,ASRTST (./assertions.sv,94): (time 59 NS) Assertion i2c_single_slave_tb.master.master_chk.__cover5_p_nack_detection has passed
+F4 (MASTER) COVER: NACK detected from slave
+xmsim: *E,ASRTST (./assertions.sv,139): (time 75 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 75 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 91 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 91 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *N,ASRTST (./assertions.sv,192): (time 109 NS) Assertion i2c_single_slave_tb.master.master_chk.cover_property_master_write_data has passed
+FSM (MASTER) COVER: Master reached WRITE_DATA state
+xmsim: *N,ASRTST (./assertions.sv,248): (time 115 NS) Assertion i2c_single_slave_tb.slave.slave_chk.__cover1_p_address_recognition has passed
+F3 (SLAVE) COVER: Slave recognized its address
+xmsim: *N,ASRTST (./assertions.sv,265): (time 115 NS) Assertion i2c_single_slave_tb.slave.slave_chk.__cover2_p_ack_generation has passed
+F4 (SLAVE) COVER: Slave generated ACK
+xmsim: *N,ASRTST (./assertions.sv,329): (time 115 NS) Assertion i2c_single_slave_tb.slave.slave_chk.__cover6_p_open_drain_behavior has passed
+F8 (SLAVE) COVER: Slave driving SDA low (open-drain compliant)
+xmsim: *N,ASRTST (./assertions.sv,368): (time 115 NS) Assertion i2c_single_slave_tb.slave.slave_chk.cover_property_slave_send_ack has passed
+FSM (SLAVE) COVER: Slave reached SEND_ACK state
+xmsim: *N,ASRTST (./assertions.sv,385): (time 115 NS) Assertion i2c_single_slave_tb.slave.slave_chk.cover_property_slave_ack_addr has passed
+COVER (SLAVE): Slave generated ACK after address match
+xmsim: *N,ASRTST (./assertions.sv,195): (time 117 NS) Assertion i2c_single_slave_tb.master.master_chk.cover_property_master_read_ack2 has passed
+FSM (MASTER) COVER: Master reached READ_ACK2 state
+xmsim: *N,ASRTST (./assertions.sv,281): (time 123 NS) Assertion i2c_single_slave_tb.slave.slave_chk.__cover3_p_data_write_reception has passed
+F5 (SLAVE) COVER: Slave received write data
+xmsim: *N,ASRTST (./assertions.sv,371): (time 123 NS) Assertion i2c_single_slave_tb.slave.slave_chk.cover_property_slave_read_data has passed
+FSM (SLAVE) COVER: Slave reached READ_DATA state
+xmsim: *N,ASRTST (./assertions.sv,198): (time 181 NS) Assertion i2c_single_slave_tb.master.master_chk.cover_property_master_read_data has passed
+FSM (MASTER) COVER: Master reached READ_DATA state
+xmsim: *N,ASRTST (./assertions.sv,374): (time 187 NS) Assertion i2c_single_slave_tb.slave.slave_chk.cover_property_slave_send_ack2 has passed
+FSM (SLAVE) COVER: Slave reached SEND_ACK2 state
+xmsim: *N,ASRTST (./assertions.sv,390): (time 187 NS) Assertion i2c_single_slave_tb.slave.slave_chk.cover_property_slave_ack_data has passed
+COVER (SLAVE): Slave generated ACK after data reception
+xmsim: *E,ASRTST (./assertions.sv,309): (time 191 NS) Assertion i2c_single_slave_tb.slave.slave_chk.p_addressed_slave_response has failed
+F7 (SLAVE) ERROR: Unaddressed slave driving the bus
+xmsim: *N,ASRTST (./assertions.sv,158): (time 193 NS) Assertion i2c_single_slave_tb.master.master_chk.__cover9_p_stop_condition has passed
+F9 (MASTER) COVER: STOP condition generated correctly
+PASS: [SLAVE ] Write 0xA5                     - Received: 0xa5 (expected 0xA5)
+
+--- Writing 0x3C to slave ---
+xmsim: *E,ASRTST (./assertions.sv,139): (time 467 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 467 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 483 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 483 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 499 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 499 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,309): (time 599 NS) Assertion i2c_single_slave_tb.slave.slave_chk.p_addressed_slave_response has failed
+F7 (SLAVE) ERROR: Unaddressed slave driving the bus
+PASS: [SLAVE ] Write 0x3C                     - Received: 0x3c (expected 0x3C)
+
+--- Writing 0x00 to slave ---
+xmsim: *E,ASRTST (./assertions.sv,139): (time 875 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 875 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 891 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 891 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 907 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 907 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,309): (time 1007 NS) Assertion i2c_single_slave_tb.slave.slave_chk.p_addressed_slave_response has failed
+F7 (SLAVE) ERROR: Unaddressed slave driving the bus
+PASS: [SLAVE ] Write 0x00                     - Received: 0x00 (expected 0x00)
+
+--- Writing 0xFF to slave ---
+xmsim: *E,ASRTST (./assertions.sv,139): (time 1283 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 1283 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 1299 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 1299 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 1315 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 1315 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,309): (time 1415 NS) Assertion i2c_single_slave_tb.slave.slave_chk.p_addressed_slave_response has failed
+F7 (SLAVE) ERROR: Unaddressed slave driving the bus
+PASS: [SLAVE ] Write 0xFF                     - Received: 0xff (expected 0xFF)
+
+--- Writing 0x55 to slave ---
+xmsim: *E,ASRTST (./assertions.sv,139): (time 1699 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 1699 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 1715 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 1715 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 1731 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 1731 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,309): (time 1831 NS) Assertion i2c_single_slave_tb.slave.slave_chk.p_addressed_slave_response has failed
+F7 (SLAVE) ERROR: Unaddressed slave driving the bus
+PASS: [SLAVE ] Write 0x55                     - Received: 0x55 (expected 0x55)
+
+TEST CASE 2: READ OPERATIONS FROM SLAVE
+=================================================================
+
+--- Reading from slave (expected 0xF0) ---
+xmsim: *E,ASRTST (./assertions.sv,139): (time 2107 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 2107 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 2123 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 2123 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 2139 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 2139 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 2155 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 2155 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *N,ASRTST (./assertions.sv,201): (time 2165 NS) Assertion i2c_single_slave_tb.master.master_chk.cover_property_master_write_ack has passed
+FSM (MASTER) COVER: Master reached WRITE_ACK state
+xmsim: *N,ASRTST (./assertions.sv,297): (time 2171 NS) Assertion i2c_single_slave_tb.slave.slave_chk.__cover4_p_data_read_transmission has passed
+F6 (SLAVE) COVER: Slave performed read transmission
+xmsim: *N,ASRTST (./assertions.sv,377): (time 2171 NS) Assertion i2c_single_slave_tb.slave.slave_chk.cover_property_slave_write_data has passed
+FSM (SLAVE) COVER: Slave reached WRITE_DATA state
+xmsim: *N,ASRTST (./assertions.sv,126): (time 2171 NS) Assertion i2c_single_slave_tb.master.master_chk.__cover7_p_data_read has passed
+F6 (MASTER) COVER: Data read operation completed
+xmsim: *N,ASRTST (./assertions.sv,204): (time 2229 NS) Assertion i2c_single_slave_tb.master.master_chk.cover_property_master_stop has passed
+FSM (MASTER) COVER: Master reached STOP state
+PASS: [MASTER] Read 0xF0                      - Master read: 0xf0 (expected 0xF0)
+
+--- Reading from slave (expected 0x55) ---
+xmsim: *E,ASRTST (./assertions.sv,139): (time 2715 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 2715 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 2731 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 2731 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 2747 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 2747 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 2763 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 2763 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+PASS: [MASTER] Read 0x55                      - Master read: 0x55 (expected 0x55)
+
+--- Reading from slave (expected 0xAA) ---
+xmsim: *E,ASRTST (./assertions.sv,139): (time 3323 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 3323 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 3339 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 3339 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 3355 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 3355 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 3371 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 3371 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+PASS: [MASTER] Read 0xAA                      - Master read: 0xaa (expected 0xAA)
+
+--- Reading from slave (expected 0x12) ---
+xmsim: *E,ASRTST (./assertions.sv,139): (time 3939 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 3939 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 3955 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 3955 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 3971 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 3971 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 3987 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 3987 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+PASS: [MASTER] Read 0x12                      - Master read: 0x12 (expected 0x12)
+
+TEST CASE 3: UNRECOGNIZED ADDRESS
+=================================================================
+
+Setting slave known data (0x55)...
+xmsim: *E,ASRTST (./assertions.sv,139): (time 4547 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 4547 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 4563 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 4563 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 4579 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 4579 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,309): (time 4679 NS) Assertion i2c_single_slave_tb.slave.slave_chk.p_addressed_slave_response has failed
+F7 (SLAVE) ERROR: Unaddressed slave driving the bus
+PASS: [SLAVE ] Set initial data               - Slave set to: 0x55
+
+--- Write to unrecognized address 0x00 ---
+PASS: [SLAVE ] Unrecognized addr write        - Slave data unchanged: 0x55 (expected 0x55)
+
+--- Read from unrecognized address 0x7F ---
+xmsim: *E,ASRTST (./assertions.sv,139): (time 5259 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 5259 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 5267 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 5267 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 5275 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 5275 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 5283 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 5283 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 5291 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 5291 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 5299 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 5299 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 5307 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 5307 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 5315 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 5315 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+Master data out: 0x00 (should be unknown/X)
+PASS: [SLAVE ] Unrecognized addr read         - Slave data still: 0x55
+
+TEST CASE 4: MIXED OPERATIONS
+=================================================================
+
+--- Write 0x77, then read back ---
+xmsim: *E,ASRTST (./assertions.sv,139): (time 5579 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 5579 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 5595 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 5595 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 5611 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 5611 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+FAIL: [SLAVE ] Write 0x77                     - Slave received: 0x55
+xmsim: *E,ASRTST (./assertions.sv,139): (time 5987 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 5987 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 6003 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 6003 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 6019 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 6019 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 6035 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 6035 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+FAIL: [MASTER] Read back 0x77                 - Master read: 0x55 (expected 0x77)
+
+TEST CASE 5: CONSECUTIVE READS
+=================================================================
+
+Slave data set to: 0x99
+xmsim: *E,ASRTST (./assertions.sv,139): (time 6595 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 6595 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 6611 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 6611 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 6627 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 6627 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 6643 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 6643 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+PASS: [MASTER] Read 1 - 0x99                  - Master read: 0x99
+xmsim: *E,ASRTST (./assertions.sv,139): (time 7203 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 7203 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 7219 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 7219 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 7235 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 7235 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 7251 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 7251 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+PASS: [MASTER] Read 2 - 0x99                  - Master read: 0x99
+
+Slave data changed to: 0x66
+xmsim: *E,ASRTST (./assertions.sv,139): (time 7819 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 7819 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 7835 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 7835 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 7851 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 7851 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 7867 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 7867 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+PASS: [MASTER] Read 3 - 0x66                  - Master read: 0x66
+
+TEST CASE 6: CONSECUTIVE WRITES
+=================================================================
+xmsim: *E,ASRTST (./assertions.sv,139): (time 8427 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 8427 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 8443 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 8443 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 8459 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 8459 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,309): (time 8559 NS) Assertion i2c_single_slave_tb.slave.slave_chk.p_addressed_slave_response has failed
+F7 (SLAVE) ERROR: Unaddressed slave driving the bus
+PASS: [SLAVE ] Write 1 - 0x11                 - Slave received: 0x11
+xmsim: *E,ASRTST (./assertions.sv,139): (time 8835 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 8835 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 8851 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 8851 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 8867 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 8867 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,309): (time 8967 NS) Assertion i2c_single_slave_tb.slave.slave_chk.p_addressed_slave_response has failed
+F7 (SLAVE) ERROR: Unaddressed slave driving the bus
+PASS: [SLAVE ] Write 2 - 0x22                 - Slave received: 0x22
+xmsim: *E,ASRTST (./assertions.sv,139): (time 9243 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 9243 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 9259 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 9259 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,139): (time 9275 NS) Assertion i2c_single_slave_tb.master.master_chk.p_multi_slave_operation has failed
+F7 (MASTER) ERROR: No ACK from addressed slave or multiple slaves responding
+xmsim: *E,ASRTST (./assertions.sv,82): (time 9275 NS) Assertion i2c_single_slave_tb.master.master_chk.p_ack_detection has failed
+F4 (MASTER) ERROR: ACK not detected when expected
+xmsim: *E,ASRTST (./assertions.sv,309): (time 9375 NS) Assertion i2c_single_slave_tb.slave.slave_chk.p_addressed_slave_response has failed
+F7 (SLAVE) ERROR: Unaddressed slave driving the bus
+PASS: [SLAVE ] Write 3 - 0x33                 - Slave received: 0x33
+
+
+=================================================================
+                    SIMULATION COMPLETE                         
+=================================================================
+End time:                 9620
+
+
+=================================================================
+                    COVERAGE RESULTS                             
+=================================================================
+Master Coverage:  94.44%
+Slave Coverage:   72.78%
+=================================================================
+
+
+=================================================================
+                    ASSERTIONS SUMMARY                          
+=================================================================
+
+MASTER ASSERTIONS:
+  Total:  8
+  Passed: 7
+  Failed: 1
+  Coverage: 87.50%
+
+SLAVE ASSERTIONS:
+  Total:  12
+  Passed: 11
+  Failed: 1
+  Coverage: 91.67%
+
+OVERALL:
+  Total Assertions:  20
+  Total Passed:      18
+  Total Failed:      2
+  Overall Coverage:  90.00%
+
+=================================================================
+
+  WARNING: Some assertions failed! Check the FAIL entries above.
+
+Simulation complete via $finish(1) at time 9620 NS + 0
+./i2c_tb.sv:572         $finish;  // End simulation
+xcelium> exit
+xmsim: *N,COVCGN: Coverage configuration file command "set_covergroup -new_instance_reporting" can be specified to improve the scoping and naming of covergroup instances. It may be noted that subsequent merging of a coverage database saved with this command and a coverage database saved without this command is not allowed.
+
+coverage setup:
+  workdir  :  ./cov_work
+  dutinst  :  i2c_single_slave_tb(i2c_single_slave_tb)
+  scope    :  scope
+  testname :  test
+
+coverage files:
+  model(design data) :  ./cov_work/scope/icc_169f9bcb_7bc321f1.ucm
+  data               :  ./cov_work/scope/test/icc_169f9bcb_7bc321f1.ucd
+TOOL:	xrun(64)	23.09-s013: Exiting on Mar 16, 2026 at 17:34:29 -03  (total: 00:00:01)

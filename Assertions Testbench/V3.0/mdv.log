@@ -1,0 +1,25 @@
+13:45:02:0615 [com.cadence.mdv.imc.Main] [main] INFO  - Binding debug tools http on port: 43329
+13:45:11:0362 [com.cadence.mdv.messaging.MDVASynchronicMessaging] [frontend-pool] ERROR - Valid data file not found for run directory /prj/ci/workarea/aluno6/Verilog/i2c_implementation_hdl-main/Assertions Testbench/V3.0/cov_work/scope/test. Specify a valid run directory with correct ucm, ucd files and rerun the command.	   
+13:45:11:0362 [com.cadence.mdv.messaging.MDVASynchronicMessaging] [frontend-pool] ERROR - Error loading database file /prj/ci/workarea/aluno6/Verilog/i2c_implementation_hdl-main/Assertions Testbench/V3.0/cov_work/scope/icc_0802cba2_68671db6.ucm:
+serialization exception.
+13:47:27:0459 [com.cadence.mdv.imc.Main] [main] INFO  - Binding debug tools http on port: 43339
+13:47:27:0492 [com.cadence.mdv.messaging.MDVASynchronicMessaging] [frontend-pool] ERROR - Error loading database file ./cov_work/scope/icc_0802cba2_68671db6.ucm:
+serialization exception.
+13:47:27:0492 [com.cadence.mdv.messaging.MDVASynchronicMessaging] [frontend-pool] ERROR - Valid data file not found for run directory ./cov_work/scope/test. Specify a valid run directory with correct ucm, ucd files and rerun the command.	   
+13:47:48:0665 [com.cadence.mdv.imc.Main] [main] INFO  - Binding debug tools http on port: 41081
+13:47:48:0699 [com.cadence.mdv.messaging.MDVASynchronicMessaging] [frontend-pool] ERROR - Error loading database file ./cov_work/scope/icc_0802cba2_68671db6.ucm:
+serialization exception.
+13:47:48:0699 [com.cadence.mdv.messaging.MDVASynchronicMessaging] [frontend-pool] ERROR - Valid data file not found for run directory ./cov_work/scope/test. Specify a valid run directory with correct ucm, ucd files and rerun the command.	   
+13:48:28:0521 [com.cadence.mdv.imc.Main] [main] INFO  - Binding debug tools http on port: 45683
+13:48:28:0558 [com.cadence.mdv.messaging.MDVASynchronicMessaging] [frontend-pool] ERROR - Cannot read directory ./cov_work/scope/icc_0802cba2_68671db6.ucm. Check if the directory has read permission, and rerun the command	   
+13:48:28:0558 [com.cadence.mdv.messaging.MDVASynchronicMessaging] [frontend-pool] ERROR - Valid model file not found for run directory ./cov_work/scope/icc_0802cba2_68671db6.ucm. Specify a valid run directory with correct ucm, ucd files and rerun the command.
+13:50:53:0203 [com.cadence.mdv.imc.Main] [main] INFO  - Binding debug tools http on port: 37779
+13:50:53:0238 [com.cadence.mdv.messaging.MDVASynchronicMessaging] [frontend-pool] ERROR - Error loading database file ./cov_work/scope/icc_0802cba2_68671db6.ucm:
+serialization exception.
+13:50:53:0238 [com.cadence.mdv.messaging.MDVASynchronicMessaging] [frontend-pool] ERROR - Valid data file not found for run directory ./cov_work/scope/test. Specify a valid run directory with correct ucm, ucd files and rerun the command.	   
+13:52:26:0761 [com.cadence.mdv.imc.Main] [main] INFO  - Binding debug tools http on port: 35595
+13:52:26:0795 [com.cadence.mdv.messaging.MDVASynchronicMessaging] [frontend-pool] ERROR - Error loading database file ./cov_work/scope/icc_0802cba2_68671db6.ucm:
+serialization exception.
+13:52:26:0795 [com.cadence.mdv.messaging.MDVASynchronicMessaging] [frontend-pool] ERROR - Valid data file not found for run directory ./cov_work/scope/test. Specify a valid run directory with correct ucm, ucd files and rerun the command.	   
+[INFO ] 2026-03-03 17:44:35 [com.cadence.mdv.imc.Main] [main] - Binding debug tools http on port: 44195
+[INFO ] 2026-03-16 20:21:35 [com.cadence.mdv.imc.Main] [main] - Binding debug tools http on port: 37735

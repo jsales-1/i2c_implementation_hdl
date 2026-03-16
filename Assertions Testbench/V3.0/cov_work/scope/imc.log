@@ -1,0 +1,4 @@
+'IMC(64): 15.20-p001: (c) Copyright 1995-2016 Cadence Design Systems Inc - Coverage engine version: 15.20-p001
+imc: *E,DBERR: Error loading database file ./icc_0802cba2_68671db6.ucm:
+serialization exception.
+imc: *E,INVDT: Valid data file not found for run directory ./my_test. Specify a valid run directory with correct ucm, ucd files and rerun the command.	   
