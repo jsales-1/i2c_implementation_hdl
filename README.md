@@ -9,18 +9,20 @@ i2c_implementation_hdl/
 ├── RTL/ # RTL implementations
 │ ├── V1.0/
 │ ├── V2.0/
-├  ├── V3.0/
-  ├── V4.0/
+│ ├── V3.0/
+│ ├── V4.0/
 │ └── V5.0/ # Latest version with revision notes
 ├── Geral Testbenches/ # Basic testbenches
 │ ├── V1.0/
 │ ├── V2.0/
-  ├── V3.0/
-  ├── V4.0/
+│ ├── V3.0/
+│ ├── V4.0/
 │ └── V5.0/ # Each contains prompt_icarus.txt with simulation commands
 ├── Assertions Testbench/ # Assertion-based verification
-    ├── V4.0/
-│ └── V1.0/ # Uses RTL V3.0, includes run_information.txt
+│ ├── V1.0/ # Uses RTL V3.0
+│ ├── V2.0/ # Uses RTL V3.0, includes run_information.txt
+│ ├── V3.0/ # Uses RTL V4.0, includes run_information.txt
+│ └── V4.0/ # Uses RTL V5.0, includes run_information.txt
 ├── UVM Environments/ # UVM verification environments
 │ ├── master/ # UVM environment for I2C master
 │ └── slave/ # UVM environment for I2C slave
