@@ -1,8 +1,7 @@
 Use the website edaplayground for simulation. Add the files in a new playground and run using the simulator Cadence Xcelium 25.03.
 Acess my example:
 
-https://www.edaplayground.com/x/H7j_
-
+https://www.edaplayground.com/x/metY
 
 
 Run:
