@@ -1,0 +1,186 @@
+xrun: 25.03-s001: (c) Copyright 1995-2025 Cadence Design Systems, Inc.
+TOOL:	xrun	25.03-s001: Started on Mar 17, 2026 at 17:50:32 EDT
+xrun
+	-Q
+	-unbuffered
+	-timescale 1ns/1ns
+	-sysv
+	-access +rw
+	-uvmnocdnsextra
+	-uvmhome /xcelium25.03/tools//methodology/UVM/CDNS-IEEE/sv
+	/xcelium25.03/tools//methodology/UVM/CDNS-IEEE/sv/src/uvm_macros.svh
+	design.sv
+	testbench.sv
+	Top level design units:
+		uvm_pkg
+		i2c_slave_controller
+		tb
+Loading snapshot worklib.i2c_slave_controller:sv .................... Done
+SVSEED default: 1
+xcelium> source /xcelium25.03/tools/xcelium/files/xmsimrc
+xcelium> source /xcelium25.03/tools//methodology/UVM/CDNS-IEEE/sv/files/tcl/uvm_sim.tcl
+xcelium> run
+UVM_INFO /xcelium25.03/tools/methodology/UVM/CDNS-IEEE/sv/src/base/uvm_root.svh(449) @ 0: reporter [UVM/RELNOTES] 
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  This implementation of the UVM Library deviates from the 1800.2-2017
+  standard.  See the DEVIATIONS.md file contained in the release
+  for more details.
+
+----------------------------------------------------------------
+Accellera:1800.2-2017:UVM:1.0
+
+All copyright owners for this kit are listed in NOTICE.txt
+All Rights Reserved Worldwide
+----------------------------------------------------------------
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO tb.sv(82) @ 0: reporter [TB] VCD dump enabled
+UVM_INFO tb.sv(103) @ 0: reporter [TB] No test specified, running default my_test
+UVM_INFO @ 0: reporter [RNTST] Running test my_test...
+UVM_INFO my_test.sv(67) @ 0: uvm_test_top [my_test] Test configuration: type=basic, num_trans=10, addr=0x50, overrides=0, override_type=none
+UVM_INFO my_agent.sv(66) @ 0: uvm_test_top.env.agt [my_agent] Agent config: is_active=1, interface_name=vif, tracing=1, max_trans=0
+UVM_INFO my_agent.sv(48) @ 0: uvm_test_top.env.agt [my_agent] Agent configured as ACTIVE
+UVM_INFO my_scoreboard.sv(160) @ 0: uvm_test_top.env.scb [my_scoreboard] Scoreboard built with slave_addr=0x50, test_mode=1
+UVM_INFO my_test.sv(112) @ 0: uvm_test_top [my_test] Starting I2C slave test simulation
+UVM_INFO my_test.sv(117) @ 0: uvm_test_top [my_test] ========================================
+UVM_INFO my_test.sv(118) @ 0: uvm_test_top [my_test] I2C Slave Test Information:
+UVM_INFO my_test.sv(119) @ 0: uvm_test_top [my_test]   Test Type: basic
+UVM_INFO my_test.sv(120) @ 0: uvm_test_top [my_test]   Transactions: 10
+UVM_INFO my_test.sv(121) @ 0: uvm_test_top [my_test]   Target Address: 0x50
+UVM_INFO my_test.sv(122) @ 0: uvm_test_top [my_test]   Slave Address: 0x50
+UVM_INFO my_test.sv(123) @ 0: uvm_test_top [my_test]   Sequence: my_sequence
+UVM_INFO my_test.sv(124) @ 0: uvm_test_top [my_test]   Factory Overrides: 0
+UVM_INFO my_test.sv(125) @ 0: uvm_test_top [my_test] ========================================
+UVM_INFO my_test.sv(143) @ 0: uvm_test_top [my_test] Starting sequence: my_sequence
+UVM_INFO my_monitor.sv(47) @ 0: uvm_test_top.env.agt.mon [my_monitor] Running in TEST MODE - generating simulated transactions
+UVM_INFO my_monitor.sv(66) @ 0: uvm_test_top.env.agt.mon [my_monitor] Starting simulated transaction generation
+UVM_INFO my_sequence.sv(30) @ 0: uvm_test_top.env.agt.seqr@@my_sequence [my_sequence] Sequence starting with 10 transactions
+UVM_INFO my_driver.sv(46) @ 0: uvm_test_top.env.agt.drv [my_driver] Driving I2C master transaction to addr 0x50, rw=1
+UVM_INFO my_driver.sv(124) @ 0: uvm_test_top.env.agt.drv [my_driver] SIMULATED MODE: Driving simulated transaction
+UVM_INFO my_driver.sv(132) @ 10: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Address 0x50 ACKed
+UVM_INFO my_driver.sv(152) @ 10: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Read data 0xa5 (default)
+UVM_INFO my_driver.sv(46) @ 20: uvm_test_top.env.agt.drv [my_driver] Driving I2C master transaction to addr 0x50, rw=0
+UVM_INFO my_driver.sv(124) @ 20: uvm_test_top.env.agt.drv [my_driver] SIMULATED MODE: Driving simulated transaction
+UVM_INFO my_driver.sv(132) @ 30: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Address 0x50 ACKed
+UVM_INFO my_driver.sv(141) @ 30: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Write data 0x4a ACKed (write #1)
+UVM_INFO my_driver.sv(46) @ 40: uvm_test_top.env.agt.drv [my_driver] Driving I2C master transaction to addr 0x50, rw=1
+UVM_INFO my_driver.sv(124) @ 40: uvm_test_top.env.agt.drv [my_driver] SIMULATED MODE: Driving simulated transaction
+UVM_INFO my_monitor.sv(95) @ 50: uvm_test_top.env.agt.mon [my_monitor] SIMULATED: Generated transaction 0: I2C Master Transaction: addr=0x50 ( READ), read_data=0xa5, addr_ack=1, data_ack=0, start=1, stop=1
+UVM_INFO my_monitor.sv(95) @ 50: uvm_test_top.env.agt.mon [my_monitor] SIMULATED: Generated transaction 1: I2C Master Transaction: addr=0x50 (WRITE), write_data=0x4a, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_driver.sv(132) @ 50: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Address 0x50 ACKed
+UVM_INFO my_driver.sv(148) @ 50: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Read data 0x4a (last written)
+UVM_INFO my_scoreboard.sv(172) @ 50: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Master Transaction: addr=0x50 ( READ), read_data=0xa5, addr_ack=1, data_ack=0, start=1, stop=1
+UVM_INFO my_scoreboard.sv(230) @ 50: uvm_test_top.env.scb [my_scoreboard] Read data match: expected=0xa5, actual=0xa5
+UVM_INFO my_scoreboard.sv(238) @ 50: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Master Transaction: addr=0x50 ( READ), read_data=0xa5, addr_ack=1, data_ack=0, start=1, stop=1
+UVM_INFO my_scoreboard.sv(172) @ 50: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Master Transaction: addr=0x50 (WRITE), write_data=0x4a, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_scoreboard.sv(238) @ 50: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Master Transaction: addr=0x50 (WRITE), write_data=0x4a, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_monitor.sv(95) @ 60: uvm_test_top.env.agt.mon [my_monitor] SIMULATED: Generated transaction 2: I2C Master Transaction: addr=0x50 ( READ), read_data=0x4a, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_scoreboard.sv(172) @ 60: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Master Transaction: addr=0x50 ( READ), read_data=0x4a, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_scoreboard.sv(230) @ 60: uvm_test_top.env.scb [my_scoreboard] Read data match: expected=0x4a, actual=0x4a
+UVM_INFO my_scoreboard.sv(238) @ 60: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Master Transaction: addr=0x50 ( READ), read_data=0x4a, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_driver.sv(46) @ 60: uvm_test_top.env.agt.drv [my_driver] Driving I2C master transaction to addr 0x50, rw=1
+UVM_INFO my_driver.sv(124) @ 60: uvm_test_top.env.agt.drv [my_driver] SIMULATED MODE: Driving simulated transaction
+UVM_INFO my_driver.sv(132) @ 70: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Address 0x50 ACKed
+UVM_INFO my_driver.sv(148) @ 70: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Read data 0x4a (last written)
+UVM_INFO my_monitor.sv(95) @ 80: uvm_test_top.env.agt.mon [my_monitor] SIMULATED: Generated transaction 3: I2C Master Transaction: addr=0x50 ( READ), read_data=0x4a, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_scoreboard.sv(172) @ 80: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Master Transaction: addr=0x50 ( READ), read_data=0x4a, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_scoreboard.sv(230) @ 80: uvm_test_top.env.scb [my_scoreboard] Read data match: expected=0x4a, actual=0x4a
+UVM_INFO my_scoreboard.sv(238) @ 80: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Master Transaction: addr=0x50 ( READ), read_data=0x4a, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_driver.sv(46) @ 80: uvm_test_top.env.agt.drv [my_driver] Driving I2C master transaction to addr 0x50, rw=0
+UVM_INFO my_driver.sv(124) @ 80: uvm_test_top.env.agt.drv [my_driver] SIMULATED MODE: Driving simulated transaction
+UVM_INFO my_driver.sv(132) @ 90: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Address 0x50 ACKed
+UVM_INFO my_driver.sv(141) @ 90: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Write data 0x12 ACKed (write #2)
+UVM_INFO tb.sv(60) @ 100: reporter [TB] Reset released
+UVM_INFO my_monitor.sv(95) @ 100: uvm_test_top.env.agt.mon [my_monitor] SIMULATED: Generated transaction 4: I2C Master Transaction: addr=0x50 (WRITE), write_data=0x12, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_scoreboard.sv(172) @ 100: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Master Transaction: addr=0x50 (WRITE), write_data=0x12, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_scoreboard.sv(238) @ 100: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Master Transaction: addr=0x50 (WRITE), write_data=0x12, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_driver.sv(46) @ 100: uvm_test_top.env.agt.drv [my_driver] Driving I2C master transaction to addr 0x50, rw=1
+UVM_INFO my_driver.sv(124) @ 100: uvm_test_top.env.agt.drv [my_driver] SIMULATED MODE: Driving simulated transaction
+UVM_INFO my_driver.sv(132) @ 110: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Address 0x50 ACKed
+UVM_INFO my_driver.sv(148) @ 110: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Read data 0x12 (last written)
+UVM_INFO my_monitor.sv(95) @ 120: uvm_test_top.env.agt.mon [my_monitor] SIMULATED: Generated transaction 5: I2C Master Transaction: addr=0x50 ( READ), read_data=0x12, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_scoreboard.sv(172) @ 120: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Master Transaction: addr=0x50 ( READ), read_data=0x12, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_scoreboard.sv(230) @ 120: uvm_test_top.env.scb [my_scoreboard] Read data match: expected=0x12, actual=0x12
+UVM_INFO my_scoreboard.sv(238) @ 120: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Master Transaction: addr=0x50 ( READ), read_data=0x12, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_driver.sv(46) @ 120: uvm_test_top.env.agt.drv [my_driver] Driving I2C master transaction to addr 0x50, rw=1
+UVM_INFO my_driver.sv(124) @ 120: uvm_test_top.env.agt.drv [my_driver] SIMULATED MODE: Driving simulated transaction
+UVM_INFO my_driver.sv(132) @ 130: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Address 0x50 ACKed
+UVM_INFO my_driver.sv(148) @ 130: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Read data 0x12 (last written)
+UVM_INFO my_monitor.sv(95) @ 140: uvm_test_top.env.agt.mon [my_monitor] SIMULATED: Generated transaction 6: I2C Master Transaction: addr=0x50 ( READ), read_data=0x12, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_scoreboard.sv(172) @ 140: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Master Transaction: addr=0x50 ( READ), read_data=0x12, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_scoreboard.sv(230) @ 140: uvm_test_top.env.scb [my_scoreboard] Read data match: expected=0x12, actual=0x12
+UVM_INFO my_scoreboard.sv(238) @ 140: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Master Transaction: addr=0x50 ( READ), read_data=0x12, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_driver.sv(46) @ 140: uvm_test_top.env.agt.drv [my_driver] Driving I2C master transaction to addr 0x50, rw=0
+UVM_INFO my_driver.sv(124) @ 140: uvm_test_top.env.agt.drv [my_driver] SIMULATED MODE: Driving simulated transaction
+UVM_INFO my_driver.sv(132) @ 150: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Address 0x50 ACKed
+UVM_INFO my_driver.sv(141) @ 150: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Write data 0xa2 ACKed (write #3)
+UVM_INFO my_monitor.sv(95) @ 160: uvm_test_top.env.agt.mon [my_monitor] SIMULATED: Generated transaction 7: I2C Master Transaction: addr=0x50 (WRITE), write_data=0xa2, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_scoreboard.sv(172) @ 160: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Master Transaction: addr=0x50 (WRITE), write_data=0xa2, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_scoreboard.sv(238) @ 160: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Master Transaction: addr=0x50 (WRITE), write_data=0xa2, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_driver.sv(46) @ 160: uvm_test_top.env.agt.drv [my_driver] Driving I2C master transaction to addr 0x50, rw=0
+UVM_INFO my_driver.sv(124) @ 160: uvm_test_top.env.agt.drv [my_driver] SIMULATED MODE: Driving simulated transaction
+UVM_INFO my_driver.sv(132) @ 170: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Address 0x50 ACKed
+UVM_INFO my_driver.sv(141) @ 170: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Write data 0x43 ACKed (write #4)
+UVM_INFO my_monitor.sv(95) @ 180: uvm_test_top.env.agt.mon [my_monitor] SIMULATED: Generated transaction 8: I2C Master Transaction: addr=0x50 (WRITE), write_data=0x43, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_scoreboard.sv(172) @ 180: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Master Transaction: addr=0x50 (WRITE), write_data=0x43, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_scoreboard.sv(238) @ 180: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Master Transaction: addr=0x50 (WRITE), write_data=0x43, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_driver.sv(46) @ 180: uvm_test_top.env.agt.drv [my_driver] Driving I2C master transaction to addr 0x50, rw=0
+UVM_INFO my_driver.sv(124) @ 180: uvm_test_top.env.agt.drv [my_driver] SIMULATED MODE: Driving simulated transaction
+UVM_INFO my_driver.sv(132) @ 190: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Address 0x50 ACKed
+UVM_INFO my_driver.sv(141) @ 190: uvm_test_top.env.agt.drv [my_driver] SIMULATED: Write data 0xa ACKed (write #5)
+UVM_INFO my_monitor.sv(95) @ 200: uvm_test_top.env.agt.mon [my_monitor] SIMULATED: Generated transaction 9: I2C Master Transaction: addr=0x50 (WRITE), write_data=0xa, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_monitor.sv(104) @ 200: uvm_test_top.env.agt.mon [my_monitor] SIMULATED: Generated 10 transactions
+UVM_INFO my_scoreboard.sv(172) @ 200: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Master Transaction: addr=0x50 (WRITE), write_data=0xa, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_scoreboard.sv(238) @ 200: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Master Transaction: addr=0x50 (WRITE), write_data=0xa, addr_ack=1, data_ack=1, start=1, stop=1
+UVM_INFO my_agent.sv(157) @ 220: uvm_test_top.env.agt [my_agent] Agent report: is_active=1, tracing=1
+UVM_INFO my_scoreboard.sv(275) @ 220: uvm_test_top.env.scb [my_scoreboard] 
+----------------------- I2C Slave Scoreboard Report ------------------------------------
+Slave Address: 0x50
+Golden Model: default
+Test Mode: 1
+Total transactions checked: 10
+  PASSED: 10
+  FAILED: 0
+Write operations: 5
+Read operations: 5
+
+Error Counts:
+  Address ACK mismatches: 0
+  Unexpected Address ACKs: 0
+  Data ACK mismatches: 0
+  Data mismatches: 0
+
+I2C Slave Verification: PASSED
+-------------------------------------------------------------------------
+
+UVM_INFO my_test.sv(212) @ 220: uvm_test_top [my_test] I2C slave test completed
+UVM_INFO /xcelium25.03/tools/methodology/UVM/CDNS-IEEE/sv/src/base/uvm_report_server.svh(864) @ 220: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :  102
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[RNTST]     1
+[TB]     3
+[UVM/RELNOTES]     1
+[my_agent]     3
+[my_driver]    40
+[my_monitor]    13
+[my_scoreboard]    27
+[my_sequence]     1
+[my_test]    13
+
+xmsim: *W,SLFINV: Call to process::self() from invalid process; returning null.
+xmsim: *W,SLFINV: Call to process::self() from invalid process; returning null.
+xmsim: *W,SLFINV: Call to process::self() from invalid process; returning null.
+xmsim: *W,SLFINV: Call to process::self() from invalid process; returning null.
+UVM_INFO tb.sv(110) @ 220: reporter [TB] Simulation completed
+Simulation complete via $finish(1) at time 220 NS + 59
+/xcelium25.03/tools/methodology/UVM/CDNS-IEEE/sv/src/base/uvm_root.svh:585 		$finish;
+xcelium> exit
+TOOL:	xrun	25.03-s001: Exiting on Mar 17, 2026 at 17:50:45 EDT  (total: 00:00:13)
