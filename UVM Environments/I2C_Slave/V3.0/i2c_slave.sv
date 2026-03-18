@@ -1,5 +1,5 @@
 /*
-I2C SLAVE CONTROLLER  Version 5.0
+I2C SLAVE CONTROLLER – Version 5.0
 
 Revision Notes:
  - Version 4.0 cannot be synthesized
@@ -61,28 +61,38 @@ module i2c_slave_controller #(
     // START occurs when SDA falls while SCL is high
 
     always_ff @(negedge sda or posedge rst) begin
-        if (rst)
-            start_event <= 1'b1;   
+      if (rst) begin
+            start_event <= 0;   
+      end else begin
         if (stop_event == 1)
       	    start_event <= 0;
         if (scl == 1)
             start_event <= 1;
         else
             start_event <= 0;
+    	end
     end
 
 
     // STOP condition detection
     // STOP occurs when SDA rises while SCL is high
 
-    always_ff @(posedge sda or posedge rst) begin
-        if (scl == 1)
-            stop_event <= 1;
+    always_ff @(posedge sda or posedge rst ) begin
+      	if (rst) begin
+          stop_event <=0;
+        end else begin
+        if (scl == 1) begin
+            if(state != IDLE)
+                stop_event <= 1;
+        end
         else 
       	    stop_event <= 0;
         if (start_event == 1)
             stop_event <= 0;
+        
+        end
     end
+
 
 
     // Main FSM
