@@ -62,3 +62,7 @@ The UVM (Universal Verification Methodology) based verification was implemented 
 
 
 ## Synthesis and Reports 
+
+The synthesis process was carried out using **Cadence Genus**, with the synthesis scripts available in the directory `i2c_implementation_hdl/Synthesis/Creating_Netlists/script/`. The files `setup_master_i2c.tcl` and `setup_slave_i2c.tcl` contain the complete synthesis setup for the master and slave controllers, respectively, and can be executed in Genus using the `source` command. The constraints used during synthesis, including clock definition and input/output delays, are provided in the constraints file accessible at `i2c_implementation_hdl/Synthesis/Creating_Netlists/constraints/`. The target technology was the **Nangate 45nm cell library**.
+
+The resulting synthesis reports are organized in the subfolders `report_master` and `report_slaves`, also located under the `script/` directory. Each folder contains the generated reports for area (`report_area.rpt`), power (`report_power.rpt`), timing (`report_timing.rpt`), and overall quality of results (`report_qor.rpt`). These reports provide a detailed analysis of the synthesized design's Power, Performance, and Area (PPA), allowing evaluation of the implementation feasibility and guiding potential RTL optimizations before proceeding to physical design.
