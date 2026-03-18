@@ -4,4 +4,5 @@
 //
 /prj/ci/workarea/aluno6/Verilog/i2c_implementation_hdl-main/Synthesis/Netlists/i2c_master_controller.v
 /prj/ci/workarea/aluno6/Verilog/i2c_implementation_hdl-main/Synthesis/Netlists/i2c_slave_controller.v
+/prj/ci/workarea/aluno6/Verilog/i2c_implementation_hdl-main/Synthesis/Netlists/i2c_slave_controller_adress_h32.v
 "/prj/ci/workarea/aluno6/Verilog/i2c_implementation_hdl-main/Synthesis/Gate Level Simulation/i2c_test.v"

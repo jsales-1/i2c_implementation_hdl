@@ -1,10 +1,12 @@
 /*
-I2C SLAVE CONTROLLER  Version 3.0
+I2C SLAVE CONTROLLER - Version 5.0
 
 Revision Notes:
- - IDLE state added to the FSM to ensure proper bus initialization and START detection handling.
- - always_ff blocks corrected to prevent multiple drivers controlling the same variable.
- - Each registered signal is now driven by a single always_ff block, ensuring synthesizable and deterministic behavior.
+ - Version 4.0 cannot be synthesized
+ - All modifications from start/stop event of version 4.0 removed
+ - Back to version 3.0 with
+ - Corrected open-drain with removal of sda_out and single assign control using sda_drive_en and stop_event
+
 */
 
 
@@ -41,13 +43,12 @@ module i2c_slave_controller #(
     logic [ADDR_WIDTH:0] address_reg;   // Stores received address + R/W bit
   	logic [3:0] counter;                // Bit counter (address and data)
 
-    logic sda_out;                      // SDA output value
     logic sda_drive_en;                 // SDA drive enable (tri-state control)
 
     
     // Open-drain SDA control
     
-    assign sda = (sda_drive_en) ? sda_out : 1'bz;
+  	assign sda = (sda_drive_en) ? 0 : 1'bz;
 
 
     // START/STOP detection logic
@@ -65,14 +66,12 @@ module i2c_slave_controller #(
       end else begin
         if (stop_event == 1)
       	    start_event <= 0;
-        if (scl == 1)
+        if (scl == 1 && state == IDLE)
             start_event <= 1;
         else
             start_event <= 0;
+    	end
     end
-    end
-
-    
 
 
     // STOP condition detection
@@ -189,7 +188,6 @@ module i2c_slave_controller #(
     always_ff @(negedge scl or posedge rst) begin
         if (rst) begin
             sda_drive_en <= 1'b0;
-            sda_out      <= 1'b1;
         end
         else begin
             case (state)
@@ -205,7 +203,6 @@ module i2c_slave_controller #(
                 // ACK after address match
                 SEND_ACK: begin
                     if (address_reg[ADDR_WIDTH:1] == SLAVE_ADDR) begin
-                        sda_out      <= 1'b0;
                         sda_drive_en <= 1'b1;
                     end
                     else begin
@@ -216,15 +213,13 @@ module i2c_slave_controller #(
 
                 // ACK after data reception
                 SEND_ACK2: begin
-                    sda_out      <= 1'b0;
                     sda_drive_en <= 1'b1;
                 end
 
 
                 // Data transmission to master
                 WRITE_DATA: begin
-                    sda_out      <= data_to_send[counter];
-                    sda_drive_en <= 1'b1;
+                    sda_drive_en      <= !data_to_send[counter];
                 end
 
             endcase

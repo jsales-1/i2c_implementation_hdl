@@ -50,5 +50,5 @@ report_qor    > reports_slave/report_qor.rpt
 write_hdl > ${PROJECT_DIR}/Netlists/i2c_slave_controller.v
 write_sdc > ${PROJECT_DIR}/Netlists/slave_sdc_dft.sdc
 write_sdf -nonegchecks -edges check_edge -timescale ns -recrem split  -setuphold split > ${PROJECT_DIR}/Netlists/slave_delays.sdf
-write_scandef > ${PROJECT_DIR}/Netlists/master_scanDEF.scandef
+write_scandef > ${PROJECT_DIR}/Netlists/slave_scanDEF.scandef
 

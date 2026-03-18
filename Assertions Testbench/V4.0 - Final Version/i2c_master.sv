@@ -1,7 +1,8 @@
 /* 
-I2C MASTER CONTROLLER  Version 3.0
+I2C MASTER CONTROLLER – Version 5.0
 
 Revision Notes:
+ - Back to versio 3.0
  - Master timing corrected to wait for a full i2c_scl cycle
    before starting ADDRESS transmission.
  - Ensures proper START-to-ADDRESS alignment.

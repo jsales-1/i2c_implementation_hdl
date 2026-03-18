@@ -1,18 +1,44 @@
 xrun(64): 23.09-s013: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	23.09-s013: Started on Mar 06, 2026 at 18:54:43 -03
+TOOL:	xrun(64)	23.09-s013: Started on Mar 18, 2026 at 18:18:28 -03
 xrun
 	-Q
 	-timescale 1ns/1ns
 	../Netlists/i2c_master_controller.v
 	../Netlists/i2c_slave_controller.v
+	../Netlists/i2c_slave_controller_adress_h32.v
 	i2c_test.v
 	-v ../Netlists/slow_vdd1v0_basiccells.v
 	-access +rwc
-	-define SDF_TEST
+xmvlog: *W,LIBNOF: Library file or directory "../Netlists/slow_vdd1v0_basiccells.v" does not exist.
 	Top level design units:
 		i2c_multi_slave_tb
-	$sdf_annotate("slave_delays.sdf", i2c_teste.slave0,"sdf.log","MAXIMUM");
-	                                                 |
-xmelab: *E,CUVHNF (./i2c_test.v,61|50): Hierarchical name component lookup failed at 'i2c_teste'.
-xrun: *E,ELBERR: Error (*E) or soft error (*SE) occurred during elaboration (status 1), exiting.
-TOOL:	xrun(64)	23.09-s013: Exiting on Mar 06, 2026 at 18:54:44 -03  (total: 00:00:01)
+Loading snapshot worklib.i2c_multi_slave_tb:v .................... Done
+xcelium> source /tools/cadence/XCELIUM2309/tools/xcelium/files/xmsimrc
+xcelium> run
+========================================
+INICIANDO TESTES COM MULTIPLOS SLAVES
+========================================
+Slave 0 Address: 7'b0101010 (0x2A)
+Slave 1 Address: 7'b0110010 (0x32)
+========================================
+
+--- TESTE 1: 2 WRITES NO SLAVE 0 (0x2A) ---
+  OK WRITE 1: Slave0 recebeu a5
+  OK WRITE 2: Slave0 recebeu 3c
+
+--- TESTE 2: 2 WRITES NO SLAVE 1 (0x32) ---
+  OK WRITE 1: Slave1 recebeu b6
+  OK WRITE 2: Slave1 recebeu d7
+
+--- TESTE 3: 2 READS NO SLAVE 0 (0x2A) ---
+  OK READ 1: Master leu f0 do Slave0
+  OK READ 2: Master leu 1a do Slave0
+
+--- TESTE 4: 2 READS NO SLAVE 1 (0x32) ---
+  OK READ 1: Master leu 4e do Slave1
+  OK READ 2: Master leu 93 do Slave1
+==== FIM DA SIMULACAO ====
+Simulation complete via $finish(1) at time 5400 NS + 0
+./i2c_test.v:265         $finish;
+xcelium> exit
+TOOL:	xrun(64)	23.09-s013: Exiting on Mar 18, 2026 at 18:18:29 -03  (total: 00:00:01)

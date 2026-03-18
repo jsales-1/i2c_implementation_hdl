@@ -4,5 +4,3 @@
 //
 -VFILE
 ../Netlists/slow_vdd1v0_basiccells.v
--DEFINE
-SDF_TEST

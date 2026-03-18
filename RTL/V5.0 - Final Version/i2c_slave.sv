@@ -1,5 +1,5 @@
 /*
-I2C SLAVE CONTROLLER – Version 5.0
+I2C SLAVE CONTROLLER - Version 5.0
 
 Revision Notes:
  - Version 4.0 cannot be synthesized
@@ -66,7 +66,7 @@ module i2c_slave_controller #(
       end else begin
         if (stop_event == 1)
       	    start_event <= 0;
-        if (scl == 1)
+        if (scl == 1 && state == IDLE)
             start_event <= 1;
         else
             start_event <= 0;

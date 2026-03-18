@@ -7,11 +7,10 @@
 -RUNMODE
 ../Netlists/i2c_master_controller.v
 ../Netlists/i2c_slave_controller.v
+../Netlists/i2c_slave_controller_adress_h32.v
 i2c_test.v
 -VFILE
 ../Netlists/slow_vdd1v0_basiccells.v
--DEFINE
-SDF_TEST
 -CDSLIB
 ./xcelium.d/run.lnx8664.23.09.d/cdsrun.lib
 -HDLVAR

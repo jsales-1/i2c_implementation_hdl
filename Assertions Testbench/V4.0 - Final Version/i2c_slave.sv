@@ -1,10 +1,12 @@
 /*
-I2C SLAVE CONTROLLER  Version 3.0
+I2C SLAVE CONTROLLER - Version 5.0
 
 Revision Notes:
- - IDLE state added to the FSM to ensure proper bus initialization and START detection handling.
- - always_ff blocks corrected to prevent multiple drivers controlling the same variable.
- - Each registered signal is now driven by a single always_ff block, ensuring synthesizable and deterministic behavior.
+ - Version 4.0 cannot be synthesized
+ - All modifications from start/stop event of version 4.0 removed
+ - Back to version 3.0 with
+ - Corrected open-drain with removal of sda_out and single assign control using sda_drive_en and stop_event
+
 */
 
 
@@ -59,28 +61,38 @@ module i2c_slave_controller #(
     // START occurs when SDA falls while SCL is high
 
     always_ff @(negedge sda or posedge rst) begin
-        if (rst)
-            start_event <= 1'b1;   
+      if (rst) begin
+            start_event <= 0;   
+      end else begin
         if (stop_event == 1)
       	    start_event <= 0;
-        if (scl == 1)
+        if (scl == 1 && state == IDLE)
             start_event <= 1;
         else
             start_event <= 0;
+    	end
     end
 
 
     // STOP condition detection
     // STOP occurs when SDA rises while SCL is high
 
-    always_ff @(posedge sda or posedge rst) begin
-        if (scl == 1)
-            stop_event <= 1;
+    always_ff @(posedge sda or posedge rst ) begin
+      	if (rst) begin
+          stop_event <=0;
+        end else begin
+        if (scl == 1) begin
+            if(state != IDLE)
+                stop_event <= 1;
+        end
         else 
       	    stop_event <= 0;
         if (start_event == 1)
             stop_event <= 0;
+        
+        end
     end
+
 
 
     // Main FSM

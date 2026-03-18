@@ -1,1 +1,89 @@
-[INFO ] 2026-03-16 20:34:39 [com.cadence.mdv.imc.Main] [main] - Binding debug tools http on port: 32855
+[INFO ] 2026-03-18 20:53:33 [com.cadence.mdv.imc.Main] [main] - Binding debug tools http on port: 42955
+[INFO ] 2026-03-18 20:59:19 [com.cadence.mdv.imc.Main] [main] - Binding debug tools http on port: 35773
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_FSM_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_FSM_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_COVER_GROUP_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_COVER_GROUP_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_FSM_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_FSM_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_COVER_GROUP_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_COVER_GROUP_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_FSM_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_FSM_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_COVER_GROUP_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_COVER_GROUP_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_FSM_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_FSM_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_COVER_GROUP_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_COVER_GROUP_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_FSM_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_FSM_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_COVER_GROUP_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_COVER_GROUP_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_FSM_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_FSM_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_ASSERTION_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_ASSERTION_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_COVER_GROUP_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_COVER_GROUP_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_FSM_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_FSM_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_ASSERTION_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_ASSERTION_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_COVER_GROUP_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:40 [com.cadence.mdv.bl.impl.core.blNative.MDVEntitySimpleFallbackHandler] [pool-8-thread-6] - Slim entity had to fallback because someone asked about SELF_COVER_GROUP_FORMAL_GENERAL_GRAND_TOTAL
+[ERROR] 2026-03-18 20:59:44 [com.cadence.mdv.report.MDVReportServicesImpl] [AWT-EventQueue-0] - :java.net.URISyntaxException: Illegal character in path at index 77: file:///prj/ci/workarea/aluno6/Verilog/i2c_implementation_hdl-main/Assertions Testbench/V4.0 - Final Version/html_18-03-2026_05~59~30/index.html
+java.net.URISyntaxException: Illegal character in path at index 77: file:///prj/ci/workarea/aluno6/Verilog/i2c_implementation_hdl-main/Assertions Testbench/V4.0 - Final Version/html_18-03-2026_05~59~30/index.html
+	at java.base/java.net.URI$Parser.fail(URI.java:2995)
+	at java.base/java.net.URI$Parser.checkChars(URI.java:3166)
+	at java.base/java.net.URI$Parser.parseHierarchical(URI.java:3248)
+	at java.base/java.net.URI$Parser.parse(URI.java:3196)
+	at java.base/java.net.URI.<init>(URI.java:645)
+	at com.cadence.mdv.report.MDVReportServicesImpl.showReportInBrowser(MDVReportServicesImpl.java:5262)
+	at com.cadence.mdv.gui.activities.GUFIReportDoneDialog$3.doAction(GUFIReportDoneDialog.java:88)
+	at com.cadence.ufi.gui.actions.GUFIBaseAction$1.run(GUFIBaseAction.java:199)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:117)
+	at java.desktop/java.awt.WaitDispatchSupport$2.run(WaitDispatchSupport.java:191)
+	at java.desktop/java.awt.WaitDispatchSupport$4.run(WaitDispatchSupport.java:236)
+	at java.desktop/java.awt.WaitDispatchSupport$4.run(WaitDispatchSupport.java:234)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:319)
+	at java.desktop/java.awt.WaitDispatchSupport.enter(WaitDispatchSupport.java:234)
+	at java.desktop/java.awt.Dialog.show(Dialog.java:1079)
+	at java.desktop/java.awt.Component.show(Component.java:1728)
+	at java.desktop/java.awt.Component.setVisible(Component.java:1675)
+	at java.desktop/java.awt.Window.setVisible(Window.java:1036)
+	at java.desktop/java.awt.Dialog.setVisible(Dialog.java:1015)
+	at gtx.mngr.GTXBaseDialog.setVisible(GTXBaseDialog.java:29)
+	at com.cadence.ufi.gui.windows.GUFIBaseDialog.setVisible(GUFIBaseDialog.java:64)
+	at com.cadence.ufi.gui.windows.GUFIDefaultDialog.setVisible(GUFIDefaultDialog.java:385)
+	at com.cadence.mdv.gui.activities.GMDVSummaryActivity$GMDVSummarySubActivity$19.finishedWork(GMDVSummaryActivity.java:3156)
+	at com.cadence.mdv.gui.activities.GMDVSummaryActivity$GMDVSummarySubActivity$19.finishedWork(GMDVSummaryActivity.java:3115)
+	at com.cadence.ufi.gui.worker.GUFITaskExecutor.done(GUFITaskExecutor.java:86)
+	at java.desktop/javax.swing.SwingWorker$4.run(SwingWorker.java:749)
+	at java.desktop/javax.swing.SwingWorker$DoSubmitAccumulativeRunnable.run(SwingWorker.java:847)
+	at java.desktop/sun.swing.AccumulativeRunnable.run(AccumulativeRunnable.java:112)
+	at java.desktop/javax.swing.SwingWorker$DoSubmitAccumulativeRunnable.actionPerformed(SwingWorker.java:857)
+	at java.desktop/javax.swing.Timer.fireActionPerformed(Timer.java:311)
+	at java.desktop/javax.swing.Timer$DoPostEvent.run(Timer.java:243)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)

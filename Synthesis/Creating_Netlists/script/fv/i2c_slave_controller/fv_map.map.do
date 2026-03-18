@@ -28,30 +28,29 @@ add mapped point sda sda
 
 
 //Sequential Pins
-add mapped point sda_out/q sda_out_reg/Q -type DFF DFF
 add mapped point counter[2]/q counter_reg[2]/Q -type DFF DFF
-add mapped point counter[1]/q counter_reg[1]/Q -type DFF DFF
-add mapped point state[0]/q state_reg[0]/Q -type DFF DFF
 add mapped point counter[0]/q counter_reg[0]/Q -type DFF DFF
+add mapped point counter[1]/q counter_reg[1]/Q -type DFF DFF
 add mapped point state[1]/q state_reg[1]/Q -type DFF DFF
 add mapped point sda_drive_en/q sda_drive_en_reg/Q -type DFF DFF
+add mapped point state[0]/q state_reg[0]/Q -type DFF DFF
 add mapped point state[2]/q state_reg[2]/Q -type DFF DFF
-add mapped point address_reg[2]/q address_reg_reg[2]/Q -type DFF DFF
-add mapped point address_reg[3]/q address_reg_reg[3]/Q -type DFF DFF
-add mapped point address_reg[4]/q address_reg_reg[4]/Q -type DFF DFF
-add mapped point address_reg[5]/q address_reg_reg[5]/Q -type DFF DFF
-add mapped point address_reg[7]/q address_reg_reg[7]/Q -type DFF DFF
 add mapped point address_reg[0]/q address_reg_reg[0]/Q -type DFF DFF
 add mapped point address_reg[6]/q address_reg_reg[6]/Q -type DFF DFF
+add mapped point address_reg[4]/q address_reg_reg[4]/Q -type DFF DFF
+add mapped point address_reg[2]/q address_reg_reg[2]/Q -type DFF DFF
 add mapped point address_reg[1]/q address_reg_reg[1]/Q -type DFF DFF
-add mapped point data_received[7]/q data_received_reg[7]/Q -type DFF DFF
-add mapped point data_received[1]/q data_received_reg[1]/Q -type DFF DFF
-add mapped point data_received[3]/q data_received_reg[3]/Q -type DFF DFF
+add mapped point address_reg[7]/q address_reg_reg[7]/Q -type DFF DFF
+add mapped point address_reg[5]/q address_reg_reg[5]/Q -type DFF DFF
+add mapped point address_reg[3]/q address_reg_reg[3]/Q -type DFF DFF
+add mapped point data_received[2]/q data_received_reg[2]/Q -type DFF DFF
 add mapped point data_received[5]/q data_received_reg[5]/Q -type DFF DFF
 add mapped point data_received[4]/q data_received_reg[4]/Q -type DFF DFF
-add mapped point data_received[2]/q data_received_reg[2]/Q -type DFF DFF
-add mapped point data_received[6]/q data_received_reg[6]/Q -type DFF DFF
 add mapped point data_received[0]/q data_received_reg[0]/Q -type DFF DFF
+add mapped point data_received[1]/q data_received_reg[1]/Q -type DFF DFF
+add mapped point data_received[6]/q data_received_reg[6]/Q -type DFF DFF
+add mapped point data_received[7]/q data_received_reg[7]/Q -type DFF DFF
+add mapped point data_received[3]/q data_received_reg[3]/Q -type DFF DFF
 add mapped point start_event/q start_event_reg/Q -type DFF DFF
 
 

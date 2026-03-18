@@ -1,7 +1,7 @@
 (DELAYFILE
   (SDFVERSION  "OVI 3.0")
   (DESIGN      "i2c_master_controller")
-  (DATE        "Fri Mar 06 19:02:36 -03 2026")
+  (DATE        "Wed Mar 18 18:16:42 -03 2026")
   (VENDOR      "Cadence, Inc.")
   (PROGRAM     "Genus(TM) Synthesis Solution")
   (VERSION     "22.16-s078_1")
