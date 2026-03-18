@@ -1,12 +1,8 @@
 /* 
-I2C MASTER CONTROLLER  Version 3.0
+I2C MASTER CONTROLLER – Version 4.0
 
 Revision Notes:
- - Master timing corrected to wait for a full i2c_scl cycle
-   before starting ADDRESS transmission.
- - Ensures proper START-to-ADDRESS alignment.
- - Prevents premature address shifting relative to SCL.
- - Improves synchronization with slave sampling edge.
+ - Removal of WAIT state after start due to slave synchronization with start_event rising edge.
  */
 
 
@@ -218,4 +214,3 @@ module i2c_master_controller #(
     end
 
 endmodule
-
