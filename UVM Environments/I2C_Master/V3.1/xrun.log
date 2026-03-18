@@ -1,0 +1,162 @@
+xrun: 25.03-s001: (c) Copyright 1995-2025 Cadence Design Systems, Inc.
+TOOL:	xrun	25.03-s001: Started on Mar 18, 2026 at 17:35:55 EDT
+xrun
+	-Q
+	-unbuffered
+	-timescale 1ns/1ns
+	-sysv
+	-access +rw
+	-uvmnocdnsextra
+	-uvmhome /xcelium25.03/tools//methodology/UVM/CDNS-IEEE/sv
+	/xcelium25.03/tools//methodology/UVM/CDNS-IEEE/sv/src/uvm_macros.svh
+	design.sv
+	testbench.sv
+	Top level design units:
+		uvm_pkg
+		OAI22X1
+		_HDLAT_verplex
+		tb
+Loading snapshot worklib.OAI22X1:v .................... Done
+SVSEED default: 1
+xcelium> source /xcelium25.03/tools/xcelium/files/xmsimrc
+xcelium> source /xcelium25.03/tools//methodology/UVM/CDNS-IEEE/sv/files/tcl/uvm_sim.tcl
+xcelium> run
+UVM_INFO /xcelium25.03/tools/methodology/UVM/CDNS-IEEE/sv/src/base/uvm_root.svh(449) @ 0: reporter [UVM/RELNOTES] 
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  This implementation of the UVM Library deviates from the 1800.2-2017
+  standard.  See the DEVIATIONS.md file contained in the release
+  for more details.
+
+----------------------------------------------------------------
+Accellera:1800.2-2017:UVM:1.0
+
+All copyright owners for this kit are listed in NOTICE.txt
+All Rights Reserved Worldwide
+----------------------------------------------------------------
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO tb.sv(90) @ 0: reporter [TB] VCD dump enabled
+UVM_INFO tb.sv(104) @ 0: reporter [TB] No test specified, running default my_test
+UVM_INFO @ 0: reporter [RNTST] Running test my_test...
+UVM_INFO my_test.sv(58) @ 0: uvm_test_top [my_test] Test configuration: type=basic, num_trans=10, addr=0x50, overrides=0
+UVM_INFO my_agent.sv(54) @ 0: uvm_test_top.env.agt [my_agent] Agent config: is_active=1, interface_name=vif
+UVM_INFO my_agent.sv(38) @ 0: uvm_test_top.env.agt [my_agent] Agent configured as ACTIVE
+UVM_INFO my_test.sv(87) @ 0: uvm_test_top [my_test] Starting I2C test simulation
+UVM_INFO my_test.sv(92) @ 0: uvm_test_top [my_test] ========================================
+UVM_INFO my_test.sv(93) @ 0: uvm_test_top [my_test] I2C Test Information:
+UVM_INFO my_test.sv(94) @ 0: uvm_test_top [my_test]   Test Type: basic
+UVM_INFO my_test.sv(95) @ 0: uvm_test_top [my_test]   Transactions: 10
+UVM_INFO my_test.sv(96) @ 0: uvm_test_top [my_test]   Target Address: 0x50
+UVM_INFO my_test.sv(97) @ 0: uvm_test_top [my_test]   Sequence: my_sequence
+UVM_INFO my_test.sv(98) @ 0: uvm_test_top [my_test] ========================================
+UVM_INFO my_test.sv(116) @ 0: uvm_test_top [my_test] Starting sequence: my_sequence
+UVM_INFO my_sequence.sv(30) @ 0: uvm_test_top.env.agt.seqr@@my_sequence [my_sequence] Sequence starting with 10 transactions
+UVM_INFO tb.sv(64) @ 100: reporter [TB] Reset released
+UVM_INFO my_driver.sv(42) @ 105: uvm_test_top.env.agt.drv [my_driver] Driving: addr=0x50, rw=0, data=0xe2
+UVM_INFO my_monitor.sv(56) @ 105: uvm_test_top.env.agt.mon [my_monitor] Transaction started: addr=0x50, rw=0, data=0xe2
+UVM_INFO my_monitor.sv(63) @ 116: uvm_test_top.env.agt.mon [my_monitor] Transaction complete: I2C Transaction: addr=0x50 (WRITE), data_in=0xe2, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(116) @ 116: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Transaction: addr=0x50 (WRITE), data_in=0xe2, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(159) @ 116: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Transaction: addr=0x50 (WRITE), data_in=0xe2, ack=1, nack=0
+UVM_INFO my_driver.sv(42) @ 125: uvm_test_top.env.agt.drv [my_driver] Driving: addr=0x50, rw=0, data=0x5a
+UVM_INFO my_monitor.sv(56) @ 125: uvm_test_top.env.agt.mon [my_monitor] Transaction started: addr=0x50, rw=0, data=0x5a
+UVM_INFO my_monitor.sv(63) @ 136: uvm_test_top.env.agt.mon [my_monitor] Transaction complete: I2C Transaction: addr=0x50 (WRITE), data_in=0x5a, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(116) @ 136: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Transaction: addr=0x50 (WRITE), data_in=0x5a, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(159) @ 136: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Transaction: addr=0x50 (WRITE), data_in=0x5a, ack=1, nack=0
+UVM_INFO tb.sv(71) @ 150: reporter [TB] Starting I2C Slave Model
+[156] I2C START condition detected
+UVM_INFO my_monitor.sv(120) @ 575: uvm_test_top.env.agt.mon [my_monitor] [I2C BUS] NACK detected (STOP after no ACK)
+UVM_INFO my_driver.sv(42) @ 625: uvm_test_top.env.agt.drv [my_driver] Driving: addr=0x50, rw=0, data=0x7b
+UVM_INFO my_monitor.sv(56) @ 625: uvm_test_top.env.agt.mon [my_monitor] Transaction started: addr=0x50, rw=0, data=0x7b
+UVM_INFO my_monitor.sv(63) @ 636: uvm_test_top.env.agt.mon [my_monitor] Transaction complete: I2C Transaction: addr=0x50 (WRITE), data_in=0x7b, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(116) @ 636: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Transaction: addr=0x50 (WRITE), data_in=0x7b, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(159) @ 636: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Transaction: addr=0x50 (WRITE), data_in=0x7b, ack=1, nack=0
+UVM_INFO my_driver.sv(42) @ 645: uvm_test_top.env.agt.drv [my_driver] Driving: addr=0x50, rw=0, data=0x68
+UVM_INFO my_monitor.sv(56) @ 645: uvm_test_top.env.agt.mon [my_monitor] Transaction started: addr=0x50, rw=0, data=0x68
+UVM_INFO my_monitor.sv(63) @ 656: uvm_test_top.env.agt.mon [my_monitor] Transaction complete: I2C Transaction: addr=0x50 (WRITE), data_in=0x68, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(116) @ 656: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Transaction: addr=0x50 (WRITE), data_in=0x68, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(159) @ 656: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Transaction: addr=0x50 (WRITE), data_in=0x68, ack=1, nack=0
+[676] I2C START condition detected
+UVM_INFO my_monitor.sv(120) @ 1095: uvm_test_top.env.agt.mon [my_monitor] [I2C BUS] NACK detected (STOP after no ACK)
+UVM_INFO my_driver.sv(42) @ 1145: uvm_test_top.env.agt.drv [my_driver] Driving: addr=0x50, rw=1, data=0x22
+UVM_INFO my_monitor.sv(56) @ 1145: uvm_test_top.env.agt.mon [my_monitor] Transaction started: addr=0x50, rw=1, data=0x22
+UVM_INFO my_driver.sv(51) @ 1155: uvm_test_top.env.agt.drv [my_driver] Read data: 0x0
+UVM_INFO my_monitor.sv(63) @ 1156: uvm_test_top.env.agt.mon [my_monitor] Transaction complete: I2C Transaction: addr=0x50 ( READ), data_out=0x0, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(116) @ 1156: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Transaction: addr=0x50 ( READ), data_out=0x0, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(159) @ 1156: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Transaction: addr=0x50 ( READ), data_out=0x0, ack=1, nack=0
+UVM_INFO my_driver.sv(42) @ 1165: uvm_test_top.env.agt.drv [my_driver] Driving: addr=0x50, rw=1, data=0xb0
+UVM_INFO my_monitor.sv(56) @ 1165: uvm_test_top.env.agt.mon [my_monitor] Transaction started: addr=0x50, rw=1, data=0xb0
+UVM_INFO my_driver.sv(51) @ 1175: uvm_test_top.env.agt.drv [my_driver] Read data: 0x0
+UVM_INFO my_monitor.sv(63) @ 1176: uvm_test_top.env.agt.mon [my_monitor] Transaction complete: I2C Transaction: addr=0x50 ( READ), data_out=0x0, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(116) @ 1176: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Transaction: addr=0x50 ( READ), data_out=0x0, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(159) @ 1176: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Transaction: addr=0x50 ( READ), data_out=0x0, ack=1, nack=0
+[1196] I2C START condition detected
+UVM_INFO my_monitor.sv(120) @ 1575: uvm_test_top.env.agt.mon [my_monitor] [I2C BUS] NACK detected (STOP after no ACK)
+UVM_INFO my_driver.sv(42) @ 1665: uvm_test_top.env.agt.drv [my_driver] Driving: addr=0x50, rw=1, data=0x5d
+UVM_INFO my_monitor.sv(56) @ 1665: uvm_test_top.env.agt.mon [my_monitor] Transaction started: addr=0x50, rw=1, data=0x5d
+UVM_INFO my_driver.sv(51) @ 1675: uvm_test_top.env.agt.drv [my_driver] Read data: 0x0
+UVM_INFO my_monitor.sv(63) @ 1676: uvm_test_top.env.agt.mon [my_monitor] Transaction complete: I2C Transaction: addr=0x50 ( READ), data_out=0x0, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(116) @ 1676: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Transaction: addr=0x50 ( READ), data_out=0x0, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(159) @ 1676: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Transaction: addr=0x50 ( READ), data_out=0x0, ack=1, nack=0
+UVM_INFO my_driver.sv(42) @ 1685: uvm_test_top.env.agt.drv [my_driver] Driving: addr=0x50, rw=0, data=0x32
+UVM_INFO my_monitor.sv(56) @ 1685: uvm_test_top.env.agt.mon [my_monitor] Transaction started: addr=0x50, rw=0, data=0x32
+UVM_INFO my_monitor.sv(63) @ 1696: uvm_test_top.env.agt.mon [my_monitor] Transaction complete: I2C Transaction: addr=0x50 (WRITE), data_in=0x32, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(116) @ 1696: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Transaction: addr=0x50 (WRITE), data_in=0x32, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(159) @ 1696: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Transaction: addr=0x50 (WRITE), data_in=0x32, ack=1, nack=0
+[1716] I2C START condition detected
+UVM_INFO my_monitor.sv(120) @ 2135: uvm_test_top.env.agt.mon [my_monitor] [I2C BUS] NACK detected (STOP after no ACK)
+UVM_INFO my_driver.sv(42) @ 2185: uvm_test_top.env.agt.drv [my_driver] Driving: addr=0x50, rw=1, data=0xf3
+UVM_INFO my_monitor.sv(56) @ 2185: uvm_test_top.env.agt.mon [my_monitor] Transaction started: addr=0x50, rw=1, data=0xf3
+UVM_INFO my_driver.sv(51) @ 2195: uvm_test_top.env.agt.drv [my_driver] Read data: 0x0
+UVM_INFO my_monitor.sv(63) @ 2196: uvm_test_top.env.agt.mon [my_monitor] Transaction complete: I2C Transaction: addr=0x50 ( READ), data_out=0x0, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(116) @ 2196: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Transaction: addr=0x50 ( READ), data_out=0x0, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(159) @ 2196: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Transaction: addr=0x50 ( READ), data_out=0x0, ack=1, nack=0
+UVM_INFO my_driver.sv(42) @ 2205: uvm_test_top.env.agt.drv [my_driver] Driving: addr=0x50, rw=1, data=0x1a
+UVM_INFO my_monitor.sv(56) @ 2205: uvm_test_top.env.agt.mon [my_monitor] Transaction started: addr=0x50, rw=1, data=0x1a
+UVM_INFO my_driver.sv(51) @ 2215: uvm_test_top.env.agt.drv [my_driver] Read data: 0x0
+UVM_INFO my_monitor.sv(63) @ 2216: uvm_test_top.env.agt.mon [my_monitor] Transaction complete: I2C Transaction: addr=0x50 ( READ), data_out=0x0, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(116) @ 2216: uvm_test_top.env.scb [my_scoreboard] Scoreboard processing: I2C Transaction: addr=0x50 ( READ), data_out=0x0, ack=1, nack=0
+UVM_INFO my_scoreboard.sv(159) @ 2216: uvm_test_top.env.scb [my_scoreboard] Transaction PASSED: I2C Transaction: addr=0x50 ( READ), data_out=0x0, ack=1, nack=0
+UVM_INFO my_agent.sv(86) @ 2235: uvm_test_top.env.agt [my_agent] Agent report: is_active=1
+UVM_INFO my_scoreboard.sv(190) @ 2235: uvm_test_top.env.scb [my_scoreboard] 
+----------------------- I2C Scoreboard Report ------------------------------------
+Total transactions checked: 10
+  PASSED: 10
+  FAILED: 0
+Write operations: 5
+Read operations: 5
+ACK mismatches: 0
+Data mismatches: 0
+I2C Verification Master: PASSED
+-------------------------------------------------------------------------
+
+UVM_INFO my_test.sv(190) @ 2235: uvm_test_top [my_test] I2C test completed
+UVM_INFO /xcelium25.03/tools/methodology/UVM/CDNS-IEEE/sv/src/base/uvm_report_server.svh(864) @ 2235: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   81
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[RNTST]     1
+[TB]     4
+[UVM/RELNOTES]     1
+[my_agent]     3
+[my_driver]    15
+[my_monitor]    24
+[my_scoreboard]    21
+[my_sequence]     1
+[my_test]    11
+
+xmsim: *W,SLFINV: Call to process::self() from invalid process; returning null.
+xmsim: *W,SLFINV: Call to process::self() from invalid process; returning null.
+xmsim: *W,SLFINV: Call to process::self() from invalid process; returning null.
+xmsim: *W,SLFINV: Call to process::self() from invalid process; returning null.
+UVM_INFO tb.sv(111) @ 2235: reporter [TB] Simulation completed
+Simulation complete via $finish(1) at time 2235 NS + 59
+/xcelium25.03/tools/methodology/UVM/CDNS-IEEE/sv/src/base/uvm_root.svh:585 		$finish;
+xcelium> exit
+TOOL:	xrun	25.03-s001: Exiting on Mar 18, 2026 at 17:36:06 EDT  (total: 00:00:11)
