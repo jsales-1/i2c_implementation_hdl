@@ -1,0 +1,1 @@
+### É necessário possuir os arquivos gsclib045_macro.lef e gsclib045_tech.lef. Copie os arquivos da tecnologia para essa pasta para que seja possível rodar o .TCL
