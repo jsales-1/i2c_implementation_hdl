@@ -1,0 +1,7 @@
+# ignora tudo nas pastas
+Synthesis/Creating_Netlists/LIB/*
+Synthesis/Creating_Netlists/LEF/*
+
+# MAS mantém arquivos .md
+!Synthesis/Creating_Netlists/LIB/*.md
+!Synthesis/Creating_Netlists/LEF/*.md
