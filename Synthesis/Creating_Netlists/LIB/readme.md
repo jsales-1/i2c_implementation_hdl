@@ -1,0 +1,1 @@
+### É necessário possuir as bibliotecas fast_vdd1v0_basicCells e slow_vdd1v0_basicCells, tanto os arquivos .lib, quantos os .v. Copie os arquivos para essa pasta para que seja possível rodar o .TCL
